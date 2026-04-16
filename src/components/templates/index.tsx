@@ -39,22 +39,7 @@ export const TEMPLATE_TYPES = [
 ] as const;
 
 export function getPageComponent(type: ComponentType): AnyPageComponent {
-  const Component = COMPONENT_MAP[type];
-  if (!Component) {
-    // Fallback: render a placeholder for unmapped types
-    return function Placeholder({ scale }: PageProps<Record<string, unknown>>) {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { PageWrapper } = require('./PageWrapper');
-      return (
-        <PageWrapper scale={scale}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#666', fontSize: 48 }}>
-            {type}
-          </div>
-        </PageWrapper>
-      );
-    };
-  }
-  return Component;
+  return COMPONENT_MAP[type] ?? COMPONENT_MAP['intro'];
 }
 
 export { CoverPage, IntroPage, TextCardPage, SceneCardPage, ExpressionCardPage, SimilarPage, XoCardPage, BeforeAfterPage, DialogCardPage, QuotePage, CtaPage };
