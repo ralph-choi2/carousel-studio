@@ -1,24 +1,60 @@
+import type { ComponentType as ReactComponentType, FC } from 'react';
 import type { ComponentType, PageProps } from '@/lib/types';
 import { CoverPage } from './CoverPage';
 import { IntroPage } from './IntroPage';
 import { TextCardPage } from './TextCardPage';
 import { SceneCardPage } from './SceneCardPage';
+import { ExpressionCardPage } from './ExpressionCardPage';
+import { SimilarPage } from './SimilarPage';
 import { XoCardPage } from './XoCardPage';
+import { BeforeAfterPage } from './BeforeAfterPage';
+import { DialogCardPage } from './DialogCardPage';
+import { QuotePage } from './QuotePage';
 import { CtaPage } from './CtaPage';
-import type { FC } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyPageComponent = FC<PageProps<any>>;
 
-export const COMPONENT_MAP: Partial<Record<ComponentType, AnyPageComponent>> = {
-  cover: CoverPage,
-  intro: IntroPage,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const COMPONENT_MAP: Record<string, ReactComponentType<PageProps<any>>> = {
+  'cover': CoverPage,
+  'intro': IntroPage,
+  'hook-reversal': IntroPage,
   'text-card': TextCardPage,
+  'expression': TextCardPage,
+  'situation': TextCardPage,
   'scene-card': SceneCardPage,
+  'expression-card': ExpressionCardPage,
+  'similar': SimilarPage,
   'xo-card': XoCardPage,
-  cta: CtaPage,
-  // aliases — mapped to nearest equivalent
-  expression: IntroPage,
-  situation: SceneCardPage,
-  'hook-reversal': TextCardPage,
+  'before-after-card': BeforeAfterPage,
+  'dialog-card': DialogCardPage,
+  'quote-card': QuotePage,
+  'cta': CtaPage,
 };
+
+export const TEMPLATE_TYPES = [
+  'cover', 'intro', 'text-card', 'scene-card', 'expression-card',
+  'similar', 'xo-card', 'before-after-card', 'dialog-card', 'quote-card', 'cta',
+] as const;
+
+export function getPageComponent(type: ComponentType): AnyPageComponent {
+  const Component = COMPONENT_MAP[type];
+  if (!Component) {
+    // Fallback: render a placeholder for unmapped types
+    return function Placeholder({ scale }: PageProps<Record<string, unknown>>) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { PageWrapper } = require('./PageWrapper');
+      return (
+        <PageWrapper scale={scale}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#666', fontSize: 48 }}>
+            {type}
+          </div>
+        </PageWrapper>
+      );
+    };
+  }
+  return Component;
+}
+
+export { CoverPage, IntroPage, TextCardPage, SceneCardPage, ExpressionCardPage, SimilarPage, XoCardPage, BeforeAfterPage, DialogCardPage, QuotePage, CtaPage };
