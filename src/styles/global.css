@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pretendard font-faces */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-ExtraLight.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-Light.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-Medium.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-SemiBold.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-Bold.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-style: normal;
+  src: url('/assets/fonts/Pretendard-ExtraBold.woff2') format('woff2'),
+       url('/assets/fonts/Pretendard-ExtraBold.woff') format('woff');
+}
+
+/* Noto Sans KR */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/assets/fonts/NotoSansKR-Bold.woff2') format('woff2'),
+       url('/assets/fonts/NotoSansKR-Bold.woff') format('woff');
+}
+
+/* shadcn CSS variables */
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  }
+}
+
+/* Carousel template CSS variables */
+:root {
+  --carousel-width: 1080px;
+  --carousel-height: 1350px;
+  --tpl-bg-light: #ffffff;
+  --tpl-bg-dark: #0a0a1a;
+  --tpl-text-primary-light: #111111;
+  --tpl-text-primary-dark: #f0f0f0;
+  --tpl-text-secondary-light: #555555;
+  --tpl-text-secondary-dark: #aaaaaa;
+  --tpl-accent: #e94560;
+  --tpl-accent-muted: #0f3460;
+  --tpl-border-light: #e0e0e0;
+  --tpl-border-dark: #333333;
+  --tpl-surface-light: #f5f5f5;
+  --tpl-surface-dark: #16213e;
+}
