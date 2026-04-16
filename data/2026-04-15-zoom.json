@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "date": "2026-04-15",
+    "title": "Zoom 화상회의 영어 — 퀴즈로 확인해보세요",
+    "pillar": 2,
+    "format": "퀴즈형",
+    "hypothesis": "H-002",
+    "target_save": 120,
+    "pda": {
+      "persona": "글로벌팀 또는 해외 클라이언트와 화상회의를 하는 직장인",
+      "desire": "Zoom에서 당황하지 않고 자연스럽게 대처하는 것",
+      "awareness": "문제인식",
+      "angle": "공감"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "화상회의에서\n이 상황, 영어로 말할 수 있으세요?",
+        "subtitle": "실제로 자주 벌어지는 4가지 상황 👇",
+        "bg_prompt": "",
+        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_cover.png"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "머릿속이 하얘지는 순간이 있습니다",
+        "body": "화상회의 중 갑자기 상대방 음성이 끊기거나,\n내가 말하고 있었는데 음소거였거나,\n연결이 나빠서 한 번 더 말해달라고 해야 하거나.\n\n이 상황들, 영어로 어떻게 말하세요?"
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "bg_prompt": "",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "You are mute.",
+            "kor": "문법적으로 어색하고 직접적으로 들림"
+          },
+          {
+            "label": "icon_check",
+            "eng": "I think you might be on mute.",
+            "kor": "자연스럽고 배려 있게 알려주는 표현"
+          }
+        ],
+        "headline": "\"음소거인 것 같아요\"",
+        "headline_label": "퀴즈 1",
+        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_scene1.png"
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "bg_prompt": "",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "Your voice is breaking.",
+            "kor": "틀린 건 아니지만 어색하게 들릴 수 있음"
+          },
+          {
+            "label": "icon_check",
+            "eng": "You're breaking up a bit. Can you hear me okay?",
+            "kor": "자주 쓰는 실제 원어민 표현"
+          }
+        ],
+        "headline": "\"소리가 끊겨요\"",
+        "headline_label": "퀴즈 2",
+        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_scene2.png"
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "items": [
+          {
+            "body": "→ 음소거인 것 같아요",
+            "title": "I think you might be on mute."
+          },
+          {
+            "body": "→ 소리가 좀 끊겨요",
+            "title": "You're breaking up a bit."
+          },
+          {
+            "body": "→ 죄송한데 다시 말씀해주실 수 있나요?",
+            "title": "Sorry, could you say that again?"
+          }
+        ],
+        "title": "화상회의 필수 표현 4개"
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "items": [
+          {
+            "eng": "We're having some technical issues.",
+            "kor": "기술적 문제가 좀 있어요"
+          },
+          {
+            "eng": "Let me rejoin the call.",
+            "kor": "제가 다시 접속할게요"
+          },
+          {
+            "eng": "Can everyone hear me okay?",
+            "kor": "모두 잘 들리세요?"
+          }
+        ],
+        "title": "연결 문제 대처 표현"
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "회의 시작과 마무리도 챙겨두세요",
+        "body": "시작할 때:\n\"Can everyone see my screen?\" — 화면 공유 확인\n\"Let's get started. We have about 30 minutes.\" — 회의 시작\n\n마무리할 때:\n\"Let's wrap up here.\" — 마무리 신호\n\"I'll send a follow-up email.\" — 후속 조치 안내"
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "다음 화상회의 전에 저장해두세요",
+        "body": "Zoom 화상회의에서 자주 벌어지는 상황들,\n미리 표현을 알아두면 당황하지 않아요.\n\n다음 회의 전에 이 슬라이드 한 번만 다시 꺼내보세요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "Zoom 화상회의 중 이 상황, 영어로 말할 수 있으세요?\n\n\"음소거인 것 같아요\", \"소리가 끊겨요\" — 실제로 자주 벌어지는데\n막상 영어로 말하려면 입이 굳어버리는 순간들이 있죠.\n\n오늘 꼭 저장해두면 좋을 표현 정리했어요 👇\n\nI think you might be on mute. → 음소거인 것 같아요\nYou're breaking up a bit. → 소리가 좀 끊겨요\nSorry, could you say that again? → 다시 말씀해주실 수 있나요?\nLet me rejoin the call. → 제가 다시 접속할게요\nCan everyone see my screen? → 화면 다들 보이세요?\n\n알고 있는 것과 그 순간 바로 나오는 것은 다릅니다.\n한 번만 소리 내서 연습해보세요.\n\n‣ TESOL 외국인 강사와 1:1 실전 연습이 궁금하다면 → 프로필 링크에서 무료체험 신청\n\n#민병철유폰 #전화영어 #화상영어 #영어회화 #비즈니스영어"
+}

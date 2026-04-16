@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "series_title": "원어민이 쓰는 직장 영어",
+    "date": "2026-04-17",
+    "title": "원어민이 실제로 쓰는 직장 영어 TOP 4",
+    "pillar": 4,
+    "format": "대화카드+DM",
+    "hypothesis": "H-004",
+    "target_save": 80,
+    "pda": {
+      "persona": "유폰을 알고 있지만 아직 시작 못 한 직장인 — 효과가 있을지 확신이 없음",
+      "desire": "리스크 없이 시작해보는 것",
+      "awareness": "제품인식",
+      "angle": "공감+권위"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "원어민이 실제로 쓰는\n직장 영어 TOP 4",
+        "subtitle": "",
+        "bg_prompt": "Korean professional woman sitting at a desk early morning, looking at laptop screen with a slightly tense expression, warm office lighting, candid documentary photography style, soft background blur"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "외워두면 내일 바로 쓸 수 있어요",
+        "body": "원어민 동료·상사랑 같이 일해본 분들이 공통적으로 꼽는 직장 영어 TOP 4.\n\n짧은 대화로 보면 쓰임새가 바로 감이 와요. 하나씩 볼까요?"
+      }
+    },
+    {
+      "component": "dialog-card",
+      "data": {
+        "title": "Consider it done.",
+        "a": {
+          "eng": "Can you finish this by Friday?",
+          "kor": "금요일까지 끝낼 수 있어요?"
+        },
+        "b": {
+          "eng": "Consider it done.",
+          "kor": "맡겨주세요. 끝내놓겠습니다."
+        },
+        "bg_prompt": "A Korean professional in a modern office giving a confident nod to a colleague across the desk, soft natural window light, shallow depth of field, cinematic corporate setting"
+      }
+    },
+    {
+      "component": "dialog-card",
+      "data": {
+        "title": "When you get a chance",
+        "a": {
+          "eng": "I just sent you the contract.",
+          "kor": "방금 계약서 보냈어요."
+        },
+        "b": {
+          "eng": "Could you review it when you get a chance?",
+          "kor": "시간 되실 때 검토 부탁드려요."
+        },
+        "bg_prompt": "A Korean professional composing an email at a clean laptop, warm afternoon light through office windows, soft focus bokeh, documentary photography"
+      }
+    },
+    {
+      "component": "dialog-card",
+      "data": {
+        "title": "Just a heads-up",
+        "a": {
+          "eng": "3pm meeting still on?",
+          "kor": "3시 미팅 그대로죠?"
+        },
+        "b": {
+          "eng": "Just a heads-up — it's at 4 now.",
+          "kor": "참고로요, 4시로 옮겼어요."
+        },
+        "bg_prompt": "Two Korean coworkers chatting casually by their desks in a modern open office, one looking at the other while walking past, warm natural light, candid documentary"
+      }
+    },
+    {
+      "component": "dialog-card",
+      "data": {
+        "title": "What's worth noting",
+        "a": {
+          "eng": "Any key takeaway from Q1?",
+          "kor": "1분기에서 핵심이 뭐예요?"
+        },
+        "b": {
+          "eng": "What's worth noting is the 20% growth.",
+          "kor": "주목할 만한 건 20% 성장이에요."
+        },
+        "bg_prompt": "A Korean presenter confidently speaking in front of a glass-walled meeting room with a chart visible on a large screen, colleagues listening, cinematic warm light"
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "이 표현들, 한번 듣고는 안 붙어요",
+        "body": "\"1년 넘게 하면서 영어에 대한 두려움도\n많이 줄었네요. 고객과 의사소통이 가능할\n정도까지 실력이 많이 늘었어요.\"\n— 29개월 수강 회원\n\n영어를 시작한 한국인 중 68%가 중도 포기해요.\n유폰 회원 재수강률은 85.6%예요.\n\n외국인 강사와 매일 10분씩 써봐야 내 말이 돼요."
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "아직 시작 못 하신 이유, 이걸로 해결돼요",
+        "body": "첫 수업 무료 — 경험하고 결정하세요. 돈이 먼저 나가지 않아요.\n\n100% 환불 보장 — 첫 수업 후 마음에 안 드시면 한 푼도 안 내셔도 돼요.\n\n매일 10분 — 강사가 먼저 전화해요. 시간 맞추실 필요 없어요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "원어민이 실제로 쓰는 직장 영어 TOP 4\n\n짧은 대화 하나씩 넘겨보세요 👇\n\n1. Consider it done.\n→ 업무 지시받았을 때, 깔끔한 수락\n\n2. Could you review it when you get a chance?\n→ 부담 없는 검토 요청\n\n3. Just a heads-up —\n→ 가볍게 소식 알릴 때\n\n4. What's worth noting is...\n→ 발표/회의에서 핵심 짚을 때\n\n\"1년 넘게 하면서 영어에 대한 두려움도 많이 줄었어요.\n고객과 의사소통이 가능할 정도까지 실력이 늘었어요.\"\n— 29개월 수강 회원\n\n영어를 시작한 한국인 중 68%가 중도 포기합니다.\n유폰 회원 재수강률은 85.6%입니다.\n\n첫 수업 무료. 마음에 안 드시면 100% 환불됩니다.\n\n댓글에 '원어민' 남기시면\n무료수업 링크 DM으로 바로 보내드릴게요 ✉️\n\n#민병철유폰 #전화영어 #화상영어 #직장인영어 #비즈니스영어"
+}

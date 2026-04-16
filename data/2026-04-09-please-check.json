@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "date": "2026-04-09",
+    "title": "이메일에서 매일 쓰는 \"Please check\" — 원어민에겐 명령처럼 들려요",
+    "pillar": 1,
+    "format": "반전훅",
+    "hypothesis": "H-001",
+    "target_save": 150,
+    "pda": {
+      "persona": "중급 정체기 직장인",
+      "desire": "이메일에서 프로페셔널하게 보이고 싶다",
+      "awareness": "문제인식",
+      "angle": "놀라움+두려움"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "이메일에서 매일 쓰는\n\"Please check\"",
+        "subtitle": "원어민에겐 명령처럼 들려요 👇",
+        "bg_prompt": "Close-up of a laptop screen showing an email draft, soft office lighting, clean minimal desk, shallow depth of field, muted tones, professional atmosphere"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "\"Please\"를 붙였으니 괜찮겠지,\n생각하셨나요?",
+        "body": "상사에게, 클라이언트에게, 해외 팀원에게\n\"Please check the attached file.\"\n\n아쉽게도 \"Please + 동사원형\"은 구조적으로 명령문이에요.\n\"Please sit down.\" \"Please be quiet.\"처럼요.\n\n부드럽긴 해도, 상하 관계를 전제한 표현입니다.\n의도와 다른 인상을 줄 수 있어요."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "headline": "같은 요청, 다른 인상",
+        "bg_prompt": "Two professionals exchanging documents in a bright modern office, natural window light, calm and collaborative atmosphere, soft background blur",
+        "items": [
+          {
+            "label": "A",
+            "eng": "Please check the attached file.",
+            "kor": "→ 명령의 구조. 상사·클라이언트에게는 어색하게 읽혀요."
+          },
+          {
+            "label": "B",
+            "eng": "Could you take a look at the attached file?",
+            "kor": "→ 부탁의 구조. 동일한 요청이지만 훨씬 정중하게 전달돼요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "상황별 업그레이드 표현",
+        "items": [
+          {
+            "title": "Could you take a look at this?",
+            "body": "→ 한번 봐주실 수 있을까요?"
+          },
+          {
+            "title": "Would you mind reviewing this?",
+            "body": "→ 검토해 주시겠어요?"
+          },
+          {
+            "title": "I'd appreciate your feedback\non this.",
+            "body": "→ 의견 주시면 감사하겠어요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "여유 있게 배려할 때",
+        "items": [
+          {
+            "title": "When you get a chance, could you review this?",
+            "body": "→ 시간 되실 때 검토해 주실 수 있을까요?\n\n상대 일정을 배려하는 가장 프로페셔널한 표현이에요."
+          },
+          {
+            "title": "\"Please kindly\"도 마찬가지예요",
+            "body": "→ \"kindly\"를 붙여도 더 정중해지지 않아요.\n원어민에겐 오히려 어색하게 읽혀요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "상황에 따라 골라 쓰세요",
+        "body": "동료 / 팀원 →\nCould you take a look at this?\n\n상사 / 파트너사 →\nWould you mind reviewing this?\n\n임원 / 클라이언트 →\nI'd appreciate your feedback on this.\n\n바쁜 상대에게 →\nWhen you get a chance,\ncould you review this?"
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "이메일에서 매일 쓰는 \"Please check\" —\n원어민에겐 명령처럼 들려요 👇\n\n\"Please\"를 붙였으니 괜찮겠지, 저도 그렇게 생각했어요.\n그런데 \"Please + 동사원형\"은 구조적으로 명령문이에요.\n상사나 클라이언트에게 쓰면 의도와 다른 인상을 줄 수 있어요.\n\n✨ Could you take a look at this? → 가볍게 검토 요청\n✨ Would you mind reviewing this? → 클라이언트·임원에게\n✨ I'd appreciate your feedback on this. → 의견을 존중하며\n✨ When you get a chance, could you review this? → 바쁜 상대에게\n\n\"Please kindly check\"는 더 공손한 표현이 아니에요.\n원어민 눈에는 오히려 어색하게 읽혀요.\n\n이 표현들, 실전에서 써봐야 내 것이 됩니다.\n\n‣ @uphone.english 팔로우\n‣ TESOL 외국인 강사와 1:1 무료체험 → 프로필 링크\n\n#민병철유폰 #전화영어 #화상영어 #직장인영어 #비즈니스영어"
+}

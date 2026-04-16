@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "date": "2026-04-14",
+    "title": "\"I think\" 말고 — 회의에서 무게감 있게",
+    "pillar": 1,
+    "format": "X 말고",
+    "hypothesis": "H-001",
+    "target_save": 150,
+    "pda": {
+      "persona": "중급 정체기 직장인 — 기초는 되는데 회의에서 존재감이 없음",
+      "desire": "회의에서 내 의견이 진지하게 받아들여지는 것",
+      "awareness": "문제인식",
+      "angle": "공감"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "\"I think\"만 쓰면\n회의에서 가벼워 보이는 이유",
+        "subtitle": "더 무게감 있게 말하는 법 👇",
+        "bg_prompt": "Korean professional woman in a modern office conference room, looking thoughtful before speaking, warm lighting, shallow depth of field, corporate setting"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "회의에서 이런 적 있으셨나요?",
+        "body": "의견은 있는데 \"I think...\"만 반복하게 되는 상황.\n말을 시작했는데 왠지 설득력이 없는 느낌.\n\n\"I think\"는 틀린 표현이 아닙니다.\n다만 회의에서는 더 강한 선택지가 있어요."
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "items": [
+          {
+            "body": "→ 제 관점에서는 (시각 차이 인정하며 주장)",
+            "title": "From my perspective,"
+          },
+          {
+            "body": "→ 제 판단은요 (자신감 있는 의견 제시)",
+            "title": "My take is that"
+          },
+          {
+            "body": "→ 저는 ~라고 주장하겠습니다 (논리적 강도 ↑)",
+            "title": "I'd argue that"
+          }
+        ],
+        "title": "\"I think\" 대신 써보세요"
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "bg_prompt": "Korean professional woman speaking confidently in a modern glass-walled meeting room, colleagues listening around conference table, warm evening office lighting, city skyline through windows, shallow depth of field",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "I think we should change the schedule.",
+            "kor": "막연한 개인 생각처럼 들림"
+          },
+          {
+            "label": "icon_check",
+            "eng": "I'd argue that changing the schedule is the better move here.",
+            "kor": "근거 있는 주장으로 들림"
+          }
+        ],
+        "headline": "같은 내용, 다른 무게감"
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "items": [
+          {
+            "body": "→ 그 점에 덧붙여서 (이전 발언 연결)",
+            "title": "Building on that,"
+          },
+          {
+            "body": "→ 방금 말씀에 추가하자면 (팀 플레이 표현)",
+            "title": "To add to what was said,"
+          },
+          {
+            "body": "→ 그렇긴 한데 (부드럽게 반론 시작)",
+            "title": "That said,"
+          }
+        ],
+        "title": "흐름을 이어갈 때도 업그레이드"
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "items": [
+          {
+            "eng": "As I see it,",
+            "kor": "제가 보기엔"
+          },
+          {
+            "eng": "In my view,",
+            "kor": "제 시각으로는"
+          },
+          {
+            "eng": "The way I see it,",
+            "kor": "제가 이해하기론"
+          }
+        ],
+        "title": "격식 수준에 따라 골라 쓰세요"
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "언제 쓰나요?",
+        "body": "• 팀 미팅에서 내 의견을 처음 꺼낼 때\n• 누군가의 의견에 동의하면서 덧붙일 때\n• 반론을 부드럽게 시작할 때\n\n이 세 타이밍만 기억해두면 충분합니다."
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "다음 회의에서 딱 한 번만",
+        "body": "\"I think\" 대신 \"From my perspective,\" 혹은 \"I'd argue that\".\n한 번만 바꿔도 회의에서 받아들여지는 무게가 달라집니다.\n\n저장해두고, 다음 회의 전에 한 번 꺼내보세요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "\"I think\"만 반복하고 있진 않으신가요? 🤔\n\n회의에서 영어로 의견을 낼 때 \"I think\"는 습관처럼 나오는 표현이에요.\n틀린 건 아닌데, 더 설득력 있게 들리는 선택지가 분명히 있습니다.\n\nFrom my perspective, → 제 관점에서는\nMy take is that → 제 판단은\nI'd argue that → 저는 ~라고 봅니다\nBuilding on that, → 그 점에 덧붙여서\n\n같은 내용이어도 시작하는 표현 하나로 회의에서 받아들여지는 무게가 달라져요.\n다음 회의 전에 한 번만 꺼내서 써보세요.\n\n‣ TESOL 외국인 강사와 1:1 실전 연습이 궁금하다면 → 프로필 링크에서 무료체험 신청\n\n#민병철유폰 #전화영어 #화상영어 #직장인영어 #비즈니스영어"
+}

@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "date": "2026-04-10",
+    "title": "\"I don't agree\" 이거 회의에서 쓰면 안 되는 이유",
+    "pillar": 1,
+    "format": "퀴즈+반전훅",
+    "hypothesis": "H-001",
+    "target_save": 150,
+    "pda": {
+      "persona": "외국계/글로벌팀 직장인",
+      "desire": "회의에서 반대 의견을 프로페셔널하게 말하고 싶다",
+      "awareness": "문제인식",
+      "angle": "놀라움+두려움"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "\"I don't agree\"",
+        "subtitle": "이거 회의에서 쓰면 안 되는 이유",
+        "bg_prompt": "A Korean woman in her 30s speaking confidently at a modern glass-walled meeting room, gesturing with one hand while presenting her point. She is surrounded by Western colleagues listening attentively. Warm office lighting, city skyline visible through windows, shallow depth of field focused on her"
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "영어 회의에서는\n반대할 때도 쿠션이 필요해요.",
+        "body": "\"I don't agree\"는 틀린 표현이 아니에요.\n그런데 회의에서 바로 꺼내면\n\"나는 당신 의견을 거부합니다\"처럼 들릴 수 있어요.\n\n같은 반대도 표현 하나로 인상이 완전히 달라져요."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "headline": "같은 반대, 다른 인상",
+        "bg_prompt": "A Korean woman in her 30s and a Western male colleague having a professional discussion in a bright modern office with glass walls, warm natural light, both facing each other across a desk, cityscape in background",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "I don't agree.",
+            "kor": "직접 거부. 분위기 얼어붙을 수 있음"
+          },
+          {
+            "label": "icon_check",
+            "eng": "I see your point,\nbut I'd look at it differently.",
+            "kor": "존중하면서 반론. 대화가 이어짐"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "반대할 때 쓰는 쿠션 표현",
+        "items": [
+          {
+            "title": "I see what you mean, but...",
+            "body": "→ 말은 알겠는데..."
+          },
+          {
+            "title": "That's a fair point, however...",
+            "body": "→ 일리 있지만..."
+          },
+          {
+            "title": "I'm not sure I'm fully\non board with that.",
+            "body": "→ 완전히 동의하기는 어려운데요"
+          }
+        ]
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "title": "부드럽게 대안 제시할 때",
+        "items": [
+          {
+            "eng": "What if we tried\na different approach?",
+            "kor": "→ 다른 방법을 시도해보면 어떨까요?"
+          },
+          {
+            "eng": "Have we considered...?",
+            "kor": "→ 혹시 ...은 고려해봤나요?"
+          },
+          {
+            "eng": "Could there be another way\nto look at this?",
+            "kor": "→ 다른 시각으로 볼 수도 있지 않을까요?"
+          }
+        ]
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "다음 회의에서\n한 번만 써보세요.",
+        "body": "\"I see your point, but...\"\n이 한마디로 인상이 달라져요.\n\n반대는 거부가 아니라\n더 나은 결론을 향한 시작이에요.\n\n아는 것과 실제로 말하는 건 달라요.\n외국인 강사와 직접 써봐야 회의에서 나와요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "\"I don't agree\" — 이거 회의에서 쓰면 안 되는 이유 👇\n\n틀린 표현은 아니에요.\n그런데 회의에서 바로 꺼내면\n\"나는 당신 의견을 거부합니다\"처럼 들릴 수 있어요.\n\n영어 회의에서는 반대할 때도 쿠션이 필요해요.\n\n✨ I see what you mean, but... → 말은 알겠는데\n✨ That's a fair point, however... → 일리 있지만\n✨ What if we tried a different approach? → 다른 방법은?\n✨ Have we considered...? → 혹시 이건 고려해봤나요?\n\n다음 회의에서 한 번만 써보세요.\n\"I see your point, but...\" 이 한마디로 인상이 달라져요.\n\n‣ @uphone.english 팔로우\n‣ TESOL 외국인 강사와 1:1 무료체험 → 프로필 링크\n\n#민병철유폰 #전화영어 #화상영어 #직장인영어 #비즈니스영어"
+}

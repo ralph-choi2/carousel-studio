@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "date": "2026-04-15",
+    "title": "\"I'm sorry\" 남발이 커리어에 미치는 영향",
+    "pillar": 1,
+    "format": "반전훅",
+    "hypothesis": "H-001",
+    "target_save": 140,
+    "pda": {
+      "persona": "직장에서 영어를 쓰는 20~30대 직장인 — 공손하게 말하려다 오히려 약해 보이는 상황",
+      "desire": "프로답고 단단하게 들리는 것",
+      "awareness": "문제인식",
+      "angle": "놀라움/발견"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "\"I'm sorry\"\n하루에 몇 번 쓰세요?",
+        "subtitle": "공손한 줄 알았는데 커리어 마이너스일 수 있어요",
+        "bg_prompt": "Close-up of a Korean professional woman looking slightly surprised, modern bright office background, natural light, candid expression, editorial photography style"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "사실, 이건 한국어 습관입니다",
+        "body": "\"죄송한데요...\" \"미안한데 혹시...\" \n한국어에서 공손함을 표현하는 방식이 영어에도 그대로 옮겨진 거예요.\n\n영어권에서 Sorry를 너무 자주 쓰면\n자신감이 없거나 책임을 인정하는 사람으로 읽힐 수 있습니다."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "bg_prompt": "Two people in a video call or meeting room, one raising hand to speak, clean office environment, warm professional lighting",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "Sorry to interrupt, but...",
+            "kor": "Sorry 남발 → 존재감 약해짐"
+          },
+          {
+            "label": "icon_check",
+            "eng": "Quick question — can I jump in?",
+            "kor": "자신감 있고 자연스러운 끼어들기"
+          }
+        ],
+        "headline": "질문을 끼어들며 할 때",
+        "headline_label": "상황 1"
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "bg_prompt": "Professional handing over a document in an office, polite gesture, neutral background, soft lighting",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "Sorry for the wait.",
+            "kor": "사과 → 약점을 강조하는 효과"
+          },
+          {
+            "label": "icon_check",
+            "eng": "Thank you for your patience.",
+            "kor": "감사 → 상대를 높이고 나도 단단해짐"
+          }
+        ],
+        "headline": "기다리게 했을 때",
+        "headline_label": "상황 2"
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "items": [
+          {
+            "body": "→ 기다려주셔서 감사합니다\n(Sorry for the wait 대신)",
+            "title": "Thank you for your patience."
+          },
+          {
+            "body": "→ 발견해주셔서 감사합니다\n(Sorry, I missed that 대신)",
+            "title": "Thank you for catching that."
+          },
+          {
+            "body": "→ 이해해주셔서 감사합니다\n(Sorry for the trouble 대신)",
+            "title": "Thank you for your understanding."
+          }
+        ],
+        "title": "Sorry → Thank you 전환"
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "items": [
+          {
+            "eng": "Quick question —",
+            "kor": "잠깐 질문해도 될까요"
+          },
+          {
+            "eng": "Can I add something here?",
+            "kor": "여기서 한 말씀 드려도 될까요?"
+          },
+          {
+            "eng": "Just to clarify —",
+            "kor": "혹시 명확히 하자면요"
+          }
+        ],
+        "title": "끼어들 때 Sorry 없이"
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "진짜 사과가 필요할 땐?",
+        "body": "물론 실제로 잘못이 있을 때는 Sorry를 써야 합니다.\n\n\"I'm sorry, that was my mistake. Here's how I'll fix it.\"\n\n이처럼 잘못 인정 + 해결책을 함께 쓰면\n책임감 있는 프로처럼 들립니다."
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "오늘부터 한 가지만",
+        "body": "기다리게 했을 때 \"Sorry\" 대신\n\"Thank you for your patience.\"\n한 문장만 바꿔도 전달되는 인상이 달라집니다.\n\n저장해두고 내일 회의에서 꺼내보세요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "\"I'm sorry\"를 하루에 몇 번 쓰고 계세요?\n\n공손하게 말하려고 습관처럼 쓰는 표현인데,\n영어권에서는 Sorry를 너무 자주 쓰면 자신감이 없거나 책임을 지는 사람으로 읽히기도 해요.\n\nSorry → Thank you 전환만으로 인상이 달라집니다 ✨\n\nSorry for the wait. → Thank you for your patience.\nSorry, I missed that. → Thank you for catching that.\nSorry for the trouble. → Thank you for your understanding.\nSorry to interrupt. → Quick question — can I jump in?\n\n진짜 실수를 인정할 때는 Sorry가 맞아요.\n다만 습관처럼 붙이는 Sorry는 오늘부터 하나씩 줄여가 보세요.\n\n‣ TESOL 외국인 강사와 1:1 실전 연습이 궁금하다면 → 프로필 링크에서 무료체험 신청\n\n#민병철유폰 #전화영어 #화상영어 #직장인영어 #비즈니스영어"
+}

@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "date": "2026-04-16",
+    "title": "바빠서 영어 못 한다 — 이 계산 한 번 해보세요",
+    "pillar": 3,
+    "format": "리프레임",
+    "hypothesis": "H-003",
+    "target_save": 100,
+    "pda": {
+      "persona": "재도전 직장인 — 영어를 여러 번 시작했다 멈춘 경험이 있음",
+      "desire": "이번에는 중간에 포기하지 않는 것",
+      "awareness": "문제인식",
+      "angle": "공감"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "\"바빠서 영어 못 해요\"\n이 말, 진짜인지 확인해봤습니다",
+        "subtitle": "숫자로 계산해봤어요",
+        "bg_prompt": "Korean professional looking at a smartphone with a thoughtful expression, minimalist background, warm indoor lighting, candid moment between work tasks"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "가장 흔한 말 중 하나입니다",
+        "body": "\"요즘 너무 바빠서요.\"\n\"일이 좀 정리되면 다시 시작하려고요.\"\n\n이 말을 처음 한 게 몇 년 전인지 기억하세요?\n일이 한가해지는 때는 잘 오지 않더라고요."
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "매일 10분을 1년으로 계산하면",
+        "body": "하루 10분\n× 365일\n= 연 60시간\n\n연 60시간짜리 영어 과외를 받는 것과 같습니다.\n시간당 10만원이면 600만원어치 연습량."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "header": "30/60/90일에 무슨 일이 생기나",
+        "bg_prompt": "Minimalist calendar or timeline graphic, clean white background, subtle progression illustration, professional infographic style",
+        "items": [
+          {
+            "label": "icon_check",
+            "title": "30일",
+            "body": "회의에서 쓰던 표현들이 뇌에 자리잡기 시작"
+          },
+          {
+            "label": "icon_check",
+            "title": "90일",
+            "body": "머릿속에서 번역 없이 반응이 나오기 시작"
+          }
+        ]
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "복리는 투자에만 있는 게 아닙니다",
+        "body": "첫 달은 눈에 띄지 않아요.\n두 번째 달부터 뭔가 쌓이는 느낌이 들고,\n세 번째 달에는 전과 다른 자신을 만나게 됩니다.\n\n이게 \"매일 조금씩\"의 원리예요.\n지름길보다 조용하지만, 더 오래 남습니다."
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "시간이 없는 게 아닐 수 있습니다",
+        "body": "출퇴근 중 유튜브 보는 10분,\n점심 후 스마트폰 보는 10분.\n\n그 시간이 없어서가 아니라,\n그 시간이 영어로 채워져 있지 않은 거예요.\n\n선택의 문제이지, 시간의 문제가 아닐 때가 많습니다."
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "header": "꾸준함에 대한 다른 시각",
+        "items": [
+          {
+            "eng": "Small steps, compounding results.",
+            "kor": "작은 걸음이 복리로 쌓입니다"
+          },
+          {
+            "eng": "Consistency beats intensity.",
+            "kor": "꾸준함이 강도를 이깁니다"
+          },
+          {
+            "eng": "Start before you're ready.",
+            "kor": "준비되기 전에 시작하세요"
+          }
+        ]
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "\"나중에\"가 오지 않을 수도 있어요",
+        "body": "바쁜 건 맞아요. 다들 바쁩니다.\n그래도 매일 10분을 찾은 사람들이\n90일 후에 다른 자리에 서 있더라고요.\n\n오늘 10분, 내일 10분이 먼저입니다."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "\"바빠서 영어 못 해요\" — 저도 그 말 자주 했습니다.\n\n그런데 매일 10분 × 365일을 계산해봤더니 연 60시간이더라고요.\n시간이 없는 게 아니라, 그 시간이 다른 곳에 가 있는 거였어요.\n\n30일째가 되면 표현들이 자리를 잡기 시작하고,\n90일째가 되면 머릿속에서 번역 없이 반응이 나오기 시작합니다.\n\n지름길은 없어요. 다만 매일 조금씩이 가장 확실한 길이에요.\n\n바쁜 건 사실인데, 그래도 10분은 어딘가에 있더라고요.\n출퇴근 중에, 점심 후에, 잠들기 전 5분에.\n\n‣ TESOL 외국인 강사와 1:1 실전 연습 무료체험 → 프로필 링크\n\n#민병철유폰 #전화영어 #화상영어 #자기계발 #영어회화"
+}

@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "date": "2026-04-10",
+    "title": "해외 출장 첫날, 공항에서 호텔까지 — 이 5가지만 알면 멘붕 없어요",
+    "pillar": 2,
+    "format": "상황묶음",
+    "hypothesis": null,
+    "role": "대조군",
+    "target_save": 80,
+    "pda": {
+      "persona": "해외 출장 경험 있는 직장인",
+      "desire": "출장 현장에서 당황하지 않기",
+      "awareness": "문제인식",
+      "angle": "공감+편의"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "해외 출장 첫날,\n공항에서 호텔까지",
+        "subtitle": "이 5가지만 알면 멘붕 없어요 👇",
+        "bg_prompt": "Business traveler with rolling suitcase walking through a modern international airport terminal, warm overhead lighting, motion blur on background passengers, clean and confident atmosphere"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "준비했는데도\n막히는 순간이 있어요",
+        "body": "택시 기사가 목적지를 못 알아듣고 되묻는 순간.\n호텔 카운터에서 예상 밖의 질문이 날아오는 순간.\n방에 문제가 생겼는데 뭐라고 해야 할지 모르는 순간.\n\n영어로 준비했다고 생각했는데,\n그 상황이 오면 머릿속이 하얘지는 경험.\n직장인 출장에서 가장 자주 만나는 순간들이에요."
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "01. 택시 — 기사가 못 알아들을 때",
+        "items": [
+          {
+            "title": "Could you drop me off at the corner of Fifth and Main?",
+            "body": "→ 5번가와 메인 스트리트 모퉁이에서 내려주실 수 있나요?\n\n\"drop me off\"는 목적지 앞 정확한 지점에서 내릴 때 쓰는 표현이에요. \"Take me to\"보다 세밀하게 위치를 지정할 수 있어요.\n팁: 주소를 화면으로 보여주면서 \"Could you drop me off here?\"라고 하면 더 확실해요."
+          },
+          {
+            "title": "Is there a surcharge for airport pickup?",
+            "body": "→ 공항 픽업 할증료가 있나요?\n\n공항 택시는 대부분 추가 요금이 붙어요. 미리 확인하지 않으면 예상보다 훨씬 많이 나올 수 있어요.\n팁: \"Is the meter running?\" (미터기 켜져 있나요?)도 함께 기억해두세요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "02. 호텔 체크인 — 예상 밖 상황에서",
+        "items": [
+          {
+            "title": "I have a reservation under [이름]. Is early check-in possible?",
+            "body": "→ [이름]으로 예약했어요. 조기 체크인이 가능한가요?\n\n체크인 시간 전에 도착했을 때. 무조건 된다고 기대하기보다 부드럽게 물어보는 게 좋아요.\n팁: \"Could you store my luggage in the meantime?\" (짐만 맡겨도 될까요?)를 이어서 쓰면 자연스러워요."
+          },
+          {
+            "title": "Could I be moved to a quieter room?",
+            "body": "→ 더 조용한 방으로 옮겨주실 수 있나요?\n\n방을 바꾸고 싶을 때 직접적이지만 정중하게 요청하는 표현이에요.\n팁: \"Is there anything available on a higher floor?\" (높은 층에 방이 있나요?)를 덧붙이면 더 구체적으로 요청할 수 있어요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "03. 방 문제 — 컴플레인할 때",
+        "items": [
+          {
+            "title": "The air conditioning doesn't seem to be working properly.",
+            "body": "→ 에어컨이 제대로 작동하지 않는 것 같아요.\n\n\"doesn't seem to be\"는 부드럽게 문제를 알리는 방식이에요. 직접 \"It's broken\"이라고 하면 딱딱하게 들릴 수 있어요.\n팁: 온수, 와이파이, TV 등 모든 시설에 \"[시설] doesn't seem to be working properly\"를 그대로 쓸 수 있어요."
+          },
+          {
+            "title": "Could you send someone to take a look as soon as possible?",
+            "body": "→ 가능한 한 빨리 확인하러 와주실 수 있나요?\n\n문제 보고 후 조치를 요청하는 표현이에요. \"ASAP\"보다 정중한 방식이에요.\n팁: \"I have an early morning meeting, so it's quite urgent.\" (이른 아침 회의가 있어서 꽤 급해요.)를 덧붙이면 우선순위를 높일 수 있어요."
+          }
+        ]
+      }
+    },
+    {
+      "component": "similar",
+      "data": {
+        "title": "04. 레스토랑 — 이 3가지면 충분해요",
+        "items": [
+          {
+            "eng": "I'd like to make a reservation\nfor two at 7 PM.",
+            "kor": "→ 저녁 7시에 2명 예약 가능한가요?"
+          },
+          {
+            "eng": "I have a nut allergy —\ncould you let the kitchen know?",
+            "kor": "→ 알레르기가 있어요, 주방에 알려주세요."
+          },
+          {
+            "eng": "Could we get\nseparate checks, please?",
+            "kor": "→ 각자 계산할 수 있을까요?"
+          }
+        ]
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "출장 첫날 필수 표현, 한눈에",
+        "body": "01 택시 위치 지정 →\nCould you drop me off at the corner of [위치]?\n\n02 공항 할증 확인 →\nIs there a surcharge for airport pickup?\n\n03 체크인 요청 →\nI have a reservation under [이름]. Is early check-in possible?\n\n04 방 문제 →\nThe [시설] doesn't seem to be working properly.\n\n05 레스토랑 알레르기 →\nI have a [알레르기] allergy — could you let the kitchen know?\n\n저장해두고 출장 전날 한 번씩 소리 내어 읽어보세요."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "해외 출장 첫날, 공항에서 호텔까지 —\n이 5가지만 알면 멘붕 없어요 👇\n\n준비했는데도 막히는 순간이 있어요.\n택시 기사가 되묻는 순간, 체크인에서 예상 밖 질문이 날아오는 순간.\n\n그 순간을 위한 실전 표현이에요.\n\n✨ Could you drop me off at the corner of [위치]? → 택시 위치 지정\n✨ Is there a surcharge for airport pickup? → 공항 할증료 확인\n✨ The [시설] doesn't seem to be working properly. → 방 문제 컴플레인\n✨ Could you move me to a quieter room? → 방 교체 요청\n✨ I have a [알레르기] allergy — could you let the kitchen know? → 레스토랑 알레르기\n\n아는 표현과 실제로 말하는 건 달라요.\n출장 전에 외국인 강사와 한 번씩 써봐야 현장에서 나와요.\n\n‣ @uphone.english 팔로우\n‣ TESOL 외국인 강사와 1:1 무료체험 → 프로필 링크\n\n#민병철유폰 #전화영어 #화상영어 #영어회화 #직장인영어"
+}
