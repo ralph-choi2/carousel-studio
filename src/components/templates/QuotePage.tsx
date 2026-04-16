@@ -1,16 +1,17 @@
 import { PageWrapper } from './PageWrapper';
 import type { PageProps, QuoteCardData } from '@/lib/types';
+import { htmlToText } from '@/lib/utils';
 
 export function QuotePage({ data, editable, scale, onDataChange }: PageProps<QuoteCardData>) {
   function handleQuoteBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, quote: e.currentTarget.innerText });
+      onDataChange({ ...data, quote: htmlToText(e.currentTarget.innerHTML) });
     }
   }
 
   function handleSourceBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, source: e.currentTarget.innerText });
+      onDataChange({ ...data, source: htmlToText(e.currentTarget.innerHTML) });
     }
   }
 

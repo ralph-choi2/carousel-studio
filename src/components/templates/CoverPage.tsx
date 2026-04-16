@@ -1,6 +1,6 @@
 import { PageWrapper } from './PageWrapper';
 import type { PageProps, CoverData } from '@/lib/types';
-import { nl2br } from '@/lib/utils';
+import { nl2br, htmlToText } from '@/lib/utils';
 
 const FALLBACK_BG = "data:image/svg+xml," + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2C3E50"/><stop offset="100%" stop-color="#4A6FA5"/></linearGradient></defs><rect width="1080" height="1350" fill="url(#g)"/></svg>'
@@ -11,13 +11,13 @@ export function CoverPage({ data, editable, scale, onDataChange }: PageProps<Cov
 
   function handleTitleBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, title: e.currentTarget.innerText });
+      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
     }
   }
 
   function handleSubtitleBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, subtitle: e.currentTarget.innerText });
+      onDataChange({ ...data, subtitle: htmlToText(e.currentTarget.innerHTML) });
     }
   }
 

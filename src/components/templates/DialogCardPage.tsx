@@ -1,34 +1,35 @@
 import { PageWrapper } from './PageWrapper';
 import type { PageProps, DialogCardData } from '@/lib/types';
+import { htmlToText } from '@/lib/utils';
 
 export function DialogCardPage({ data, editable, scale, onDataChange }: PageProps<DialogCardData>) {
   function handleTitleBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, title: e.currentTarget.innerText });
+      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
     }
   }
 
   function handleAEngBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, a: { ...data.a, eng: e.currentTarget.innerText } });
+      onDataChange({ ...data, a: { ...data.a, eng: htmlToText(e.currentTarget.innerHTML) } });
     }
   }
 
   function handleAKorBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, a: { ...data.a, kor: e.currentTarget.innerText } });
+      onDataChange({ ...data, a: { ...data.a, kor: htmlToText(e.currentTarget.innerHTML) } });
     }
   }
 
   function handleBEngBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, b: { ...data.b, eng: e.currentTarget.innerText } });
+      onDataChange({ ...data, b: { ...data.b, eng: htmlToText(e.currentTarget.innerHTML) } });
     }
   }
 
   function handleBKorBlur(e: React.FocusEvent<HTMLDivElement>) {
     if (onDataChange) {
-      onDataChange({ ...data, b: { ...data.b, kor: e.currentTarget.innerText } });
+      onDataChange({ ...data, b: { ...data.b, kor: htmlToText(e.currentTarget.innerHTML) } });
     }
   }
 

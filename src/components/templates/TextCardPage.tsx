@@ -1,16 +1,17 @@
 import type { TextCardData, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
+import { htmlToText } from '@/lib/utils';
 
 export function TextCardPage({ data, editable = false, scale, onDataChange }: PageProps<TextCardData>) {
   const handleHeaderBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (onDataChange) {
-      onDataChange({ ...data, header: e.currentTarget.innerText });
+      onDataChange({ ...data, header: htmlToText(e.currentTarget.innerHTML) });
     }
   };
 
   const handleBodyBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     if (onDataChange) {
-      onDataChange({ ...data, body: e.currentTarget.innerText });
+      onDataChange({ ...data, body: htmlToText(e.currentTarget.innerHTML) });
     }
   };
 
