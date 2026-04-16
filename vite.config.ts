@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import express from 'express';
 import fs from 'fs';
+import { exportPages } from './server/export.js';
 
 const DATA_DIR = path.resolve(__dirname, 'data');
 
@@ -28,8 +29,23 @@ function createApiApp() {
     res.json({ ok: true });
   });
 
-  app.post('/api/export', express.json({ limit: '50mb' }), (_req, res) => {
-    res.status(501).json({ error: 'Export not yet implemented' });
+  app.post('/api/export', express.json({ limit: '50mb' }), async (req, res) => {
+    const { filename, htmlPages } = req.body as {
+      filename: string;
+      htmlPages: { index: number; component: string; html: string }[];
+    };
+    if (!filename || !Array.isArray(htmlPages)) {
+      res.status(400).json({ error: 'Missing filename or htmlPages' });
+      return;
+    }
+    try {
+      const dateStr = filename.replace(/\.json$/, '');
+      const outputDir = await exportPages(dateStr, htmlPages);
+      res.json({ ok: true, outputDir, count: htmlPages.length });
+    } catch (err) {
+      console.error('Export error:', err);
+      res.status(500).json({ error: String(err) });
+    }
   });
 
   return app;
