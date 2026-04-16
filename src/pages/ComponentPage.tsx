@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { COMPONENT_MAP, TEMPLATE_TYPES } from '@/components/templates';
 import { SAMPLE_DATA_MAP } from '@/lib/sample-data';
 import { Toolbar } from '@/components/toolbar/Toolbar';
+import type { useCarouselData } from '@/hooks/useCarouselData';
 
 const SCALE = 200 / 1080;
 
@@ -16,29 +17,38 @@ const COLORS = [
 ];
 
 const TYPOGRAPHY_STYLES = [
-  { name: 'Cover Title', size: '90px', weight: 'Bold 800' },
+  { name: 'Cover Title', size: '90px', weight: 'Bold 700' },
   { name: 'Cover Subtitle', size: '48px', weight: 'SemiBold 600' },
-  { name: 'Section Title', size: '42px', weight: 'Bold 700' },
-  { name: 'Body Text', size: '42px', weight: 'ExtraLight 200' },
+  { name: 'Section Title', size: '66px', weight: 'SemiBold 600' },
+  { name: 'Section Subtitle', size: '70px', weight: 'SemiBold 600' },
+  { name: 'Body Primary', size: '44px', weight: 'SemiBold 600' },
+  { name: 'Body Secondary', size: '42px', weight: 'Medium 500' },
   { name: 'Card English', size: '44px', weight: 'Noto Sans Bold' },
   { name: 'Card Korean', size: '42px', weight: 'SemiBold 600' },
   { name: 'Quote', size: '50px', weight: 'SemiBold 600' },
   { name: 'Source', size: '24px', weight: 'SemiBold 600' },
 ];
 
-export function ComponentPage() {
+interface ComponentPageProps {
+  files: string[];
+  zoom: number;
+  onZoomChange: (zoom: number) => void;
+  carousel: ReturnType<typeof useCarouselData>;
+}
+
+export function ComponentPage({ files, zoom, onZoomChange, carousel }: ComponentPageProps) {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-background">
       <Toolbar
-        files={[]}
-        currentFile={null}
-        onFileSelect={() => {}}
-        zoom={50}
-        onZoomChange={() => {}}
-        isDirty={false}
-        onSave={() => {}}
+        files={files}
+        currentFile={carousel.filename}
+        onFileSelect={carousel.load}
+        zoom={zoom}
+        onZoomChange={onZoomChange}
+        isDirty={carousel.isDirty}
+        onSave={carousel.save}
         onExport={() => {}}
       />
 

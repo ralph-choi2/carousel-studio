@@ -1,32 +1,21 @@
-import { useState, useEffect, useCallback } from 'react';
 import { Toolbar } from '@/components/toolbar/Toolbar';
 import { Canvas } from '@/components/canvas/Canvas';
 import { Filmstrip } from '@/components/filmstrip/Filmstrip';
-import { useCarouselData } from '@/hooks/useCarouselData';
 import { usePageNavigation } from '@/hooks/usePageNavigation';
-import { listDataFiles } from '@/lib/data-loader';
+import type { useCarouselData } from '@/hooks/useCarouselData';
 
-export function EditorPage() {
-  const [files, setFiles] = useState<string[]>([]);
-  const [zoom, setZoom] = useState(50);
-  const [isExporting, setIsExporting] = useState(false);
-  const { filename, data, isDirty, isLoading, load, updatePage, save } = useCarouselData();
+interface EditorPageProps {
+  files: string[];
+  zoom: number;
+  onZoomChange: (zoom: number) => void;
+  carousel: ReturnType<typeof useCarouselData>;
+  onExport: () => void;
+}
+
+export function EditorPage({ files, zoom, onZoomChange, carousel, onExport }: EditorPageProps) {
+  const { filename, data, isDirty, isLoading, load, updatePage, save } = carousel;
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
-
-  useEffect(() => {
-    listDataFiles().then(setFiles).catch(console.error);
-  }, []);
-
-  const handleExport = useCallback(async () => {
-    // Placeholder — will be wired in Task 14
-    setIsExporting(true);
-    try {
-      alert('Export not yet implemented');
-    } finally {
-      setIsExporting(false);
-    }
-  }, []);
 
   return (
     <div className="h-screen flex flex-col">
@@ -35,11 +24,10 @@ export function EditorPage() {
         currentFile={filename}
         onFileSelect={load}
         zoom={zoom}
-        onZoomChange={setZoom}
+        onZoomChange={onZoomChange}
         isDirty={isDirty}
         onSave={save}
-        onExport={handleExport}
-        isExporting={isExporting}
+        onExport={onExport}
       />
 
       {data ? (
