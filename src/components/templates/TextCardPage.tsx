@@ -50,7 +50,7 @@ export function TextCardPage({ data, editable = false, scale, onDataChange }: Pa
         }}
       >
         <div
-          className="tpl-section-title"
+          className="tpl-body-primary"
           style={{ marginBottom: '50px' }}
           contentEditable={editable}
           suppressContentEditableWarning
@@ -60,7 +60,7 @@ export function TextCardPage({ data, editable = false, scale, onDataChange }: Pa
         </div>
 
         <div
-          className="tpl-body-text"
+          className="tpl-body-secondary"
           style={{ maxWidth: '860px', marginBottom: '100px' }}
           contentEditable={editable}
           suppressContentEditableWarning

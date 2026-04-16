@@ -44,27 +44,13 @@ export function QuotePage({ data, editable, scale, onDataChange }: PageProps<Quo
             contentEditable
             suppressContentEditableWarning
             onBlur={handleQuoteBlur}
-            style={{
-              fontSize: 50,
-              fontWeight: 600,
-              lineHeight: 1.4,
-              letterSpacing: '-0.02em',
-              color: '#111',
-              outline: 'none',
-              width: '100%',
-            }}
+            className="tpl-quote-text"
+            style={{ color: '#111', outline: 'none', width: '100%' }}
           >
             {data.quote}
           </div>
         ) : (
-          <div style={{
-            fontSize: 50,
-            fontWeight: 600,
-            lineHeight: 1.4,
-            letterSpacing: '-0.02em',
-            color: '#111',
-            width: '100%',
-          }}>
+          <div className="tpl-quote-text" style={{ color: '#111', width: '100%' }}>
             {data.quote}
           </div>
         )}
@@ -77,8 +63,8 @@ export function QuotePage({ data, editable, scale, onDataChange }: PageProps<Quo
               suppressContentEditableWarning
               onBlur={handleSourceBlur}
               style={{
-                fontSize: 28,
-                fontWeight: 400,
+                fontSize: 24,
+                fontWeight: 600,
                 color: '#888',
                 marginTop: 48,
                 outline: 'none',

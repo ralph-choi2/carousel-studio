@@ -1,6 +1,156 @@
-.tpl-cover-title { font-family: 'Pretendard', sans-serif; font-weight: 800; font-size: 90px; line-height: 1.1; color: #FFFFFF; word-wrap: break-word; }
-.tpl-cover-subtitle { font-family: 'Pretendard', sans-serif; font-weight: 400; font-size: 48px; line-height: 1.3; color: rgba(255, 255, 255, 0.95); }
-.tpl-section-title { font-family: 'Pretendard', sans-serif; font-weight: 700; font-size: 42px; line-height: 60px; color: var(--tpl-text-primary); }
-.tpl-body-text { font-family: 'Pretendard', sans-serif; font-weight: 200; font-size: 42px; line-height: 60px; color: var(--tpl-text-primary); white-space: pre-line; }
-.tpl-card-english { font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.3; }
-.tpl-card-korean { font-family: 'Pretendard', sans-serif; font-weight: 600; font-size: 42px; line-height: 1.2; }
+/* IG Carousel Typography Tokens — synced with textStyles.json (Figma)
+   Canvas: 1080 × 1350px */
+
+/* === Cover === */
+.tpl-cover-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 90px;
+  letter-spacing: 0;
+  line-height: 1.15;
+  color: #FFFFFF;
+  word-wrap: break-word;
+}
+
+.tpl-cover-subtitle {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.tpl-cover-badge {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 50px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* === Section === */
+.tpl-section-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 66px;
+  letter-spacing: -0.02em;
+  line-height: 1.24;
+  color: var(--tpl-text-primary);
+}
+
+.tpl-section-subtitle {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 70px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* === Card === */
+.tpl-card-english {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.tpl-card-korean {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.tpl-card-english-lg {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.tpl-card-korean-lg {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* === Body === */
+.tpl-body-primary {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--tpl-text-primary);
+  white-space: pre-line;
+}
+
+.tpl-body-secondary {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--tpl-text-primary);
+  white-space: pre-line;
+}
+
+/* === Scene === */
+.tpl-scene-bold {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.tpl-scene-regular {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* === Quote === */
+.tpl-quote-text {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 50px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+/* === Source === */
+.tpl-source-citation {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+/* === Logo === */
+.tpl-logo-brand {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 0;
+}
+
+/* === Legacy aliases (backward compat, will remove) === */
+.tpl-body-text { /* → use tpl-body-secondary */
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--tpl-text-primary);
+  white-space: pre-line;
+}

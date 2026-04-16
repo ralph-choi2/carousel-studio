@@ -31,29 +31,14 @@ export function BeforeAfterPage({ data, scale = 1 }: PageProps<BeforeAfterData>)
       >
         {/* Series label */}
         {data.series && (
-          <div
-            style={{
-              fontSize: 28,
-              fontWeight: 600,
-              color: '#8F54FF',
-              lineHeight: 1.4,
-            }}
-          >
+          <div className="tpl-source-citation" style={{ color: '#8F54FF' }}>
             {data.series}
           </div>
         )}
 
         {/* Situation */}
         {data.situation && (
-          <div
-            style={{
-              fontSize: 48,
-              fontWeight: 700,
-              color: '#111',
-              lineHeight: 1.24,
-              letterSpacing: '-0.02em',
-            }}
-          >
+          <div className="tpl-cover-subtitle" style={{ color: '#111' }}>
             {data.situation}
           </div>
         )}
@@ -66,35 +51,13 @@ export function BeforeAfterPage({ data, scale = 1 }: PageProps<BeforeAfterData>)
             padding: '28px 36px',
           }}
         >
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 600,
-              color: '#aaa',
-              marginBottom: 12,
-            }}
-          >
+          <div className="tpl-source-citation" style={{ color: '#aaa', marginBottom: 12 }}>
             3개월 전
           </div>
-          <div
-            style={{
-              fontSize: 38,
-              fontWeight: 700,
-              color: '#222',
-              lineHeight: 1.4,
-            }}
-          >
+          <div className="tpl-card-english" style={{ color: '#222' }}>
             {data.before_eng}
           </div>
-          <div
-            style={{
-              fontSize: 32,
-              fontWeight: 400,
-              color: '#888',
-              lineHeight: 1.45,
-              marginTop: 8,
-            }}
-          >
+          <div className="tpl-card-korean" style={{ color: '#888', marginTop: 8 }}>
             {data.before_kor}
           </div>
         </div>
@@ -107,37 +70,15 @@ export function BeforeAfterPage({ data, scale = 1 }: PageProps<BeforeAfterData>)
             padding: '28px 36px',
           }}
         >
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 600,
-              color: '#8F54FF',
-              marginBottom: 12,
-            }}
-          >
+          <div className="tpl-source-citation" style={{ color: '#8F54FF', marginBottom: 12 }}>
             지금
           </div>
           {data.after_items.map((item, i) => (
             <div key={i} style={{ marginBottom: i < data.after_items.length - 1 ? 16 : 0 }}>
-              <div
-                style={{
-                  fontSize: 38,
-                  fontWeight: 700,
-                  color: '#FFFFFF',
-                  lineHeight: 1.4,
-                }}
-              >
+              <div className="tpl-card-english" style={{ color: '#FFFFFF' }}>
                 {item.eng}
               </div>
-              <div
-                style={{
-                  fontSize: 32,
-                  fontWeight: 400,
-                  color: 'rgba(255,255,255,0.6)',
-                  lineHeight: 1.45,
-                  marginTop: 8,
-                }}
-              >
+              <div className="tpl-card-korean" style={{ color: 'rgba(255,255,255,0.6)', marginTop: 8 }}>
                 {item.kor}
               </div>
             </div>

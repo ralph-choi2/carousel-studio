@@ -121,24 +121,24 @@ export function DialogCardPage({ data, editable, scale, onDataChange }: PageProp
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleAEngBlur}
-                style={{ fontSize: 38, fontWeight: 700, color: '#222', outline: 'none', minHeight: 46 }}
+                className="tpl-card-english" style={{ color: '#222', outline: 'none', minHeight: 46 }}
               >
                 {data.a.eng}
               </div>
             ) : (
-              <div style={{ fontSize: 38, fontWeight: 700, color: '#222' }}>{data.a.eng}</div>
+              <div className="tpl-card-english" style={{ color: '#222' }}>{data.a.eng}</div>
             )}
             {editable ? (
               <div
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleAKorBlur}
-                style={{ fontSize: 32, fontWeight: 400, color: '#888', outline: 'none', minHeight: 40 }}
+                className="tpl-card-korean" style={{ color: '#888', outline: 'none', minHeight: 40 }}
               >
                 {data.a.kor}
               </div>
             ) : (
-              <div style={{ fontSize: 32, fontWeight: 400, color: '#888' }}>{data.a.kor}</div>
+              <div className="tpl-card-korean" style={{ color: '#888' }}>{data.a.kor}</div>
             )}
           </div>
         </div>
@@ -177,24 +177,24 @@ export function DialogCardPage({ data, editable, scale, onDataChange }: PageProp
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleBEngBlur}
-                style={{ fontSize: 38, fontWeight: 700, color: '#222', outline: 'none', minHeight: 46 }}
+                className="tpl-card-english" style={{ color: '#222', outline: 'none', minHeight: 46 }}
               >
                 {data.b.eng}
               </div>
             ) : (
-              <div style={{ fontSize: 38, fontWeight: 700, color: '#222' }}>{data.b.eng}</div>
+              <div className="tpl-card-english" style={{ color: '#222' }}>{data.b.eng}</div>
             )}
             {editable ? (
               <div
                 contentEditable
                 suppressContentEditableWarning
                 onBlur={handleBKorBlur}
-                style={{ fontSize: 32, fontWeight: 400, color: '#888', outline: 'none', minHeight: 40 }}
+                className="tpl-card-korean" style={{ color: '#888', outline: 'none', minHeight: 40 }}
               >
                 {data.b.kor}
               </div>
             ) : (
-              <div style={{ fontSize: 32, fontWeight: 400, color: '#888' }}>{data.b.kor}</div>
+              <div className="tpl-card-korean" style={{ color: '#888' }}>{data.b.kor}</div>
             )}
           </div>
         </div>

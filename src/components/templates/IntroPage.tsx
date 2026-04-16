@@ -53,8 +53,8 @@ export function IntroPage({ data, editable = false, scale, onDataChange }: PageP
         }}
       >
         <div
-          className="tpl-section-title"
-          style={{ marginBottom: '50px' }}
+          className="tpl-body-primary"
+          style={{ marginBottom: '50px', textAlign: 'center' }}
           contentEditable={editable}
           suppressContentEditableWarning
           onBlur={editable ? handleHeaderBlur : undefined}
@@ -63,8 +63,8 @@ export function IntroPage({ data, editable = false, scale, onDataChange }: PageP
         </div>
 
         <div
-          className="tpl-body-text"
-          style={{ maxWidth: '860px', marginBottom: '100px' }}
+          className="tpl-body-secondary"
+          style={{ maxWidth: '860px', marginBottom: '100px', textAlign: 'center' }}
           contentEditable={editable}
           suppressContentEditableWarning
           onBlur={editable ? handleBodyBlur : undefined}

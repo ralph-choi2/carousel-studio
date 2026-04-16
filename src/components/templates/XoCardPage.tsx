@@ -6,12 +6,8 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
     lines.map((line, i) => (
       <div
         key={i}
-        style={{
-          fontWeight: 300,
-          fontSize: 42,
-          lineHeight: 1.42,
-          color: '#111',
-        }}
+        className="tpl-body-secondary"
+        style={{ color: '#111' }}
       >
         {line}
       </div>
@@ -37,15 +33,7 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
           maxWidth: '100%',
         }}
       >
-        <div
-          style={{
-            fontWeight: 700,
-            fontSize: 42,
-            lineHeight: 1.42,
-            color: '#111',
-            marginBottom: 8,
-          }}
-        >
+        <div className="tpl-card-korean" style={{ color: '#111', marginBottom: 8 }}>
           {cardData.label}
         </div>
         {buildLines(cardData.lines)}
@@ -85,17 +73,10 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
       >
         {/* Title */}
         <div
+          className="tpl-section-subtitle"
           contentEditable
           suppressContentEditableWarning
-          style={{
-            fontWeight: 700,
-            fontSize: 70,
-            lineHeight: 1.12,
-            letterSpacing: -1.4,
-            color: '#000',
-            textAlign: 'center',
-            width: '100%',
-          }}
+          style={{ color: '#000', textAlign: 'center', width: '100%' }}
         >
           {data.title}
         </div>

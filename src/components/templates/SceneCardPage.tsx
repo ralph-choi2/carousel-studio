@@ -73,15 +73,8 @@ export function SceneCardPage({ data, scale = 1 }: PageProps<SceneCardData>) {
         {/* Main headline */}
         {(data.headline || data.header) && (
           <div
-            style={{
-              fontSize: 90,
-              fontWeight: 800,
-              color: '#FFFFFF',
-              textAlign: 'center',
-              marginBottom: 40,
-              lineHeight: 1.1,
-              width: '100%',
-            }}
+            className="tpl-section-subtitle"
+            style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 40, width: '100%' }}
           >
             {data.headline ?? data.header}
           </div>
@@ -153,26 +146,12 @@ export function SceneCardPage({ data, scale = 1 }: PageProps<SceneCardData>) {
                     }}
                   >
                     {engText && (
-                      <div
-                        style={{
-                          fontSize: 45,
-                          fontWeight: 700,
-                          color: '#222222',
-                          lineHeight: 1.2,
-                        }}
-                      >
+                      <div className="tpl-card-english" style={{ color: '#222222' }}>
                         {engText}
                       </div>
                     )}
                     {korText && (
-                      <div
-                        style={{
-                          fontSize: 40,
-                          fontWeight: 400,
-                          color: '#888888',
-                          lineHeight: 1.3,
-                        }}
-                      >
+                      <div className="tpl-card-korean" style={{ color: '#888888' }}>
                         {korText}
                       </div>
                     )}

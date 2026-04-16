@@ -27,14 +27,8 @@ export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCard
       >
         {/* Title */}
         <div
-          style={{
-            fontWeight: 700,
-            fontSize: 54,
-            textAlign: 'center',
-            color: '#111111',
-            lineHeight: 1.25,
-            width: '100%',
-          }}
+          className="tpl-section-title"
+          style={{ textAlign: 'center', width: '100%' }}
         >
           {data.title}
         </div>
@@ -60,24 +54,15 @@ export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCard
               }}
             >
               <div
-                style={{
-                  fontSize: 40,
-                  fontWeight: 700,
-                  color: '#111111',
-                  lineHeight: 1.3,
-                  marginBottom: item.body ? 16 : 0,
-                }}
+                className="tpl-scene-bold"
+                style={{ color: '#111111', marginBottom: item.body ? 16 : 0 }}
               >
                 {item.title}
               </div>
               {item.body && (
                 <div
-                  style={{
-                    fontSize: 36,
-                    fontWeight: 400,
-                    color: '#888888',
-                    lineHeight: 1.4,
-                  }}
+                  className="tpl-scene-regular"
+                  style={{ color: '#888888' }}
                 >
                   {item.body}
                 </div>
