@@ -4,12 +4,24 @@ import path from 'path';
 
 const WIDTH = 1080;
 const HEIGHT = 1350;
-const OUTPUT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'output');
+const ROOT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const OUTPUT_DIR = path.resolve(ROOT_DIR, 'output');
+const PUBLIC_DIR = path.resolve(ROOT_DIR, 'public');
 
 interface ExportPage {
   index: number;
   component: string;
   html: string;
+}
+
+/** Rewrite `/assets/...` paths → absolute `file://...` paths for Puppeteer file:// loading */
+function rewriteAssetPaths(html: string): string {
+  const publicFileUrl = `file://${PUBLIC_DIR}`;
+  return html
+    .replace(/src="\/assets\//g, `src="${publicFileUrl}/assets/`)
+    .replace(/url\(\/assets\//g, `url(${publicFileUrl}/assets/`)
+    .replace(/url\('\/assets\//g, `url('${publicFileUrl}/assets/`)
+    .replace(/url\("\/assets\//g, `url("${publicFileUrl}/assets/`);
 }
 
 export async function exportPages(dateStr: string, pages: ExportPage[]): Promise<string> {
@@ -22,8 +34,9 @@ export async function exportPages(dateStr: string, pages: ExportPage[]): Promise
       const browserPage = await browser.newPage();
       await browserPage.setViewport({ width: WIDTH, height: HEIGHT });
 
+      const resolvedHtml = rewriteAssetPaths(page.html);
       const tmpHtml = path.join(outDir, `_tmp_${page.index}.html`);
-      fs.writeFileSync(tmpHtml, page.html, 'utf-8');
+      fs.writeFileSync(tmpHtml, resolvedHtml, 'utf-8');
 
       await browserPage.goto(`file://${tmpHtml}`, { waitUntil: 'networkidle0', timeout: 30000 });
 
