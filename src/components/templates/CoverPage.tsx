@@ -44,7 +44,7 @@ export function CoverPage({ data, editable, scale, onDataChange }: PageProps<Cov
       {/* Content */}
       <div style={{
         position: 'absolute',
-        bottom: 130,
+        bottom: 110,
         left: 110,
         right: 110,
         zIndex: 2,

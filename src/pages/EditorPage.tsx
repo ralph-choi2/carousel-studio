@@ -10,9 +10,10 @@ interface EditorPageProps {
   onZoomChange: (zoom: number) => void;
   carousel: ReturnType<typeof useCarouselData>;
   onExport: () => void;
+  isExporting?: boolean;
 }
 
-export function EditorPage({ files, zoom, onZoomChange, carousel, onExport }: EditorPageProps) {
+export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isExporting }: EditorPageProps) {
   const { filename, data, isDirty, isLoading, load, updatePage, save } = carousel;
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
@@ -28,6 +29,7 @@ export function EditorPage({ files, zoom, onZoomChange, carousel, onExport }: Ed
         isDirty={isDirty}
         onSave={save}
         onExport={onExport}
+        isExporting={isExporting}
       />
 
       {data ? (

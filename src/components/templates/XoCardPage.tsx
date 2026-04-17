@@ -1,19 +1,43 @@
 import type { XoCardData, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
+import { htmlToText } from '@/lib/utils';
 
-export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
-  const buildLines = (lines: string[]) =>
+export function XoCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<XoCardData>) {
+  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
+    }
+  };
+
+  const handleCardLabelBlur = (card: 'before' | 'after', e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      onDataChange({ ...data, [card]: { ...data[card], label: htmlToText(e.currentTarget.innerHTML) } });
+    }
+  };
+
+  const handleCardLineBlur = (card: 'before' | 'after', lineIndex: number, e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      const newLines = [...data[card].lines];
+      newLines[lineIndex] = htmlToText(e.currentTarget.innerHTML);
+      onDataChange({ ...data, [card]: { ...data[card], lines: newLines } });
+    }
+  };
+
+  const buildLines = (lines: string[], card: 'before' | 'after') =>
     lines.map((line, i) => (
       <div
         key={i}
         className="tpl-body-secondary"
         style={{ color: '#111' }}
+        contentEditable={editable}
+        suppressContentEditableWarning
+        onBlur={editable ? (e) => handleCardLineBlur(card, i, e) : undefined}
       >
         {line}
       </div>
     ));
 
-  const card = (cardData: { label: string; lines: string[] }) => (
+  const cardEl = (cardData: { label: string; lines: string[] }, cardKey: 'before' | 'after') => (
     <div
       style={{
         background: '#FFFFFF',
@@ -33,10 +57,16 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
           maxWidth: '100%',
         }}
       >
-        <div className="tpl-card-korean" style={{ color: '#111', marginBottom: 8 }}>
+        <div
+          className="tpl-card-korean"
+          style={{ color: '#111', marginBottom: 8 }}
+          contentEditable={editable}
+          suppressContentEditableWarning
+          onBlur={editable ? (e) => handleCardLabelBlur(cardKey, e) : undefined}
+        >
           {cardData.label}
         </div>
-        {buildLines(cardData.lines)}
+        {buildLines(cardData.lines, cardKey)}
       </div>
     </div>
   );
@@ -74,9 +104,10 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
         {/* Title */}
         <div
           className="tpl-section-subtitle"
-          contentEditable
-          suppressContentEditableWarning
           style={{ color: '#000', textAlign: 'center', width: '100%' }}
+          contentEditable={editable}
+          suppressContentEditableWarning
+          onBlur={editable ? handleTitleBlur : undefined}
         >
           {data.title}
         </div>
@@ -90,8 +121,8 @@ export function XoCardPage({ data, scale = 1 }: PageProps<XoCardData>) {
             width: '100%',
           }}
         >
-          {card(data.before)}
-          {card(data.after)}
+          {cardEl(data.before, 'before')}
+          {cardEl(data.after, 'after')}
         </div>
       </div>
 

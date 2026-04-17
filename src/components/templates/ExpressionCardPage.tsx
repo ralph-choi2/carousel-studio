@@ -1,8 +1,23 @@
 import type { PageProps, ExpressionCardData } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
+import { htmlToText } from '@/lib/utils';
 
-export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCardData>) {
+export function ExpressionCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<ExpressionCardData>) {
   const items = data.items ?? [];
+
+  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
+    }
+  };
+
+  const handleItemBlur = (index: number, field: 'title' | 'body', e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      const newItems = [...items];
+      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
+      onDataChange({ ...data, items: newItems });
+    }
+  };
 
   return (
     <PageWrapper scale={scale}>
@@ -29,6 +44,9 @@ export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCard
         <div
           className="tpl-section-title"
           style={{ textAlign: 'center', width: '100%' }}
+          contentEditable={editable}
+          suppressContentEditableWarning
+          onBlur={editable ? handleTitleBlur : undefined}
         >
           {data.title}
         </div>
@@ -56,6 +74,9 @@ export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCard
               <div
                 className="tpl-scene-bold"
                 style={{ color: '#111111', marginBottom: item.body ? 16 : 0 }}
+                contentEditable={editable}
+                suppressContentEditableWarning
+                onBlur={editable ? (e) => handleItemBlur(i, 'title', e) : undefined}
               >
                 {item.title}
               </div>
@@ -63,6 +84,9 @@ export function ExpressionCardPage({ data, scale = 1 }: PageProps<ExpressionCard
                 <div
                   className="tpl-scene-regular"
                   style={{ color: '#888888' }}
+                  contentEditable={editable}
+                  suppressContentEditableWarning
+                  onBlur={editable ? (e) => handleItemBlur(i, 'body', e) : undefined}
                 >
                   {item.body}
                 </div>

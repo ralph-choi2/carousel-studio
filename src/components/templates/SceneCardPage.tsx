@@ -1,11 +1,26 @@
 import type { PageProps, SceneCardData } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
+import { htmlToText } from '@/lib/utils';
 
-export function SceneCardPage({ data, scale = 1 }: PageProps<SceneCardData>) {
+export function SceneCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<SceneCardData>) {
   const items = data.items ?? [];
   const iconColors = ['#AAAAAA', '#111111'];
 
   const hasBg = !!data.bg_image;
+
+  const handleHeadlineBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      onDataChange({ ...data, headline: htmlToText(e.currentTarget.innerHTML) });
+    }
+  };
+
+  const handleItemBlur = (index: number, field: 'eng' | 'kor', e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      const newItems = [...items];
+      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
+      onDataChange({ ...data, items: newItems });
+    }
+  };
 
   return (
     <PageWrapper scale={scale} className="scene-card-page">
@@ -75,6 +90,9 @@ export function SceneCardPage({ data, scale = 1 }: PageProps<SceneCardData>) {
           <div
             className="tpl-section-subtitle"
             style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 40, width: '100%' }}
+            contentEditable={editable}
+            suppressContentEditableWarning
+            onBlur={editable ? handleHeadlineBlur : undefined}
           >
             {data.headline ?? data.header}
           </div>
@@ -146,12 +164,24 @@ export function SceneCardPage({ data, scale = 1 }: PageProps<SceneCardData>) {
                     }}
                   >
                     {engText && (
-                      <div className="tpl-card-english" style={{ color: '#222222' }}>
+                      <div
+                        className="tpl-card-english"
+                        style={{ color: '#222222' }}
+                        contentEditable={editable}
+                        suppressContentEditableWarning
+                        onBlur={editable ? (e) => handleItemBlur(i, 'eng', e) : undefined}
+                      >
                         {engText}
                       </div>
                     )}
                     {korText && (
-                      <div className="tpl-card-korean" style={{ color: '#888888' }}>
+                      <div
+                        className="tpl-card-korean"
+                        style={{ color: '#888888' }}
+                        contentEditable={editable}
+                        suppressContentEditableWarning
+                        onBlur={editable ? (e) => handleItemBlur(i, 'kor', e) : undefined}
+                      >
                         {korText}
                       </div>
                     )}

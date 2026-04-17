@@ -22,6 +22,7 @@ export const COMPONENT_MAP: Record<string, ReactComponentType<PageProps<any>>> =
   'hook-reversal': IntroPage,
   'text-card': TextCardPage,
   'expression': TextCardPage,
+  'summary': TextCardPage,
   'situation': TextCardPage,
   'scene-card': SceneCardPage,
   'expression-card': ExpressionCardPage,

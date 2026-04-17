@@ -1,8 +1,23 @@
 import type { SimilarData, SimilarItem, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
+import { htmlToText } from '@/lib/utils';
 
-export function SimilarPage({ data, scale = 1 }: PageProps<SimilarData>) {
+export function SimilarPage({ data, scale = 1, editable = false, onDataChange }: PageProps<SimilarData>) {
   const title = data.title || data.header || '';
+
+  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
+    }
+  };
+
+  const handleItemBlur = (index: number, field: 'eng' | 'kor', e: React.FocusEvent<HTMLDivElement>) => {
+    if (onDataChange) {
+      const newItems = [...data.items];
+      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
+      onDataChange({ ...data, items: newItems });
+    }
+  };
 
   return (
     <PageWrapper scale={scale}>
@@ -21,8 +36,6 @@ export function SimilarPage({ data, scale = 1 }: PageProps<SimilarData>) {
       >
         {/* Title */}
         <div
-          contentEditable
-          suppressContentEditableWarning
           style={{
             fontWeight: 700,
             fontSize: 54,
@@ -31,6 +44,9 @@ export function SimilarPage({ data, scale = 1 }: PageProps<SimilarData>) {
             textAlign: 'center',
             width: '100%',
           }}
+          contentEditable={editable}
+          suppressContentEditableWarning
+          onBlur={editable ? handleTitleBlur : undefined}
         >
           {title}
         </div>
@@ -57,12 +73,18 @@ export function SimilarPage({ data, scale = 1 }: PageProps<SimilarData>) {
               <div
                 className="tpl-card-english"
                 style={{ color: 'var(--tpl-text-primary)' }}
+                contentEditable={editable}
+                suppressContentEditableWarning
+                onBlur={editable ? (e) => handleItemBlur(i, 'eng', e) : undefined}
               >
                 {item.eng}
               </div>
               <div
                 className="tpl-card-korean"
                 style={{ color: 'var(--tpl-text-secondary)' }}
+                contentEditable={editable}
+                suppressContentEditableWarning
+                onBlur={editable ? (e) => handleItemBlur(i, 'kor', e) : undefined}
               >
                 {item.kor}
               </div>

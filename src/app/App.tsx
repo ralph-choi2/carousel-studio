@@ -4,20 +4,24 @@ import { Agentation } from 'agentation';
 import { EditorPage } from '@/pages/EditorPage';
 import { ComponentPage } from '@/pages/ComponentPage';
 import { useCarouselData } from '@/hooks/useCarouselData';
+import { useExport } from '@/hooks/useExport';
 import { listDataFiles } from '@/lib/data-loader';
 
 export default function App() {
   const [files, setFiles] = useState<string[]>([]);
   const [zoom, setZoom] = useState(50);
   const carousel = useCarouselData();
+  const { isExporting, doExport } = useExport();
 
   useEffect(() => {
     listDataFiles().then(setFiles).catch(console.error);
   }, []);
 
   const handleExport = useCallback(async () => {
-    alert('Export not yet implemented');
-  }, []);
+    if (!carousel.filename || !carousel.data) return;
+    const outDir = await doExport(carousel.filename, carousel.data);
+    if (outDir) alert(`Exported to: ${outDir}`);
+  }, [carousel.filename, carousel.data, doExport]);
 
   return (
     <>
@@ -32,6 +36,7 @@ export default function App() {
               onZoomChange={setZoom}
               carousel={carousel}
               onExport={handleExport}
+              isExporting={isExporting}
             />
           }
         />
