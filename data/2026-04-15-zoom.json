@@ -19,8 +19,7 @@
       "data": {
         "title": "화상회의에서\n이 상황, 영어로 말할 수 있으세요?",
         "subtitle": "실제로 자주 벌어지는 4가지 상황 👇",
-        "bg_prompt": "",
-        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_cover.png"
+        "bg_prompt": ""
       }
     },
     {
@@ -47,8 +46,7 @@
           }
         ],
         "headline": "\"음소거인 것 같아요\"",
-        "headline_label": "퀴즈 1",
-        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_scene1.png"
+        "headline_label": "퀴즈 1"
       }
     },
     {
@@ -68,8 +66,7 @@
           }
         ],
         "headline": "\"소리가 끊겨요\"",
-        "headline_label": "퀴즈 2",
-        "_bg_file": "file:///Users/ianchoi/workspace/marketing/carousel-output/2026-04-16/_bg_scene2.png"
+        "headline_label": "퀴즈 2"
       }
     },
     {

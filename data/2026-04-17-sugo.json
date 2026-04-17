@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "series_title": "한국인 영어 실수 패턴",
+    "date": "2026-04-17",
+    "title": "수고하셨습니다 — 영어에 없는 인사",
+    "pillar": 1,
+    "format": "반전훅",
+    "hypothesis": "H-001",
+    "target_save": 150,
+    "pda": {
+      "persona": "외국계 또는 영어 사용 환경의 직장인 — 매일 이 말에서 막힘",
+      "desire": "자연스러운 마무리 인사를 상황별로 알고 싶다",
+      "awareness": "문제인식",
+      "angle": "공감+반전"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "“수고하셨습니다\"\n영어로 뭐라고 하세요?",
+        "subtitle": "",
+        "bg_image": "/images/2026-04-17/bg_cover.png",
+        "bg_prompt": "Group of diverse coworkers including Korean and Western professionals walking out of a modern glass office building together after work, twilight blue hour with New York City skyline lit up in the background, warm street lights, cinematic moody atmosphere like American TV drama, shot from behind at medium distance, shallow depth of field, no text overlay"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "이 말은, 영어에 없습니다",
+        "body": "퇴근할 때, 회의 끝나고, 프로젝트 마무리하고.\n한국에서는 하루에도 몇 번씩 하는 말인데\n영어에는 딱 맞는 번역이 없어요.\n\n\"Thank you for your hard work\"?\n이렇게 말하면 오히려 이상하게 들립니다."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "headline": "직역하면 왜 어색할까?",
+        "bg_image": "/images/2026-04-17/bg_scene.png",
+        "bg_prompt": "Two Korean coworkers standing in an open-plan office, one looking slightly puzzled, warm interior evening lighting, candid documentary moment, soft background blur",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "Thank you for your hard work today.",
+            "kor": "일상 업무 후에 쓰면 \"오늘 일이 특별히 힘들었나?\" 느낌"
+          },
+          {
+            "label": "icon_check",
+            "eng": "Great meeting. Have a good evening!",
+            "kor": "상황에 맞는 가벼운 인사이게 영어의 '수고하셨습니다'예요"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "퇴근할 때",
+        "items": [
+          {
+            "title": "Have a good evening.",
+            "body": "가장 자연스러운 퇴근 인사\n오후~저녁에 자리를 뜰 때"
+          },
+          {
+            "title": "See you tomorrow!",
+            "body": "매일 보는 동료에게\n가볍고 친근한 인사"
+          },
+          {
+            "title": "Have a good one!",
+            "body": "미국식 만능 인사\n시간대 상관없이 언제든 OK"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "회의 · 프로젝트 끝날 때",
+        "items": [
+          {
+            "title": "Great meeting, everyone.",
+            "body": "회의 마무리 인사로 가장 흔해요\n짧고 깔끔하게"
+          },
+          {
+            "title": "Thanks for your time.",
+            "body": "상대 시간에 감사\n외부 미팅이나 1:1 후에 적합"
+          },
+          {
+            "title": "Appreciate everyone's effort.",
+            "body": "프로젝트 마무리에 딱\n'수고하셨습니다’에 가장 가까운 표현"
+          }
+        ]
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "왜 영어에 이 말이 없을까?",
+        "body": "\"수고하셨습니다\"는 한국 직장 문화중 하나예요.\n상대의 노력을 인정하고\n하루를 함께 마무리하는 말.\n\n영어권에서는 이 개념 자체가 약해요.\n퇴근은 개인의 일이고,\n업무 마무리에 인사를 붙이는 관습이 없어요.\n\n하나의 번역을 찾으려 하지 마세요.\n상황에 따라 골라 쓰는 게 정답입니다."
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "상황별로 골라 쓰세요",
+        "body": "퇴근할때는..\nHave a good evening. / Have a good one!\n\n회의 후에는..\nGreat meeting. / Thanks for your time.\n\n프로젝트 마무리\nAppreciate everyone's effort.\nGreat work on this."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": "🤔 \"수고하셨습니다\" — 매일 하는 말인데, 영어로 뭐라고 하세요?\n\n한국에서는 하루에도 몇 번씩 하는 인사인데\n영어에는 딱 맞는 번역이 없어요.\n\"Thank you for your hard work\"는\n오히려 어색하게 들립니다.\n\n❝ 상황별 '수고하셨습니다' 영어표현.zip ❞\n‣ Have a good evening. — 퇴근할 때\n‣ Great meeting, everyone. — 회의 끝날 때\n‣ Thanks for your time. — 1:1 미팅 후\n‣ Appreciate everyone's effort. — 프로젝트 마무리\n‣ Have a good one! — 언제든 만능 인사\n\n하나의 번역을 찾으려 하지 마세요.\n상황에 따라 골라 쓰는 게 자연스러운 영어예요.\n저장해두고 필요할 때 꺼내보세요 📩\n\n‣ @uphone.english 팔로우\n‣ TESOL 외국인 강사와 1:1 무료체험 → 프로필 링크\n\n#민병철유폰 #전화영어 #화상영어 #영어회화 #영어표현 #비즈니스영어 #직장인영어"
+}

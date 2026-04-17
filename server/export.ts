@@ -19,9 +19,13 @@ function rewriteAssetPaths(html: string): string {
   const publicFileUrl = `file://${PUBLIC_DIR}`;
   return html
     .replace(/src="\/assets\//g, `src="${publicFileUrl}/assets/`)
+    .replace(/src="\/images\//g, `src="${publicFileUrl}/images/`)
     .replace(/url\(\/assets\//g, `url(${publicFileUrl}/assets/`)
     .replace(/url\('\/assets\//g, `url('${publicFileUrl}/assets/`)
-    .replace(/url\("\/assets\//g, `url("${publicFileUrl}/assets/`);
+    .replace(/url\("\/assets\//g, `url("${publicFileUrl}/assets/`)
+    .replace(/url\(\/images\//g, `url(${publicFileUrl}/images/`)
+    .replace(/url\('\/images\//g, `url('${publicFileUrl}/images/`)
+    .replace(/url\("\/images\//g, `url("${publicFileUrl}/images/`);
 }
 
 export async function exportPages(dateStr: string, pages: ExportPage[]): Promise<string> {

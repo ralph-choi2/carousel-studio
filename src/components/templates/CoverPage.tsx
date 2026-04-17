@@ -27,7 +27,7 @@ export function CoverPage({ data, editable, scale, onDataChange }: PageProps<Cov
       <img
         src={bgSrc}
         alt=""
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+        style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '120%', height: '120%', objectFit: 'cover', objectPosition: 'center bottom', zIndex: 0 }}
       />
 
       {/* Gradient overlay */}
