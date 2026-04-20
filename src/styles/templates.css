@@ -1,6 +1,17 @@
 /* IG Carousel Typography Tokens — synced with textStyles.json (Figma)
    Canvas: 1080 × 1350px */
 
+/* === CSS Variables (synced with src/lib/color-tokens.ts and useExport BASE_CSS) === */
+:root {
+  --tpl-bg-light: #F7F7F7;
+  --tpl-bg-dark: #141420;
+  --tpl-text-primary: #111111;
+  --tpl-text-secondary: #545454;
+  --tpl-text-tertiary: #999999;
+  --tpl-text-white: #FFFFFF;
+  --tpl-accent-purple: #8F54FF;
+}
+
 /* === Cover === */
 .tpl-cover-title {
   font-family: 'Pretendard', sans-serif;

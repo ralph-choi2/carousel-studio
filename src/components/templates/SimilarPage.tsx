@@ -1,24 +1,8 @@
 import type { SimilarData, SimilarItem, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function SimilarPage({ data, scale = 1, editable = false, onDataChange }: PageProps<SimilarData>) {
-  const title = data.title || data.header || '';
-
-  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleItemBlur = (index: number, field: 'eng' | 'kor', e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      const newItems = [...data.items];
-      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
-      onDataChange({ ...data, items: newItems });
-    }
-  };
-
+export function SimilarPage({ data, styles, colors, editable, scale = 1, selectedField, onDataChange, onSelect }: PageProps<SimilarData>) {
   return (
     <PageWrapper scale={scale}>
       <div
@@ -35,21 +19,19 @@ export function SimilarPage({ data, scale = 1, editable = false, onDataChange }:
         }}
       >
         {/* Title */}
-        <div
-          style={{
-            fontWeight: 700,
-            fontSize: 54,
-            lineHeight: 1.2,
-            color: '#111',
-            textAlign: 'center',
-            width: '100%',
-          }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleTitleBlur : undefined}
-        >
-          {title}
-        </div>
+        <EditableText
+          field="title"
+          defaultPreset="tpl-section-title"
+          defaultColor="#111"
+          value={data.title ?? data.header ?? ''}
+          onChange={(v) => onDataChange?.({ ...data, title: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'title'}
+          onSelect={onSelect}
+          style={{ textAlign: 'center', width: '100%' }}
+        />
 
         {/* Items */}
         <div
@@ -70,24 +52,38 @@ export function SimilarPage({ data, scale = 1, editable = false, onDataChange }:
                 padding: '48px 40px',
               }}
             >
-              <div
-                className="tpl-card-english"
-                style={{ color: 'var(--tpl-text-primary)' }}
-                contentEditable={editable}
-                suppressContentEditableWarning
-                onBlur={editable ? (e) => handleItemBlur(i, 'eng', e) : undefined}
-              >
-                {item.eng}
-              </div>
-              <div
-                className="tpl-card-korean"
-                style={{ color: 'var(--tpl-text-secondary)' }}
-                contentEditable={editable}
-                suppressContentEditableWarning
-                onBlur={editable ? (e) => handleItemBlur(i, 'kor', e) : undefined}
-              >
-                {item.kor}
-              </div>
+              <EditableText
+                field={`items.${i}.eng`}
+                defaultPreset="tpl-card-english"
+                defaultColor="var(--tpl-text-primary)"
+                value={item.eng}
+                onChange={(v) => {
+                  const newItems = [...data.items];
+                  newItems[i] = { ...item, eng: v };
+                  onDataChange?.({ ...data, items: newItems });
+                }}
+                styles={styles}
+                colors={colors}
+                editable={editable}
+                selected={selectedField === `items.${i}.eng`}
+                onSelect={onSelect}
+              />
+              <EditableText
+                field={`items.${i}.kor`}
+                defaultPreset="tpl-card-korean"
+                defaultColor="var(--tpl-text-secondary)"
+                value={item.kor}
+                onChange={(v) => {
+                  const newItems = [...data.items];
+                  newItems[i] = { ...item, kor: v };
+                  onDataChange?.({ ...data, items: newItems });
+                }}
+                styles={styles}
+                colors={colors}
+                editable={editable}
+                selected={selectedField === `items.${i}.kor`}
+                onSelect={onSelect}
+              />
             </div>
           ))}
         </div>

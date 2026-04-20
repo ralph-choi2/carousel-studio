@@ -42,12 +42,12 @@ data/{date}.json → 에디터(편집) → /api/export → output/{date}/ PNG �
 ## 스킬 파이프라인
 
 ```
-script-generator → (에디터 편집) → comfy-image → export → caption-writer → upload
+carousel-script-generator → (에디터 편집) → comfy-image → export → caption-writer → upload
 ```
 
 | 스킬 | 역할 |
 |------|------|
-| script-generator | JSON 스크립트 생성 (data/) |
+| carousel-script-generator | JSON 스크립트 생성 (data/) |
 | comfy-image | ComfyUI 배경 이미지 생성 (public/images/) |
 | export | Puppeteer PNG Export (output/) |
 | caption-writer | IG 캡션 생성 |

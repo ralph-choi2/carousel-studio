@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "series_title": "",
+    "date": "2026-04-22",
+    "title": "해외 미팅 30초 자기소개 템플릿",
+    "pillar": 4,
+    "format": "템플릿+DM트리거",
+    "hypothesis": "H-004",
+    "target_save": 150,
+    "pda": {
+      "persona": "해외 클라이언트/지사와 첫 미팅을 앞둔 직장인 — 이름은 말할 수 있는데 다음이 안 이어짐",
+      "desire": "복붙해서 바로 쓸 수 있는 30초 자기소개 대본",
+      "awareness": "해결중",
+      "angle": "실전 템플릿 + 맞춤 자료 제공"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "해외 미팅 30초\n자기소개 템플릿",
+        "subtitle": "이 3단계만 외우면 됩니다",
+        "bg_prompt": "Korean professional in their early 30s smiling confidently at the laptop camera during a video call, modern office setting with soft bokeh lights in the background, warm twilight atmosphere, shot at eye level, shallow depth of field, cinematic, no text overlay"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "첫 30초가 미팅 전체 인상을 만듭니다",
+        "body": "\"Hi, I'm Minji. Nice to meet you.\"\n→ 여기서 말이 끊기신 적 있으세요?\n\n이름만 말하면\n아직 20초가 더 남아요.\n\n그 공백을 뭘로 채우느냐가\n프로와 아마추어를 가릅니다."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "headline": "같은 이름, 다른 첫인상",
+        "bg_prompt": "Side-by-side portrait comparison of the same Korean professional on a video call — left side sitting back hesitantly mid-sentence, right side leaning in and gesturing while speaking confidently, warm modern office lighting, shallow depth of field, cinematic, no text overlay",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "Hi, I'm Minji. Nice to meet you.",
+            "kor": "이름만. 다음 말을 상대가 끌어내야 하는 구조"
+          },
+          {
+            "label": "icon_check",
+            "eng": "Hi, I'm Minji — product marketing at Uphone. Good to finally put a face to the name.",
+            "kor": "이름 + 역할 + 맥락 → 상대가 대화 주제를 바로 잡을 수 있음"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "1단계 — 이름과 역할 (10초)",
+        "items": [
+          {
+            "title": "I'm Minji, and I lead product marketing at Uphone.",
+            "body": "이름 + 리더 포지션\n권위감을 주는 인트로"
+          },
+          {
+            "title": "I'm Minji — I'm on the growth team at Uphone.",
+            "body": "소속 팀 강조\n협업 분위기에 적합"
+          },
+          {
+            "title": "I'm Minji, your main point of contact from Uphone.",
+            "body": "담당자임을 명확히\n클라이언트 미팅 특화"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "2단계 — 상대와 연결 (10초)",
+        "items": [
+          {
+            "title": "I've been working on the Asia launch you'll hear about today.",
+            "body": "오늘 안건과 나를 연결\n상대가 맥락 즉시 파악"
+          },
+          {
+            "title": "Good to finally put a face to the name.",
+            "body": "이메일로만 알던 사이에\n따뜻한 인트로"
+          },
+          {
+            "title": "I've been looking forward to this conversation.",
+            "body": "기대감 표현\n분위기를 올리는 한 줄"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "3단계 — 턴 넘기기 (10초)",
+        "items": [
+          {
+            "title": "How about yourself?",
+            "body": "가장 짧고 자연스러운 전환\n누구에게나 통용"
+          },
+          {
+            "title": "I'd love to hear what you've been focused on lately.",
+            "body": "관심 표현하며 넘기기\n임원급/클라이언트 대상"
+          },
+          {
+            "title": "What's your role on this project?",
+            "body": "구체 질문으로 넘기기\n프로젝트 미팅에 적합"
+          }
+        ]
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "직무별 완성 대본 10종, DM으로 받기 🎁",
+        "body": "이 3단계 구조를 바탕으로\nIT / 마케팅 / 세일즈 / 디자인\n직무별 완성 대본 10종을\nDM으로 보내드려요.\n\n댓글에 직무 키워드를 남겨주세요 👇\n\"IT\" / \"마케팅\" / \"세일즈\" / \"디자인\"\n\n@uphone.english 팔로우 중인 분께\n먼저 보내드립니다."
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": ""
+}

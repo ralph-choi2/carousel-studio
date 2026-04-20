@@ -31,6 +31,20 @@ export interface QuoteCardData { quote: string; source?: string; }
 
 export type PageData = CoverData | IntroData | TextCardData | SceneCardData | ExpressionCardData | SimilarData | XoCardData | BeforeAfterData | DialogCardData | QuoteCardData | Record<string, never>;
 
-export interface CarouselPage { component: ComponentType; data: PageData; }
+export interface CarouselPage {
+  component: ComponentType;
+  data: PageData;
+  styles?: Record<string, string>;   // 프리셋 오버라이드 (field path → tpl-* class id)
+  colors?: Record<string, string>;   // 색상 오버라이드 (field path → CSS var name)
+}
 export interface CarouselFile { meta: CarouselMeta; pages: CarouselPage[]; }
-export interface PageProps<T = PageData> { data: T; editable?: boolean; scale?: number; onDataChange?: (data: T) => void; }
+export interface PageProps<T = PageData> {
+  data: T;
+  styles?: Record<string, string>;
+  colors?: Record<string, string>;
+  editable?: boolean;
+  scale?: number;
+  selectedField?: string;
+  onDataChange?: (data: T) => void;
+  onSelect?: (field: string, defaultPreset: string, defaultColor?: string) => void;
+}

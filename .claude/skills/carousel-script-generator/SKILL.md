@@ -1,5 +1,5 @@
 ---
-name: script-generator
+name: carousel-script-generator
 description: IG 캐러셀 스크립트 JSON 생성. 성과 데이터, 가설, 경쟁사, wiki 컨텍스트 종합 참조. Triggers on "스크립트 생성", "캐러셀 기획", "콘텐츠 생성", "이번주 소재", "새 캐러셀".
 ---
 

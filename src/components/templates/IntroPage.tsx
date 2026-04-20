@@ -1,22 +1,10 @@
 import type { IntroData, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function IntroPage({ data, editable = false, scale, onDataChange }: PageProps<IntroData>) {
+export function IntroPage({ data, styles, colors, editable = false, scale, selectedField, onDataChange, onSelect }: PageProps<IntroData>) {
   const header = data.header || data.hook || '';
   const body = data.body || data.explanation || '';
-
-  const handleHeaderBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, header: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleBodyBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, body: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
 
   return (
     <PageWrapper scale={scale}>
@@ -52,25 +40,31 @@ export function IntroPage({ data, editable = false, scale, onDataChange }: PageP
           textAlign: 'center',
         }}
       >
-        <div
-          className="tpl-body-primary"
+        <EditableText
+          field="header"
+          defaultPreset="tpl-body-primary"
+          value={header}
+          onChange={(v) => onDataChange?.({ ...data, header: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'header'}
+          onSelect={onSelect}
           style={{ marginBottom: '50px', textAlign: 'center' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleHeaderBlur : undefined}
-        >
-          {header}
-        </div>
+        />
 
-        <div
-          className="tpl-body-secondary"
+        <EditableText
+          field="body"
+          defaultPreset="tpl-body-secondary"
+          value={body}
+          onChange={(v) => onDataChange?.({ ...data, body: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'body'}
+          onSelect={onSelect}
           style={{ maxWidth: '860px', marginBottom: '100px', textAlign: 'center' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleBodyBlur : undefined}
-        >
-          {body}
-        </div>
+        />
       </div>
 
       {/* Bottom logo */}

@@ -1,23 +1,9 @@
 import type { PageProps, ExpressionCardData } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function ExpressionCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<ExpressionCardData>) {
+export function ExpressionCardPage({ data, styles, colors, editable, scale = 1, selectedField, onDataChange, onSelect }: PageProps<ExpressionCardData>) {
   const items = data.items ?? [];
-
-  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleItemBlur = (index: number, field: 'title' | 'body', e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      const newItems = [...items];
-      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
-      onDataChange({ ...data, items: newItems });
-    }
-  };
 
   return (
     <PageWrapper scale={scale}>
@@ -41,15 +27,18 @@ export function ExpressionCardPage({ data, scale = 1, editable = false, onDataCh
         }}
       >
         {/* Title */}
-        <div
-          className="tpl-section-title"
+        <EditableText
+          field="title"
+          defaultPreset="tpl-section-title"
+          value={data.title}
+          onChange={(v) => onDataChange?.({ ...data, title: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'title'}
+          onSelect={onSelect}
           style={{ textAlign: 'center', width: '100%' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleTitleBlur : undefined}
-        >
-          {data.title}
-        </div>
+        />
 
         {/* Items list */}
         <div
@@ -71,25 +60,40 @@ export function ExpressionCardPage({ data, scale = 1, editable = false, onDataCh
                 boxSizing: 'border-box',
               }}
             >
-              <div
-                className="tpl-scene-bold"
-                style={{ color: '#111111', marginBottom: item.body ? 16 : 0 }}
-                contentEditable={editable}
-                suppressContentEditableWarning
-                onBlur={editable ? (e) => handleItemBlur(i, 'title', e) : undefined}
-              >
-                {item.title}
-              </div>
+              <EditableText
+                field={`items.${i}.title`}
+                defaultPreset="tpl-scene-bold"
+                defaultColor="#111111"
+                value={item.title}
+                onChange={(v) => {
+                  const newItems = [...items];
+                  newItems[i] = { ...item, title: v };
+                  onDataChange?.({ ...data, items: newItems });
+                }}
+                styles={styles}
+                colors={colors}
+                editable={editable}
+                selected={selectedField === `items.${i}.title`}
+                onSelect={onSelect}
+                style={{ marginBottom: item.body ? 16 : 0 }}
+              />
               {item.body && (
-                <div
-                  className="tpl-scene-regular"
-                  style={{ color: '#888888' }}
-                  contentEditable={editable}
-                  suppressContentEditableWarning
-                  onBlur={editable ? (e) => handleItemBlur(i, 'body', e) : undefined}
-                >
-                  {item.body}
-                </div>
+                <EditableText
+                  field={`items.${i}.body`}
+                  defaultPreset="tpl-scene-regular"
+                  defaultColor="#888888"
+                  value={item.body}
+                  onChange={(v) => {
+                    const newItems = [...items];
+                    newItems[i] = { ...item, body: v };
+                    onDataChange?.({ ...data, items: newItems });
+                  }}
+                  styles={styles}
+                  colors={colors}
+                  editable={editable}
+                  selected={selectedField === `items.${i}.body`}
+                  onSelect={onSelect}
+                />
               )}
             </div>
           ))}

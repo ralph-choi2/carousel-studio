@@ -48,7 +48,12 @@ export function useExport() {
         const Component = COMPONENT_MAP[page.component];
         if (!Component) return { index, component: page.component, html: '' };
         const markup = ReactDOMServer.renderToStaticMarkup(
-          <Component data={page.data} scale={1} />
+          <Component
+            data={page.data}
+            styles={page.styles}
+            colors={page.colors}
+            scale={1}
+          />
         );
         return { index, component: page.component, html: wrapHtml(markup) };
       });

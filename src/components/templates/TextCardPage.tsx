@@ -1,20 +1,8 @@
 import type { TextCardData, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function TextCardPage({ data, editable = false, scale, onDataChange }: PageProps<TextCardData>) {
-  const handleHeaderBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, header: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleBodyBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, body: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
+export function TextCardPage({ data, styles, colors, editable = false, scale, selectedField, onDataChange, onSelect }: PageProps<TextCardData>) {
   return (
     <PageWrapper scale={scale}>
       {/* Background texture */}
@@ -49,25 +37,31 @@ export function TextCardPage({ data, editable = false, scale, onDataChange }: Pa
           textAlign: 'center',
         }}
       >
-        <div
-          className="tpl-body-primary"
+        <EditableText
+          field="header"
+          defaultPreset="tpl-body-primary"
+          value={data.header}
+          onChange={(v) => onDataChange?.({ ...data, header: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'header'}
+          onSelect={onSelect}
           style={{ marginBottom: '50px' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleHeaderBlur : undefined}
-        >
-          {data.header}
-        </div>
+        />
 
-        <div
-          className="tpl-body-secondary"
+        <EditableText
+          field="body"
+          defaultPreset="tpl-body-secondary"
+          value={data.body}
+          onChange={(v) => onDataChange?.({ ...data, body: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'body'}
+          onSelect={onSelect}
           style={{ maxWidth: '860px', marginBottom: '100px' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleBodyBlur : undefined}
-        >
-          {data.body}
-        </div>
+        />
       </div>
 
       {/* Bottom logo */}

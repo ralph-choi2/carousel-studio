@@ -1,20 +1,8 @@
 import { PageWrapper } from './PageWrapper';
+import { EditableText } from '@/components/common/EditableText';
 import type { PageProps, QuoteCardData } from '@/lib/types';
-import { htmlToText } from '@/lib/utils';
 
-export function QuotePage({ data, editable, scale, onDataChange }: PageProps<QuoteCardData>) {
-  function handleQuoteBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, quote: htmlToText(e.currentTarget.innerHTML) });
-    }
-  }
-
-  function handleSourceBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, source: htmlToText(e.currentTarget.innerHTML) });
-    }
-  }
-
+export function QuotePage({ data, styles, colors, editable, scale, selectedField, onDataChange, onSelect }: PageProps<QuoteCardData>) {
   return (
     <PageWrapper scale={scale}>
       {/* Background */}
@@ -39,51 +27,35 @@ export function QuotePage({ data, editable, scale, onDataChange }: PageProps<Quo
         textAlign: 'center',
       }}>
         {/* Quote */}
-        {editable ? (
-          <div
-            contentEditable
-            suppressContentEditableWarning
-            onBlur={handleQuoteBlur}
-            className="tpl-quote-text"
-            style={{ color: '#111', outline: 'none', width: '100%' }}
-          >
-            {data.quote}
-          </div>
-        ) : (
-          <div className="tpl-quote-text" style={{ color: '#111', width: '100%' }}>
-            {data.quote}
-          </div>
-        )}
+        <EditableText
+          field="quote"
+          defaultPreset="tpl-quote-text"
+          defaultColor="#111"
+          value={data.quote}
+          onChange={(v) => onDataChange?.({ ...data, quote: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'quote'}
+          onSelect={onSelect}
+          style={{ width: '100%' }}
+        />
 
         {/* Source */}
         {data.source != null && (
-          editable ? (
-            <div
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={handleSourceBlur}
-              style={{
-                fontSize: 24,
-                fontWeight: 600,
-                color: '#888',
-                marginTop: 48,
-                outline: 'none',
-                width: '100%',
-              }}
-            >
-              {data.source}
-            </div>
-          ) : (
-            <div style={{
-              fontSize: 28,
-              fontWeight: 400,
-              color: '#888',
-              marginTop: 48,
-              width: '100%',
-            }}>
-              {data.source}
-            </div>
-          )
+          <EditableText
+            field="source"
+            defaultPreset="tpl-source-citation"
+            defaultColor="#888"
+            value={data.source}
+            onChange={(v) => onDataChange?.({ ...data, source: v })}
+            styles={styles}
+            colors={colors}
+            editable={editable}
+            selected={selectedField === 'source'}
+            onSelect={onSelect}
+            style={{ marginTop: 48, width: '100%' }}
+          />
         )}
       </div>
     </PageWrapper>

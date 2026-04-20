@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "series_title": "",
+    "date": "2026-04-20",
+    "title": "\"How are you?\" 말고 — 회의 첫 30초 small talk",
+    "pillar": 2,
+    "format": "상황묶음",
+    "hypothesis": "H-002",
+    "target_save": 120,
+    "pda": {
+      "persona": "해외 팀/클라이언트와 정기 미팅하는 직장인 — 본론은 되는데 오프닝 30초에서 늘 어색함",
+      "desire": "원어민 동료와 자연스럽게 대화 여는 감각",
+      "awareness": "문제인식",
+      "angle": "공감+반전"
+    }
+  },
+  "pages": [
+    {
+      "component": "cover",
+      "data": {
+        "title": "\"How are you?\" 말고\n이렇게 열어보세요",
+        "subtitle": "",
+        "bg_prompt": "Korean professional woman in her early 30s sitting in a modern home office, smiling warmly just before starting a video call on her laptop, soft morning window light, shallow depth of field, candid and approachable mood, warm tones, cinematic, no text overlay"
+      }
+    },
+    {
+      "component": "intro",
+      "data": {
+        "header": "같은 질문, 같은 대답, 같은 어색함",
+        "body": "\"How are you?\"\n→ \"Good. And you?\"\n→ \"Good.\"\n\n여기서 말이 끊기고\n바로 본론으로 들어가죠.\n\n원어민들은 이 30초에\n다른 걸 하고 있었어요."
+      }
+    },
+    {
+      "component": "scene-card",
+      "data": {
+        "headline": "How’s your week \ngoing so far?",
+        "bg_prompt": "Two professionals on a video call grid view — left side showing a person with polite but awkward closed smile, right side showing a person leaning in gesturing relaxed, warm daylight, modern home office background, shallow depth of field, cinematic, no text overlay",
+        "items": [
+          {
+            "label": "icon_x",
+            "eng": "How are you? / Good, and you? / Good.",
+            "kor": "의례적 인사로 끝. 서로 어색해지는 공백이 생김"
+          },
+          {
+            "label": "icon_check",
+            "eng": "How's your week going so far?",
+            "kor": "구체적 질문 → 상대가 실제로 대답할 수 있는 오프닝"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "원어민이 자주 쓰는 오프닝",
+        "items": [
+          {
+            "title": "How's your week going so far?",
+            "body": "이번 주 어떻게 지내고 계세요?\n평일 회의에 가장 무난"
+          },
+          {
+            "title": "How was your weekend?",
+            "body": "주말 어떠셨어요?\n월요일 오전 회의에 자연스러움"
+          },
+          {
+            "title": "Anything exciting this weekend?",
+            "body": "이번 주말에 뭐 재밌는 일 있으세요?\n금요일 오후 회의에 적합"
+          }
+        ]
+      }
+    },
+    {
+      "component": "expression-card",
+      "data": {
+        "title": "상대 답변에 반응하기",
+        "items": [
+          {
+            "title": "Oh, that sounds great!",
+            "body": "좋은 이야기에 공감\n휴가/주말 활동 답변에"
+          },
+          {
+            "title": "That's a lot. Hope it calms down soon.",
+            "body": "바쁘다는 답변에 공감\n톤을 맞춰 가볍게 위로"
+          },
+          {
+            "title": "Same here, honestly.",
+            "body": "\"저도 그래요\" 공감\n공감대 형성에 즉효"
+          }
+        ]
+      }
+    },
+    {
+      "component": "text-card",
+      "data": {
+        "header": "30초의 small talk, 왜 중요할까요?",
+        "body": "영어권 비즈니스 문화에서\n회의 전 small talk은 본론만큼이나\n신뢰를 쌓는 시간이에요.\n\n매번 \"Good.\"으로만 끝나면\n상대는 내가 대화에 관심이 없다고 느껴요.\n\n30초만 바꿔도\n남은 29분 30초의 온도가 달라집니다."
+      }
+    },
+    {
+      "component": "summary",
+      "data": {
+        "header": "다음 회의 전에 하나만 준비하세요",
+        "body": "월요일 아침\n→ How was your weekend?\n\n평일 낮\n→ How's your week going so far?\n\n금요일 오후\n→ Anything exciting this weekend?"
+      }
+    },
+    {
+      "component": "cta"
+    }
+  ],
+  "caption": ""
+}

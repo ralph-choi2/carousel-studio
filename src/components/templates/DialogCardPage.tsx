@@ -1,38 +1,8 @@
 import { PageWrapper } from './PageWrapper';
 import type { PageProps, DialogCardData } from '@/lib/types';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function DialogCardPage({ data, editable, scale, onDataChange }: PageProps<DialogCardData>) {
-  function handleTitleBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
-    }
-  }
-
-  function handleAEngBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, a: { ...data.a, eng: htmlToText(e.currentTarget.innerHTML) } });
-    }
-  }
-
-  function handleAKorBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, a: { ...data.a, kor: htmlToText(e.currentTarget.innerHTML) } });
-    }
-  }
-
-  function handleBEngBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, b: { ...data.b, eng: htmlToText(e.currentTarget.innerHTML) } });
-    }
-  }
-
-  function handleBKorBlur(e: React.FocusEvent<HTMLDivElement>) {
-    if (onDataChange) {
-      onDataChange({ ...data, b: { ...data.b, kor: htmlToText(e.currentTarget.innerHTML) } });
-    }
-  }
-
+export function DialogCardPage({ data, styles, colors, editable, scale, selectedField, onDataChange, onSelect }: PageProps<DialogCardData>) {
   return (
     <PageWrapper scale={scale}>
       {/* Background */}
@@ -58,33 +28,19 @@ export function DialogCardPage({ data, editable, scale, onDataChange }: PageProp
       }}>
         {/* Optional title */}
         {data.title != null && (
-          editable ? (
-            <div
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={handleTitleBlur}
-              style={{
-                fontSize: 48,
-                fontWeight: 700,
-                color: '#111',
-                textAlign: 'center',
-                outline: 'none',
-                width: '100%',
-              }}
-            >
-              {data.title}
-            </div>
-          ) : (
-            <div style={{
-              fontSize: 48,
-              fontWeight: 700,
-              color: '#111',
-              textAlign: 'center',
-              width: '100%',
-            }}>
-              {data.title}
-            </div>
-          )
+          <EditableText
+            field="title"
+            defaultPreset="tpl-section-title"
+            defaultColor="#111"
+            value={data.title}
+            onChange={(v) => onDataChange?.({ ...data, title: v })}
+            styles={styles}
+            colors={colors}
+            editable={editable}
+            selected={selectedField === 'title'}
+            onSelect={onSelect}
+            style={{ textAlign: 'center', width: '100%' }}
+          />
         )}
 
         {/* Speaker A card */}
@@ -116,30 +72,30 @@ export function DialogCardPage({ data, editable, scale, onDataChange }: PageProp
           </div>
           {/* Text group */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
-            {editable ? (
-              <div
-                contentEditable
-                suppressContentEditableWarning
-                onBlur={handleAEngBlur}
-                className="tpl-card-english" style={{ color: '#222', outline: 'none', minHeight: 46 }}
-              >
-                {data.a.eng}
-              </div>
-            ) : (
-              <div className="tpl-card-english" style={{ color: '#222' }}>{data.a.eng}</div>
-            )}
-            {editable ? (
-              <div
-                contentEditable
-                suppressContentEditableWarning
-                onBlur={handleAKorBlur}
-                className="tpl-card-korean" style={{ color: '#888', outline: 'none', minHeight: 40 }}
-              >
-                {data.a.kor}
-              </div>
-            ) : (
-              <div className="tpl-card-korean" style={{ color: '#888' }}>{data.a.kor}</div>
-            )}
+            <EditableText
+              field="a.eng"
+              defaultPreset="tpl-card-english"
+              defaultColor="#222"
+              value={data.a.eng}
+              onChange={(v) => onDataChange?.({ ...data, a: { ...data.a, eng: v } })}
+              styles={styles}
+              colors={colors}
+              editable={editable}
+              selected={selectedField === 'a.eng'}
+              onSelect={onSelect}
+            />
+            <EditableText
+              field="a.kor"
+              defaultPreset="tpl-card-korean"
+              defaultColor="#888"
+              value={data.a.kor}
+              onChange={(v) => onDataChange?.({ ...data, a: { ...data.a, kor: v } })}
+              styles={styles}
+              colors={colors}
+              editable={editable}
+              selected={selectedField === 'a.kor'}
+              onSelect={onSelect}
+            />
           </div>
         </div>
 
@@ -172,30 +128,30 @@ export function DialogCardPage({ data, editable, scale, onDataChange }: PageProp
           </div>
           {/* Text group */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
-            {editable ? (
-              <div
-                contentEditable
-                suppressContentEditableWarning
-                onBlur={handleBEngBlur}
-                className="tpl-card-english" style={{ color: '#222', outline: 'none', minHeight: 46 }}
-              >
-                {data.b.eng}
-              </div>
-            ) : (
-              <div className="tpl-card-english" style={{ color: '#222' }}>{data.b.eng}</div>
-            )}
-            {editable ? (
-              <div
-                contentEditable
-                suppressContentEditableWarning
-                onBlur={handleBKorBlur}
-                className="tpl-card-korean" style={{ color: '#888', outline: 'none', minHeight: 40 }}
-              >
-                {data.b.kor}
-              </div>
-            ) : (
-              <div className="tpl-card-korean" style={{ color: '#888' }}>{data.b.kor}</div>
-            )}
+            <EditableText
+              field="b.eng"
+              defaultPreset="tpl-card-english"
+              defaultColor="#222"
+              value={data.b.eng}
+              onChange={(v) => onDataChange?.({ ...data, b: { ...data.b, eng: v } })}
+              styles={styles}
+              colors={colors}
+              editable={editable}
+              selected={selectedField === 'b.eng'}
+              onSelect={onSelect}
+            />
+            <EditableText
+              field="b.kor"
+              defaultPreset="tpl-card-korean"
+              defaultColor="#888"
+              value={data.b.kor}
+              onChange={(v) => onDataChange?.({ ...data, b: { ...data.b, kor: v } })}
+              styles={styles}
+              colors={colors}
+              editable={editable}
+              selected={selectedField === 'b.kor'}
+              onSelect={onSelect}
+            />
           </div>
         </div>
       </div>

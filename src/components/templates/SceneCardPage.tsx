@@ -1,26 +1,12 @@
 import type { PageProps, SceneCardData } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function SceneCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<SceneCardData>) {
+export function SceneCardPage({ data, styles, colors, editable = false, scale = 1, selectedField, onDataChange, onSelect }: PageProps<SceneCardData>) {
   const items = data.items ?? [];
   const iconColors = ['#AAAAAA', '#111111'];
 
   const hasBg = !!data.bg_image;
-
-  const handleHeadlineBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, headline: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleItemBlur = (index: number, field: 'eng' | 'kor', e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      const newItems = [...items];
-      newItems[index] = { ...newItems[index], [field]: htmlToText(e.currentTarget.innerHTML) };
-      onDataChange({ ...data, items: newItems });
-    }
-  };
 
   return (
     <PageWrapper scale={scale} className="scene-card-page">
@@ -87,15 +73,19 @@ export function SceneCardPage({ data, scale = 1, editable = false, onDataChange 
       >
         {/* Main headline */}
         {(data.headline || data.header) && (
-          <div
-            className="tpl-section-subtitle"
-            style={{ color: '#FFFFFF', textAlign: 'center', marginBottom: 40, width: '100%' }}
-            contentEditable={editable}
-            suppressContentEditableWarning
-            onBlur={editable ? handleHeadlineBlur : undefined}
-          >
-            {data.headline ?? data.header}
-          </div>
+          <EditableText
+            field="headline"
+            defaultPreset="tpl-section-subtitle"
+            defaultColor="--tpl-text-white"
+            value={data.headline ?? data.header ?? ''}
+            onChange={(v) => onDataChange?.({ ...data, headline: v })}
+            styles={styles}
+            colors={colors}
+            editable={editable}
+            selected={selectedField === 'headline'}
+            onSelect={onSelect}
+            style={{ textAlign: 'center', marginBottom: 40, width: '100%' }}
+          />
         )}
 
         {/* Card box */}
@@ -164,26 +154,40 @@ export function SceneCardPage({ data, scale = 1, editable = false, onDataChange 
                     }}
                   >
                     {engText && (
-                      <div
-                        className="tpl-card-english"
-                        style={{ color: '#222222' }}
-                        contentEditable={editable}
-                        suppressContentEditableWarning
-                        onBlur={editable ? (e) => handleItemBlur(i, 'eng', e) : undefined}
-                      >
-                        {engText}
-                      </div>
+                      <EditableText
+                        field={`items.${i}.eng`}
+                        defaultPreset="tpl-card-english"
+                        defaultColor="#222222"
+                        value={engText}
+                        onChange={(v) => {
+                          const newItems = [...items];
+                          newItems[i] = { ...item, eng: v };
+                          onDataChange?.({ ...data, items: newItems });
+                        }}
+                        styles={styles}
+                        colors={colors}
+                        editable={editable}
+                        selected={selectedField === `items.${i}.eng`}
+                        onSelect={onSelect}
+                      />
                     )}
                     {korText && (
-                      <div
-                        className="tpl-card-korean"
-                        style={{ color: '#888888' }}
-                        contentEditable={editable}
-                        suppressContentEditableWarning
-                        onBlur={editable ? (e) => handleItemBlur(i, 'kor', e) : undefined}
-                      >
-                        {korText}
-                      </div>
+                      <EditableText
+                        field={`items.${i}.kor`}
+                        defaultPreset="tpl-card-korean"
+                        defaultColor="#888888"
+                        value={korText}
+                        onChange={(v) => {
+                          const newItems = [...items];
+                          newItems[i] = { ...item, kor: v };
+                          onDataChange?.({ ...data, items: newItems });
+                        }}
+                        styles={styles}
+                        colors={colors}
+                        editable={editable}
+                        selected={selectedField === `items.${i}.kor`}
+                        onSelect={onSelect}
+                      />
                     )}
                   </div>
                 </div>

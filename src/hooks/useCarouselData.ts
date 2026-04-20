@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { CarouselFile, PageData } from '@/lib/types';
+import type { CarouselFile, CarouselPage, PageData } from '@/lib/types';
 import { loadCarouselFile, saveCarouselFile } from '@/lib/data-loader';
 
 interface CarouselDataState {
@@ -11,7 +11,7 @@ interface CarouselDataState {
 
 interface CarouselDataActions {
   load: (file: string) => Promise<void>;
-  updatePage: (index: number, pageData: PageData) => void;
+  updatePage: (index: number, patch: Partial<CarouselPage>) => void;
   save: () => Promise<void>;
 }
 
@@ -33,11 +33,11 @@ export function useCarouselData(): CarouselDataState & CarouselDataActions {
     }
   }, []);
 
-  const updatePage = useCallback((index: number, pageData: PageData) => {
+  const updatePage = useCallback((index: number, patch: Partial<CarouselPage>) => {
     setData((prev) => {
       if (!prev) return prev;
       const pages = prev.pages.map((page, i) =>
-        i === index ? { ...page, data: pageData } : page
+        i === index ? { ...page, ...patch } : page
       );
       return { ...prev, pages };
     });

@@ -1,40 +1,39 @@
 import type { XoCardData, PageProps } from '@/lib/types';
 import { PageWrapper } from './PageWrapper';
-import { htmlToText } from '@/lib/utils';
+import { EditableText } from '@/components/common/EditableText';
 
-export function XoCardPage({ data, scale = 1, editable = false, onDataChange }: PageProps<XoCardData>) {
-  const handleTitleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, title: htmlToText(e.currentTarget.innerHTML) });
-    }
-  };
-
-  const handleCardLabelBlur = (card: 'before' | 'after', e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      onDataChange({ ...data, [card]: { ...data[card], label: htmlToText(e.currentTarget.innerHTML) } });
-    }
-  };
-
-  const handleCardLineBlur = (card: 'before' | 'after', lineIndex: number, e: React.FocusEvent<HTMLDivElement>) => {
-    if (onDataChange) {
-      const newLines = [...data[card].lines];
-      newLines[lineIndex] = htmlToText(e.currentTarget.innerHTML);
-      onDataChange({ ...data, [card]: { ...data[card], lines: newLines } });
-    }
-  };
+export function XoCardPage({
+  data,
+  styles,
+  colors,
+  editable = false,
+  scale = 1,
+  selectedField,
+  onDataChange,
+  onSelect,
+}: PageProps<XoCardData>) {
+  const before = data.before;
+  const after = data.after;
 
   const buildLines = (lines: string[], card: 'before' | 'after') =>
     lines.map((line, i) => (
-      <div
+      <EditableText
         key={i}
-        className="tpl-body-secondary"
-        style={{ color: '#111' }}
-        contentEditable={editable}
-        suppressContentEditableWarning
-        onBlur={editable ? (e) => handleCardLineBlur(card, i, e) : undefined}
-      >
-        {line}
-      </div>
+        field={`${card}.lines.${i}`}
+        defaultPreset="tpl-body-secondary"
+        defaultColor="#111"
+        value={line}
+        onChange={(v) => {
+          const newLines = [...data[card].lines];
+          newLines[i] = v;
+          onDataChange?.({ ...data, [card]: { ...data[card], lines: newLines } });
+        }}
+        styles={styles}
+        colors={colors}
+        editable={editable}
+        selected={selectedField === `${card}.lines.${i}`}
+        onSelect={onSelect}
+      />
     ));
 
   const cardEl = (cardData: { label: string; lines: string[] }, cardKey: 'before' | 'after') => (
@@ -57,15 +56,21 @@ export function XoCardPage({ data, scale = 1, editable = false, onDataChange }: 
           maxWidth: '100%',
         }}
       >
-        <div
-          className="tpl-card-korean"
-          style={{ color: '#111', marginBottom: 8 }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? (e) => handleCardLabelBlur(cardKey, e) : undefined}
-        >
-          {cardData.label}
-        </div>
+        <EditableText
+          field={`${cardKey}.label`}
+          defaultPreset="tpl-card-korean"
+          defaultColor="#111"
+          value={cardData.label}
+          onChange={(v) =>
+            onDataChange?.({ ...data, [cardKey]: { ...data[cardKey], label: v } })
+          }
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === `${cardKey}.label`}
+          onSelect={onSelect}
+          style={{ marginBottom: 8 }}
+        />
         {buildLines(cardData.lines, cardKey)}
       </div>
     </div>
@@ -102,15 +107,19 @@ export function XoCardPage({ data, scale = 1, editable = false, onDataChange }: 
         }}
       >
         {/* Title */}
-        <div
-          className="tpl-section-subtitle"
-          style={{ color: '#000', textAlign: 'center', width: '100%' }}
-          contentEditable={editable}
-          suppressContentEditableWarning
-          onBlur={editable ? handleTitleBlur : undefined}
-        >
-          {data.title}
-        </div>
+        <EditableText
+          field="title"
+          defaultPreset="tpl-section-subtitle"
+          defaultColor="#000"
+          value={data.title}
+          onChange={(v) => onDataChange?.({ ...data, title: v })}
+          styles={styles}
+          colors={colors}
+          editable={editable}
+          selected={selectedField === 'title'}
+          onSelect={onSelect}
+          style={{ textAlign: 'center', width: '100%' }}
+        />
 
         {/* Cards */}
         <div
@@ -121,8 +130,8 @@ export function XoCardPage({ data, scale = 1, editable = false, onDataChange }: 
             width: '100%',
           }}
         >
-          {cardEl(data.before, 'before')}
-          {cardEl(data.after, 'after')}
+          {cardEl(before, 'before')}
+          {cardEl(after, 'after')}
         </div>
       </div>
 
