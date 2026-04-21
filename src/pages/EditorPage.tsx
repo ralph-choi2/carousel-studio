@@ -5,9 +5,10 @@ import { Filmstrip } from '@/components/filmstrip/Filmstrip';
 import { Inspector, type InspectorSelection } from '@/components/inspector/Inspector';
 import { usePageNavigation } from '@/hooks/usePageNavigation';
 import type { useCarouselData } from '@/hooks/useCarouselData';
+import type { CarouselItem } from '@/lib/types';
 
 interface EditorPageProps {
-  files: string[];
+  items: CarouselItem[];
   zoom: number;
   onZoomChange: (zoom: number) => void;
   carousel: ReturnType<typeof useCarouselData>;
@@ -15,8 +16,13 @@ interface EditorPageProps {
   isExporting?: boolean;
 }
 
-export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isExporting }: EditorPageProps) {
-  const { filename, data, isDirty, isLoading, load, updatePage, save } = carousel;
+export function EditorPage({
+  items, zoom, onZoomChange, carousel, onExport, isExporting,
+}: EditorPageProps) {
+  const {
+    row, data, isDirty, isLoading, syncStatus, lastSavedAt,
+    load, updatePage, save,
+  } = carousel;
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
   const [selection, setSelection] = useState<InspectorSelection | null>(null);
@@ -37,7 +43,9 @@ export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isEx
     const nextStyles = { ...(currentPage.styles ?? {}) };
     if (preset == null) delete nextStyles[field];
     else nextStyles[field] = preset;
-    updatePage(currentIndex, { styles: Object.keys(nextStyles).length ? nextStyles : undefined });
+    updatePage(currentIndex, {
+      styles: Object.keys(nextStyles).length ? nextStyles : undefined,
+    });
   };
 
   const handleColorChange = (field: string, token: string | null) => {
@@ -45,7 +53,9 @@ export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isEx
     const nextColors = { ...(currentPage.colors ?? {}) };
     if (token == null) delete nextColors[field];
     else nextColors[field] = token;
-    updatePage(currentIndex, { colors: Object.keys(nextColors).length ? nextColors : undefined });
+    updatePage(currentIndex, {
+      colors: Object.keys(nextColors).length ? nextColors : undefined,
+    });
   };
 
   const handleResetAll = (field: string) => {
@@ -63,15 +73,17 @@ export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isEx
   return (
     <div className="h-screen flex flex-col">
       <Toolbar
-        files={files}
-        currentFile={filename}
-        onFileSelect={load}
+        items={items}
+        currentRow={row}
+        onRowSelect={load}
         zoom={zoom}
         onZoomChange={onZoomChange}
         isDirty={isDirty}
         onSave={save}
         onExport={onExport}
         isExporting={isExporting}
+        syncStatus={syncStatus}
+        lastSavedAt={lastSavedAt}
       />
       {data ? (
         <>
@@ -105,7 +117,7 @@ export function EditorPage({ files, zoom, onZoomChange, carousel, onExport, isEx
         </>
       ) : (
         <div className="flex-1 flex items-center justify-center text-muted-foreground">
-          {isLoading ? 'Loading...' : 'Select a file to start editing'}
+          {isLoading ? 'Loading...' : 'Select a carousel to start editing'}
         </div>
       )}
     </div>

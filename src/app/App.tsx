@@ -5,23 +5,38 @@ import { EditorPage } from '@/pages/EditorPage';
 import { ComponentPage } from '@/pages/ComponentPage';
 import { useCarouselData } from '@/hooks/useCarouselData';
 import { useExport } from '@/hooks/useExport';
-import { listDataFiles } from '@/lib/data-loader';
+import { listCarouselItems } from '@/lib/data-loader';
+import type { CarouselFile, CarouselItem } from '@/lib/types';
+
+/** 시트 row 의 title/date 로부터 export 결과 디렉토리 이름 유도. */
+function deriveFilename(data: CarouselFile): string {
+  const date = data.meta.date || 'untitled';
+  const titleSlug = (data.meta.title || 'untitled')
+    .toLowerCase()
+    .replace(/[^a-z0-9가-힣\s-]+/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .slice(0, 40)
+    .replace(/^-+|-+$/g, '');
+  return titleSlug ? `${date}-${titleSlug}` : date;
+}
 
 export default function App() {
-  const [files, setFiles] = useState<string[]>([]);
+  const [items, setItems] = useState<CarouselItem[]>([]);
   const [zoom, setZoom] = useState(50);
   const carousel = useCarouselData();
   const { isExporting, doExport } = useExport();
 
   useEffect(() => {
-    listDataFiles().then(setFiles).catch(console.error);
+    listCarouselItems().then(setItems).catch(console.error);
   }, []);
 
   const handleExport = useCallback(async () => {
-    if (!carousel.filename || !carousel.data) return;
-    const outDir = await doExport(carousel.filename, carousel.data);
+    if (carousel.row == null || !carousel.data) return;
+    const filename = deriveFilename(carousel.data);
+    const outDir = await doExport(filename, carousel.data);
     if (outDir) alert(`Exported to: ${outDir}`);
-  }, [carousel.filename, carousel.data, doExport]);
+  }, [carousel.row, carousel.data, doExport]);
 
   return (
     <>
@@ -31,7 +46,7 @@ export default function App() {
           path="/editor"
           element={
             <EditorPage
-              files={files}
+              items={items}
               zoom={zoom}
               onZoomChange={setZoom}
               carousel={carousel}
@@ -44,7 +59,7 @@ export default function App() {
           path="/component"
           element={
             <ComponentPage
-              files={files}
+              items={items}
               zoom={zoom}
               onZoomChange={setZoom}
               carousel={carousel}

@@ -1,71 +1,126 @@
-import { Download, Loader2, Save } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Download, Loader2, Save, Check, AlertTriangle } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import type { CarouselItem } from '@/lib/types';
+import type { SyncStatus } from '@/hooks/useCarouselData';
 
 interface ToolbarProps {
-  files: string[];
-  currentFile: string | null;
-  onFileSelect: (filename: string) => void;
+  items: CarouselItem[];
+  currentRow: number | null;
+  onRowSelect: (row: number) => void;
   zoom: number;
   onZoomChange: (zoom: number) => void;
   isDirty: boolean;
   onSave: () => void;
   onExport: () => void;
-  isSaving?: boolean;
   isExporting?: boolean;
+  syncStatus?: SyncStatus;
+  lastSavedAt?: number | null;
+}
+
+function useRelativeTime(ts: number | null | undefined): string {
+  const [, tick] = useState(0);
+  useEffect(() => {
+    if (ts == null) return;
+    const id = setInterval(() => tick((n) => n + 1), 5000);
+    return () => clearInterval(id);
+  }, [ts]);
+  if (ts == null) return '';
+  const sec = Math.floor((Date.now() - ts) / 1000);
+  if (sec < 5) return '방금';
+  if (sec < 60) return `${sec}초 전`;
+  const min = Math.floor(sec / 60);
+  if (min < 60) return `${min}분 전`;
+  return `${Math.floor(min / 60)}시간 전`;
+}
+
+function SyncBadge({
+  status, lastSavedAt,
+}: { status?: SyncStatus; lastSavedAt?: number | null }) {
+  const relative = useRelativeTime(lastSavedAt ?? null);
+  if (!status || status === 'idle') return null;
+  if (status === 'saving') {
+    return (
+      <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
+        <Loader2 className="w-3 h-3 animate-spin" />
+        저장 중...
+      </span>
+    );
+  }
+  if (status === 'saved') {
+    return (
+      <span className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
+        <Check className="w-3 h-3 text-green-600" />
+        저장됨{relative ? ` · ${relative}` : ''}
+      </span>
+    );
+  }
+  if (status === 'error') {
+    return (
+      <span className="flex items-center gap-1 text-xs text-destructive shrink-0">
+        <AlertTriangle className="w-3 h-3" />
+        저장 실패
+      </span>
+    );
+  }
+  return null;
 }
 
 export function Toolbar({
-  files,
-  currentFile,
-  onFileSelect,
+  items,
+  currentRow,
+  onRowSelect,
   zoom,
   onZoomChange,
   isDirty,
   onSave,
   onExport,
-  isSaving = false,
   isExporting = false,
+  syncStatus,
+  lastSavedAt,
 }: ToolbarProps) {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const currentTab =
-    location.pathname === "/component" ? "component" : "editor";
+  const currentTab = location.pathname === '/component' ? 'component' : 'editor';
 
   return (
     <div className="flex items-center gap-3 px-3 py-2 border-b bg-background">
       {/* Brand */}
       <span className="font-bold text-sm shrink-0">Carousel Studio</span>
 
-      {/* File selector */}
-      <Select value={currentFile ?? ""} onValueChange={onFileSelect}>
-        <SelectTrigger className="w-[280px] h-8 text-xs bg-accent/30">
-          <SelectValue placeholder="Select a file..." />
+      {/* Row selector */}
+      <Select
+        value={currentRow != null ? String(currentRow) : ''}
+        onValueChange={(v) => onRowSelect(Number(v))}
+      >
+        <SelectTrigger className="w-[320px] h-8 text-xs bg-accent/30">
+          <SelectValue placeholder="Select a carousel..." />
         </SelectTrigger>
         <SelectContent>
-          {files.map((file) => (
-            <SelectItem key={file} value={file} className="text-xs">
-              {file}
+          {items.map((item) => (
+            <SelectItem
+              key={item.row}
+              value={String(item.row)}
+              className="text-xs"
+            >
+              {`#${item.row} · ${item.title}${item.date ? ` (${item.date})` : ''}`}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
 
       {/* Tab navigation */}
-      <Tabs
-        value={currentTab}
-        onValueChange={(value) => navigate(`/${value}`)}
-      >
+      <Tabs value={currentTab} onValueChange={(value) => navigate(`/${value}`)}>
         <TabsList className="h-8">
           <TabsTrigger value="editor" className="text-xs px-3 py-1">
             Editor
@@ -78,6 +133,9 @@ export function Toolbar({
 
       {/* Spacer */}
       <div className="flex-1" />
+
+      {/* Sync status badge */}
+      <SyncBadge status={syncStatus} lastSavedAt={lastSavedAt} />
 
       {/* Zoom */}
       <div className="flex items-center gap-2 shrink-0">
@@ -99,10 +157,10 @@ export function Toolbar({
         variant="secondary"
         size="sm"
         onClick={onSave}
-        disabled={!isDirty || isSaving}
+        disabled={!isDirty || syncStatus === 'saving'}
         className="shrink-0"
       >
-        {isSaving ? (
+        {syncStatus === 'saving' ? (
           <Loader2 className="animate-spin" />
         ) : (
           <Save />
@@ -117,11 +175,7 @@ export function Toolbar({
         disabled={isExporting}
         className="shrink-0 bg-accent text-accent-foreground hover:bg-accent/90"
       >
-        {isExporting ? (
-          <Loader2 className="animate-spin" />
-        ) : (
-          <Download />
-        )}
+        {isExporting ? <Loader2 className="animate-spin" /> : <Download />}
         Export
       </Button>
     </div>

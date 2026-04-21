@@ -3,6 +3,7 @@ import { COMPONENT_MAP, TEMPLATE_TYPES } from '@/components/templates';
 import { SAMPLE_DATA_MAP } from '@/lib/sample-data';
 import { Toolbar } from '@/components/toolbar/Toolbar';
 import type { useCarouselData } from '@/hooks/useCarouselData';
+import type { CarouselItem } from '@/lib/types';
 
 const SCALE = 200 / 1080;
 
@@ -30,26 +31,28 @@ const TYPOGRAPHY_STYLES = [
 ];
 
 interface ComponentPageProps {
-  files: string[];
+  items: CarouselItem[];
   zoom: number;
   onZoomChange: (zoom: number) => void;
   carousel: ReturnType<typeof useCarouselData>;
 }
 
-export function ComponentPage({ files, zoom, onZoomChange, carousel }: ComponentPageProps) {
+export function ComponentPage({ items, zoom, onZoomChange, carousel }: ComponentPageProps) {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-background">
       <Toolbar
-        files={files}
-        currentFile={carousel.filename}
-        onFileSelect={carousel.load}
+        items={items}
+        currentRow={carousel.row}
+        onRowSelect={carousel.load}
         zoom={zoom}
         onZoomChange={onZoomChange}
         isDirty={carousel.isDirty}
         onSave={carousel.save}
         onExport={() => {}}
+        syncStatus={carousel.syncStatus}
+        lastSavedAt={carousel.lastSavedAt}
       />
 
       <div className="flex-1 overflow-y-auto p-6 space-y-10">

@@ -13,6 +13,20 @@ export interface CarouselMeta {
   series_title?: string;
   category?: string;
   pda?: { persona: string; desire: string; awareness: string; angle: string; };
+  row?: number;        // 시트 row number (Apps Script 연동)
+  caption?: string;
+  status?: string;
+}
+
+/** list_scripts 결과 아이템 (에디터 드롭다운용) */
+export interface CarouselItem {
+  row: number;
+  title: string;
+  hypothesis: string;
+  pillar: string;
+  date: string;
+  caption: string;
+  status: string;
 }
 
 export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; }
