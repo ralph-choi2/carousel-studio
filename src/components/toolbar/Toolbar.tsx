@@ -1,4 +1,4 @@
-import { Download, Loader2, Save, Check, AlertTriangle } from 'lucide-react';
+import { Download, Loader2, Check, AlertTriangle } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -16,12 +16,11 @@ import type { SyncStatus } from '@/hooks/useCarouselData';
 
 interface ToolbarProps {
   items: CarouselItem[];
+  itemsLoading?: boolean;
   currentRow: number | null;
   onRowSelect: (row: number) => void;
   zoom: number;
   onZoomChange: (zoom: number) => void;
-  isDirty: boolean;
-  onSave: () => void;
   onExport: () => void;
   isExporting?: boolean;
   syncStatus?: SyncStatus;
@@ -78,12 +77,11 @@ function SyncBadge({
 
 export function Toolbar({
   items,
+  itemsLoading = false,
   currentRow,
   onRowSelect,
   zoom,
   onZoomChange,
-  isDirty,
-  onSave,
   onExport,
   isExporting = false,
   syncStatus,
@@ -98,13 +96,21 @@ export function Toolbar({
       {/* Brand */}
       <span className="font-bold text-sm shrink-0">Carousel Studio</span>
 
-      {/* Row selector */}
+      {/* Row selector (로딩 중엔 스피너 + "Loading..." placeholder) */}
       <Select
         value={currentRow != null ? String(currentRow) : ''}
         onValueChange={(v) => onRowSelect(Number(v))}
+        disabled={itemsLoading}
       >
         <SelectTrigger className="w-[320px] h-8 text-xs bg-accent/30">
-          <SelectValue placeholder="Select a carousel..." />
+          {itemsLoading ? (
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Loader2 className="w-3 h-3 animate-spin" />
+              <span>Loading scripts...</span>
+            </div>
+          ) : (
+            <SelectValue placeholder="Select a carousel..." />
+          )}
         </SelectTrigger>
         <SelectContent>
           {items.map((item) => (
@@ -134,7 +140,7 @@ export function Toolbar({
       {/* Spacer */}
       <div className="flex-1" />
 
-      {/* Sync status badge */}
+      {/* Sync status badge (자동 저장 상태 표시) */}
       <SyncBadge status={syncStatus} lastSavedAt={lastSavedAt} />
 
       {/* Zoom */}
@@ -151,22 +157,6 @@ export function Toolbar({
           className="w-24"
         />
       </div>
-
-      {/* Save button */}
-      <Button
-        variant="secondary"
-        size="sm"
-        onClick={onSave}
-        disabled={!isDirty || syncStatus === 'saving'}
-        className="shrink-0"
-      >
-        {syncStatus === 'saving' ? (
-          <Loader2 className="animate-spin" />
-        ) : (
-          <Save />
-        )}
-        Save
-      </Button>
 
       {/* Export button */}
       <Button

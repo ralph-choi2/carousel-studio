@@ -9,6 +9,7 @@ import type { CarouselItem } from '@/lib/types';
 
 interface EditorPageProps {
   items: CarouselItem[];
+  itemsLoading?: boolean;
   zoom: number;
   onZoomChange: (zoom: number) => void;
   carousel: ReturnType<typeof useCarouselData>;
@@ -17,12 +18,9 @@ interface EditorPageProps {
 }
 
 export function EditorPage({
-  items, zoom, onZoomChange, carousel, onExport, isExporting,
+  items, itemsLoading, zoom, onZoomChange, carousel, onExport, isExporting,
 }: EditorPageProps) {
-  const {
-    row, data, isDirty, isLoading, syncStatus, lastSavedAt,
-    load, updatePage, save,
-  } = carousel;
+  const { row, data, isLoading, syncStatus, lastSavedAt, load, updatePage } = carousel;
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
   const [selection, setSelection] = useState<InspectorSelection | null>(null);
@@ -74,12 +72,11 @@ export function EditorPage({
     <div className="h-screen flex flex-col">
       <Toolbar
         items={items}
+        itemsLoading={itemsLoading}
         currentRow={row}
         onRowSelect={load}
         zoom={zoom}
         onZoomChange={onZoomChange}
-        isDirty={isDirty}
-        onSave={save}
         onExport={onExport}
         isExporting={isExporting}
         syncStatus={syncStatus}

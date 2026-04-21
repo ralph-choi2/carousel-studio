@@ -32,24 +32,26 @@ const TYPOGRAPHY_STYLES = [
 
 interface ComponentPageProps {
   items: CarouselItem[];
+  itemsLoading?: boolean;
   zoom: number;
   onZoomChange: (zoom: number) => void;
   carousel: ReturnType<typeof useCarouselData>;
 }
 
-export function ComponentPage({ items, zoom, onZoomChange, carousel }: ComponentPageProps) {
+export function ComponentPage({
+  items, itemsLoading, zoom, onZoomChange, carousel,
+}: ComponentPageProps) {
   const navigate = useNavigate();
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-background">
       <Toolbar
         items={items}
+        itemsLoading={itemsLoading}
         currentRow={carousel.row}
         onRowSelect={carousel.load}
         zoom={zoom}
         onZoomChange={onZoomChange}
-        isDirty={carousel.isDirty}
-        onSave={carousel.save}
         onExport={() => {}}
         syncStatus={carousel.syncStatus}
         lastSavedAt={carousel.lastSavedAt}

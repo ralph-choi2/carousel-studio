@@ -23,20 +23,27 @@ function deriveFilename(data: CarouselFile): string {
 
 export default function App() {
   const [items, setItems] = useState<CarouselItem[]>([]);
+  const [itemsLoading, setItemsLoading] = useState(true);
   const [zoom, setZoom] = useState(50);
   const carousel = useCarouselData();
   const { isExporting, doExport } = useExport();
 
   useEffect(() => {
-    listCarouselItems().then(setItems).catch(console.error);
+    setItemsLoading(true);
+    listCarouselItems()
+      .then(setItems)
+      .catch(console.error)
+      .finally(() => setItemsLoading(false));
   }, []);
 
   const handleExport = useCallback(async () => {
     if (carousel.row == null || !carousel.data) return;
+    // 미저장 변경 flush 후 Export
+    await carousel.save();
     const filename = deriveFilename(carousel.data);
     const outDir = await doExport(filename, carousel.data);
     if (outDir) alert(`Exported to: ${outDir}`);
-  }, [carousel.row, carousel.data, doExport]);
+  }, [carousel, doExport]);
 
   return (
     <>
@@ -47,6 +54,7 @@ export default function App() {
           element={
             <EditorPage
               items={items}
+              itemsLoading={itemsLoading}
               zoom={zoom}
               onZoomChange={setZoom}
               carousel={carousel}
@@ -60,6 +68,7 @@ export default function App() {
           element={
             <ComponentPage
               items={items}
+              itemsLoading={itemsLoading}
               zoom={zoom}
               onZoomChange={setZoom}
               carousel={carousel}
