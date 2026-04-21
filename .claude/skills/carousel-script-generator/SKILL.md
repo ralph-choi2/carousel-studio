@@ -139,20 +139,26 @@ cat > "$BODY" <<'JSON'
 }
 JSON
 
-RESP=$(curl -sS -L -X POST \
+RESP_FILE=$(mktemp -t carousel-resp).json
+
+# ⚠️ -X POST 금지 — -L 과 충돌해 302 redirect 후 echo URL 에도 POST 재전송되어 405 유발. --data-binary 가 기본 POST.
+# ⚠️ stdout 파이프 금지 — RTK 훅이 응답을 축약해서 jq 파싱 실패. -o 로 파일에 저장 후 Read 도구로 값 추출.
+curl -sL \
   -H 'Content-Type: application/json' \
   --data-binary @"$BODY" \
-  'https://script.google.com/macros/s/AKfycbyXsGfrsPPipRDhQqbFA2yvIafTytO6sVSu2fwNxnIE4TOUHaQXbjPiiYxjYwlM3ZJN/exec')
+  -o "$RESP_FILE" \
+  'https://script.google.com/macros/s/AKfycbyXsGfrsPPipRDhQqbFA2yvIafTytO6sVSu2fwNxnIE4TOUHaQXbjPiiYxjYwlM3ZJN/exec'
 
-echo "$RESP"
-ROW=$(echo "$RESP" | jq -r '.row')
-echo "appended row: $ROW"
+echo "RESP_FILE=$RESP_FILE"
 rm -f "$BODY"
 ```
+
+그 다음 Read 도구로 `$RESP_FILE` 열어 `{"ok":true,"row":N}` 의 `row` 를 읽는다.
 
 - 응답 예: `{"ok":true,"row":42}` — `row` 가 `스크립트` 탭의 행 번호.
 - 이후 스킬(comfy-image / export / upload)은 이 `row` 번호로 스크립트를 식별한다.
 - 실패 응답(`ok:false`)이면 에러 메시지 확인 후 재시도.
+- **재시도 주의**: 응답이 "페이지를 찾을 수 없음" HTML 이어도 Apps Script 쪽엔 append 가 실제로 실행됐을 수 있다. 재시도 전 `?action=list_scripts` 로 확인하거나, 중복 생성됐으면 시트 `batchUpdate` 로 해당 row 삭제(스크립트 탭 sheetId `1347729480`).
 
 > `gws` CLI는 OAuth 스코프 이슈로 Apps Script 웹앱 호출에 부적합 — `curl` 사용.
 
