@@ -20,7 +20,8 @@
       "data": {
         "title": "\"How are you?\" 말고\n이렇게 열어보세요",
         "subtitle": "",
-        "bg_prompt": "Korean professional woman in her early 30s sitting in a modern home office, smiling warmly just before starting a video call on her laptop, soft morning window light, shallow depth of field, candid and approachable mood, warm tones, cinematic, no text overlay"
+        "bg_prompt": "Wide editorial documentary photograph of a busy modern corporate meeting room high in a Manhattan skyscraper, foreground group of three to four multicultural professionals including a Korean woman and her Western colleagues standing together near floor-to-ceiling windows greeting each other with handshakes, warm genuine smiles, and open gestures, these foreground subjects captured tack sharp in crisp focus, in the background several other office workers walking past in the corridor and the far side of the room rendered with natural motion blur as if caught on a slightly slow shutter, a sense of a real working day in motion around the central greeting, strong afternoon backlight through the windows with a vivid clear blue New York sky and crisp detailed Manhattan skyline of tall office buildings behind them, subjects rim-lit and softly silhouetted while balanced exposure keeps their faces readable, wearing contemporary tailored business attire in neutral tones, long wooden conference table and leather chairs in the foreground with small lived-in details like coffee cups an open folder and pens on the surface, natural warm color palette with gentle contrast, candid reportage feel in the style of a Harvard Business Review or New York Times business section photo essay, wide full-body composition with the camera pulled back to include the ceiling and the full height of the windows, subjects grouped center-right leaving generous negative space on the left for the skyline to breathe, authentic unposed on-location moment, high resolution, sharp modern look with selective motion blur only on background activity, no text, no logo, no laptop, no monitor, no phone",
+        "bg_image": "/images/2026-04-20/bg_cover.png"
       }
     },
     {
@@ -34,7 +35,7 @@
       "component": "scene-card",
       "data": {
         "headline": "How’s your week \ngoing so far?",
-        "bg_prompt": "Two professionals on a video call grid view — left side showing a person with polite but awkward closed smile, right side showing a person leaning in gesturing relaxed, warm daylight, modern home office background, shallow depth of field, cinematic, no text overlay",
+        "bg_prompt": "Two professionals standing face-to-face near floor-to-ceiling windows with the Manhattan skyline behind them, a Korean professional smiling mid-small-talk while a Western colleague nods attentively listening, 3/4 rear-side angle showing their body language during a brief greeting moment, wood paneled meeting room with leather chairs softly blurred in the background, diffused daylight mixed with overhead practical fluorescent, flat lighting with low contrast, muted saturated color palette of mustard yellow warm gray brown and olive, 90s American TV drama aesthetic reminiscent of Ally McBeal and early Suits, 16mm film grain texture, subtle VHS color shift, no laptop, no screen, no monitor",
         "items": [
           {
             "label": "icon_x",
@@ -46,7 +47,8 @@
             "eng": "How's your week going so far?",
             "kor": "구체적 질문 → 상대가 실제로 대답할 수 있는 오프닝"
           }
-        ]
+        ],
+        "bg_image": "/images/2026-04-20/bg_scene.png"
       }
     },
     {
@@ -107,5 +109,5 @@
       "component": "cta"
     }
   ],
-  "caption": ""
+  "caption": "💼 영어 회의 시작 30초, 늘 어색하지 않으세요?\n\n\"How are you?\" — \"Good. And you?\" — \"Good.\"\n여기서 말이 끊기고, 바로 본론으로 들어가게 되죠.\n\n원어민들은 이 30초에 다른 걸 하고 있었어요.\n\n❝ 회의 오프닝 small talk.zip ❞\n‣ How's your week going so far? — 이번 주 어떻게 지내세요?\n‣ How was your weekend? — 주말 어떠셨어요?\n‣ Anything exciting this weekend? — 이번 주말에 뭐 재밌는 일 있으세요?\n‣ Oh, that sounds great! — 좋은 이야기에 공감\n‣ Same here, honestly. — 저도 그래요\n\n저장하기 꾹 누르고, 다음 회의 전에 하나씩 꺼내보세요 ✨\n\n📩 더 많은 비즈니스 영어 표현, 꾸준히 받아보세요!\n‣ @uphone.english 팔로우\n📊 내 영어레벨 지금 확인해보세요!\n‣ 프로필링크 > 무료수업 신청하기\n\n#민병철유폰 #전화영어 #화상영어 #영어회화 #영어표현 #비즈니스영어 #직장인영어"
 }

@@ -8,6 +8,8 @@ const FALLBACK_BG = "data:image/svg+xml," + encodeURIComponent(
 
 export function CoverPage({ data, styles, colors, editable, scale, selectedField, onDataChange, onSelect }: PageProps<CoverData>) {
   const bgSrc = data.bg_image || FALLBACK_BG;
+  const hasSubtitle = typeof data.subtitle === 'string' && data.subtitle.trim().length > 0;
+  const showSubtitle = editable || hasSubtitle;
 
   return (
     <PageWrapper scale={scale}>
@@ -25,7 +27,7 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
       }} />
       <div style={{
         position: 'absolute',
-        bottom: 110, left: 110, right: 110,
+        bottom: 140, left: 110, right: 110,
         zIndex: 2,
         display: 'flex',
         flexDirection: 'column',
@@ -43,10 +45,10 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
           editable={editable}
           selected={selectedField === 'title'}
           onSelect={onSelect}
-          style={{ marginBottom: 52, minHeight: 90 }}
+          style={{ marginBottom: showSubtitle ? 52 : 0, minHeight: 90 }}
         />
 
-        {data.subtitle !== undefined && (
+        {showSubtitle && (
           <EditableText
             field="subtitle"
             defaultPreset="tpl-cover-subtitle"

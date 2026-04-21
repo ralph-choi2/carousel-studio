@@ -16,6 +16,11 @@ Export된 PNG 파일들을 Drive 2곳(온드미디어 + B2B)에 업로드하고 
 
 **항상 두 Drive 모두 업로드가 기본값.** 사용자가 "B2B 빼고" 등 명시적으로 제외하지 않는 한 묻지 말고 둘 다 병렬 업로드 진행. 온드미디어는 캘린더 시트 업데이트까지, B2B는 업로드만.
 
+**캡션 필수 체크 (반드시)** — 업로드 시작 전에 JSON `caption` 필드를 무조건 확인:
+- JSON `caption`이 비어있으면 → `caption-writer` 스킬을 먼저 실행해서 채운 뒤 이어서 업로드 진행 (사용자에게 되묻지 말고 자동 연계)
+- JSON `caption`이 있으면 → 시트 K열에 항상 동기화 (K열이 비었든 값이 있든 JSON 기준으로 덮어쓰기)
+- 이미 라이브된 콘텐츠(H="라이브")라도 K열이 비어있으면 반드시 JSON caption으로 채움. Drive 업로드/상태 변경은 건너뛰더라도 **캡션만큼은 누락 금지**.
+
 ## Step 1: Drive 업로드 (2곳 병렬, 기본값)
 
 ### 온드미디어 Drive (공유드라이브, 캘린더 연동)
@@ -85,11 +90,13 @@ https://drive.google.com/file/d/AAA/view, https://drive.google.com/file/d/BBB/vi
 
 ### 업데이트할 열
 
-| 열 | 내용 |
-|----|------|
-| H | 상태 → **발행 준비** |
-| J | Drive 링크 (위 포맷) |
-| K | 캡션 (caption-writer 스킬로 생성) |
+| 열 | 내용 | 필수 |
+|----|------|------|
+| H | 상태 → **발행 준비** | 신규 업로드만 |
+| J | Drive 링크 (위 포맷) | 신규 업로드만 |
+| K | 캡션 (JSON `caption` 필드) | **항상** |
+
+**K열은 매 업로드마다 무조건 동기화.** JSON caption이 비어있으면 caption-writer 먼저 실행해서 채운 뒤 시트 반영.
 
 ```bash
 # 행 번호를 먼저 찾기 (소재명으로 매칭)
@@ -97,10 +104,15 @@ gws sheets spreadsheets values get \
   --params '{"spreadsheetId":"1oXy79mcXXEgXAZz9IrnxCaM3JvzJQye4BohTkZ5NU9w","range":"캘린더!F:F"}' \
   --format json
 
-# H, J열 업데이트
+# H, J, K열 한 번에 업데이트 (신규 업로드)
 gws sheets spreadsheets values update \
-  --params '{"spreadsheetId":"1oXy79mcXXEgXAZz9IrnxCaM3JvzJQye4BohTkZ5NU9w","range":"캘린더!H{row}:J{row}","valueInputOption":"USER_ENTERED"}' \
-  --json '{"values":[["발행 준비","","Drive링크들"]]}'
+  --params '{"spreadsheetId":"1oXy79mcXXEgXAZz9IrnxCaM3JvzJQye4BohTkZ5NU9w","range":"캘린더!H{row}:K{row}","valueInputOption":"USER_ENTERED"}' \
+  --json '{"values":[["발행 준비","","Drive링크들","{JSON caption 내용}"]]}'
+
+# 이미 라이브된 콘텐츠 — K열(캡션)만 업데이트
+gws sheets spreadsheets values update \
+  --params '{"spreadsheetId":"1oXy79mcXXEgXAZz9IrnxCaM3JvzJQye4BohTkZ5NU9w","range":"캘린더!K{row}","valueInputOption":"USER_ENTERED"}' \
+  --json '{"values":[["{JSON caption 내용}"]]}'
 ```
 
 ### 새 행 추가 (캘린더에 아직 없으면)
@@ -134,5 +146,7 @@ gws sheets spreadsheets values append \
 | 온드미디어 | 2026-04-17 | 8개 |
 | B2B | 2026-04-17 | 8개 |
 
-캘린더: "발행 준비" 등록 완료. {시간}에 자동 발행.
+캘린더: "발행 준비" 등록 완료 + 캡션(K열) 동기화. {시간}에 자동 발행.
 ```
+
+**캡션 누락 금지** — K열이 비면 Output에 경고 표시. caption-writer로 즉시 채우고 재업로드.
