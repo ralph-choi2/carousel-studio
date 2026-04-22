@@ -21,6 +21,19 @@ interface CarouselDataActions {
 
 const AUTO_SAVE_DELAY_MS = 800;
 const MAX_PAGES = 12;
+const ROW_CACHE_PREFIX = 'carousel_studio_row_v1_';
+
+function readRowCache(row: number): CarouselFile | null {
+  try {
+    const raw = sessionStorage.getItem(ROW_CACHE_PREFIX + row);
+    if (!raw) return null;
+    return JSON.parse(raw) as CarouselFile;
+  } catch { return null; }
+}
+
+function writeRowCache(row: number, file: CarouselFile): void {
+  try { sessionStorage.setItem(ROW_CACHE_PREFIX + row, JSON.stringify(file)); } catch { /* quota */ }
+}
 
 export function useCarouselData(): CarouselDataState & CarouselDataActions {
   const [row, setRow] = useState<number | null>(null);
@@ -54,6 +67,8 @@ export function useCarouselData(): CarouselDataState & CarouselDataActions {
         setIsDirty(false);
         setLastSavedAt(Date.now());
         setSyncStatus('saved');
+        // 저장 후 캐시 갱신 (editor 재진입 시 최신 상태 즉시 반영)
+        writeRowCache(targetRow, targetData);
       } catch (err) {
         console.error('Carousel save failed:', err);
         setSyncStatus('error');
@@ -80,14 +95,28 @@ export function useCarouselData(): CarouselDataState & CarouselDataActions {
           // syncStatus='error' 로 표시됨. 전환은 계속.
         }
       }
-      // 3. 새 row 로드
-      setIsLoading(true);
-      try {
-        const loaded = await loadCarouselRow(targetRow);
+      // 3. SWR: 캐시된 데이터 즉시 표시 (있으면) → 네트워크 대기 없이 에디터 렌더
+      const cached = readRowCache(targetRow);
+      if (cached) {
         setRow(targetRow);
-        setData(loaded);
+        setData(cached);
         setIsDirty(false);
         setSyncStatus('idle');
+        setIsLoading(false);
+      } else {
+        setIsLoading(true);
+      }
+      // 4. Fresh fetch (백그라운드). 사용자가 편집을 시작하지 않은 경우에만 업데이트.
+      try {
+        const loaded = await loadCarouselRow(targetRow);
+        // 사용자가 이미 편집 중이면 fresh 로 덮어쓰지 않음 (편집 내용 보호)
+        if (!isDirtyRef.current || rowRef.current !== targetRow) {
+          setRow(targetRow);
+          setData(loaded);
+          setIsDirty(false);
+          setSyncStatus('idle');
+        }
+        writeRowCache(targetRow, loaded);
       } finally {
         setIsLoading(false);
       }
