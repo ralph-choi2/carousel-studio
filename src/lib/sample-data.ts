@@ -146,8 +146,28 @@ export const SAMPLE_QUOTE: QuoteCardData = {
   source: 'Ludwig Wittgenstein',
 };
 
+export const SAMPLE_COVER_ORANGE: CoverData = {
+  title: '그 언니는\n왜 승진이 빠를까?',
+  subtitle: 'AI가 다 해주는 시대에도,\n그녀의 이력서엔 \'영어\'가 있었다.',
+};
+
+export const SAMPLE_COVER_DARK: CoverData = {
+  title: '로키가 Good이\n아니라 Amaze\n라고 한 이유?',
+  subtitle: '영어로 말하는 방법?',
+  keyword: 'Amaze',
+  bg_image: '/images/test_img.png',
+};
+
+export const SAMPLE_COVER_LIGHT: CoverData = {
+  title: '당신이 지금 영어를\n시작해야하는 이유',
+  subtitle: '더 이상 증명하기 위한 영어가 아니다. \n일하기 위한 영어. \n그리고 그 상대는 AI다.',
+};
+
 export const SAMPLE_DATA_MAP: Record<string, unknown> = {
   cover: SAMPLE_COVER,
+  'cover-orange': SAMPLE_COVER_ORANGE,
+  'cover-dark': SAMPLE_COVER_DARK,
+  'cover-light': SAMPLE_COVER_LIGHT,
   intro: SAMPLE_INTRO,
   'text-card': SAMPLE_TEXT_CARD,
   'scene-card': SAMPLE_SCENE_CARD,

@@ -9,7 +9,55 @@
   --tpl-text-secondary: #545454;
   --tpl-text-tertiary: #999999;
   --tpl-text-white: #FFFFFF;
+  --tpl-text-dark: #0F0F0F;
   --tpl-accent-purple: #8F54FF;
+}
+
+/* === Cover variants === */
+.tpl-cover-orange-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 120px;
+  line-height: 1.28;
+  color: #FFFFFF;
+  word-wrap: break-word;
+}
+
+.tpl-cover-orange-subtitle {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 70px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: #FFFFFF;
+}
+
+.tpl-cover-dark-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 110px;
+  line-height: 1.28;
+  color: #FFFFFF;
+  word-wrap: break-word;
+}
+
+.tpl-cover-light-title {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 800;
+  font-size: 116px;
+  line-height: 1.28;
+  color: #0F0F0F;
+  word-wrap: break-word;
+}
+
+.tpl-cover-light-subtitle {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: #0F0F0F;
+  white-space: pre-line;
 }
 
 /* === Cover === */

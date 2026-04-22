@@ -31,6 +31,7 @@ body {
   --tpl-text-secondary: #545454;
   --tpl-text-tertiary: #999999;
   --tpl-text-white: #FFFFFF;
+  --tpl-text-dark: #0F0F0F;
   --tpl-accent-purple: #8F54FF;
 }
 `;

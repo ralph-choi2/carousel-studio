@@ -1,5 +1,6 @@
 export type ComponentType =
-  | 'cover' | 'intro' | 'text-card' | 'scene-card' | 'expression-card'
+  | 'cover' | 'cover-orange' | 'cover-dark' | 'cover-light'
+  | 'intro' | 'text-card' | 'scene-card' | 'expression-card'
   | 'similar' | 'xo-card' | 'before-after-card' | 'dialog-card' | 'quote-card' | 'cta'
   | 'hook-reversal' | 'expression' | 'situation'; // aliases
 
@@ -37,7 +38,7 @@ export interface CarouselItem {
   pages_count?: number;
 }
 
-export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; }
+export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; keyword?: string; }
 export interface IntroData { header: string; body: string; hook?: string; explanation?: string; }
 export interface TextCardData { header: string; body: string; }
 export interface SceneCardItem { label: string; eng?: string; kor?: string; title?: string; body?: string; }

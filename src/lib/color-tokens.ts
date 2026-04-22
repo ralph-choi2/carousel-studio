@@ -16,6 +16,7 @@ export const COLOR_TOKENS: ColorToken[] = [
   { id: '--tpl-text-secondary', name: 'Text / secondary',    group: 'Text',       hex: '#545454' },
   { id: '--tpl-text-tertiary',  name: 'Text / tertiary',     group: 'Text',       hex: '#999999' },
   { id: '--tpl-text-white',     name: 'Text / white',        group: 'Text',       hex: '#FFFFFF' },
+  { id: '--tpl-text-dark',      name: 'Text / dark',         group: 'Text',       hex: '#0F0F0F' },
   { id: '--tpl-accent-purple',  name: 'Accent / purple',     group: 'Accent',     hex: '#8F54FF' },
   { id: '--tpl-bg-light',       name: 'Background / light',  group: 'Background', hex: '#F7F7F7' },
   { id: '--tpl-bg-dark',        name: 'Background / dark',   group: 'Background', hex: '#141420' },
