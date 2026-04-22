@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import type { CarouselFile } from '@/lib/types';
+import type { CarouselFile, CoverData } from '@/lib/types';
 import { COMPONENT_MAP } from '@/components/templates';
+import { B2bThumbPage } from '@/components/templates/B2bThumbPage';
 import templatesCss from '@/styles/templates.css?raw';
 
 const BASE_CSS = `
@@ -34,8 +35,18 @@ body {
 }
 `;
 
+const THUMB_CSS = `
+@font-face { font-family: 'Pretendard'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 432px; height: 243px; overflow: hidden; font-family: 'Pretendard', -apple-system, sans-serif; word-break: keep-all; background: #FFFFFF; }
+`;
+
 function wrapHtml(markup: string): string {
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${BASE_CSS}\n${templatesCss}</style></head><body>${markup}</body></html>`;
+}
+
+function wrapThumbHtml(markup: string): string {
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${THUMB_CSS}</style></head><body>${markup}</body></html>`;
 }
 
 export function useExport() {
@@ -58,10 +69,19 @@ export function useExport() {
         return { index, component: page.component, html: wrapHtml(markup) };
       });
 
+      const coverPage = data.pages.find(p => p.component === 'cover');
+      const thumbHtml = coverPage
+        ? wrapThumbHtml(
+            ReactDOMServer.renderToStaticMarkup(
+              <B2bThumbPage data={coverPage.data as CoverData} scale={1} />
+            )
+          )
+        : undefined;
+
       const res = await fetch('/api/export', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename, htmlPages }),
+        body: JSON.stringify({ filename, htmlPages, thumbHtml }),
       });
       if (!res.ok) throw new Error(`Export failed: ${res.status}`);
       const result = await res.json();
