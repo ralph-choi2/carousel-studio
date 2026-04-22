@@ -21,23 +21,27 @@ interface EditorPageProps {
 export function EditorPage({
   items, itemsLoading, zoom, onZoomChange, carousel, onExport, isExporting,
 }: EditorPageProps) {
-  const { row, data, isLoading, syncStatus, lastSavedAt, load, updatePage } = carousel;
+  const { row, data, isLoading, syncStatus, lastSavedAt, load, clear, updatePage } = carousel;
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
   const [selection, setSelection] = useState<InspectorSelection | null>(null);
   const [isB2bPreview, setIsB2bPreview] = useState(false);
 
-  // 홈 캘린더에서 /editor?row=N 으로 진입 시 해당 row 자동 로드.
-  // 음수(calendar-only orphan)는 Apps Script 가 에러를 반환하므로 시도하지 않음.
+  // 홈 캘린더에서 /editor?row=N 으로 진입 시 해당 row 자동 로드/해제.
+  // - n > 0: 스크립트 row → load
+  // - n <= 0: calendar orphan → clear (이전 row 잔상 방지)
   const [searchParams] = useSearchParams();
   const wantedRow = searchParams.get('row');
   useEffect(() => {
     if (!wantedRow) return;
     const n = parseInt(wantedRow, 10);
-    if (Number.isFinite(n) && n > 0 && n !== row) {
+    if (!Number.isFinite(n) || n === row) return;
+    if (n > 0) {
       load(n).catch((err) => console.error('Failed to load row from URL:', err));
+    } else {
+      clear();
     }
-  }, [wantedRow, row, load]);
+  }, [wantedRow, row, load, clear]);
 
   const coverPage = data?.pages.find(p => p.component === 'cover');
   const coverData = coverPage?.data as CoverData | undefined;

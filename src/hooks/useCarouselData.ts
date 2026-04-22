@@ -15,6 +15,7 @@ interface CarouselDataState {
 
 interface CarouselDataActions {
   load: (row: number) => Promise<void>;
+  clear: () => void;
   updatePage: (index: number, patch: Partial<CarouselPage>) => void;
   save: () => Promise<void>;
 }
@@ -124,6 +125,19 @@ export function useCarouselData(): CarouselDataState & CarouselDataActions {
     [performSave],
   );
 
+  /** 선택된 row 해제 (orphan/invalid 진입 시 이전 데이터 잔상 방지). */
+  const clear = useCallback(() => {
+    if (autoSaveTimerRef.current) {
+      clearTimeout(autoSaveTimerRef.current);
+      autoSaveTimerRef.current = null;
+    }
+    setRow(null);
+    setData(null);
+    setIsDirty(false);
+    setSyncStatus('idle');
+    setIsLoading(false);
+  }, []);
+
   const scheduleAutoSave = useCallback(() => {
     if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current);
     autoSaveTimerRef.current = setTimeout(() => {
@@ -170,6 +184,6 @@ export function useCarouselData(): CarouselDataState & CarouselDataActions {
 
   return {
     row, data, isDirty, isLoading, syncStatus, lastSavedAt,
-    load, updatePage, save,
+    load, clear, updatePage, save,
   };
 }
