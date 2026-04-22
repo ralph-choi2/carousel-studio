@@ -1,3 +1,4 @@
+import React from 'react';
 import type { CoverData } from '@/lib/types';
 
 export const THUMB_WIDTH = 432;

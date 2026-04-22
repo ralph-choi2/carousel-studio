@@ -12,7 +12,7 @@
  */
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -53,12 +53,14 @@ function wrapThumbHtml(markup: string): string {
 interface DriveFile { id: string; name: string; mimeType: string; }
 
 function listB2bDateFolders(): Record<string, string> {
-  const out = execSync(
-    `gws drive files list --params '${JSON.stringify({
-      q: `'${B2B_PARENT}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`,
-      fields: 'files(id,name,mimeType)',
-      pageSize: 100,
-    })}'`,
+  const params = JSON.stringify({
+    q: `'${B2B_PARENT}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`,
+    fields: 'files(id,name,mimeType)',
+    pageSize: 100,
+  });
+  const out = execFileSync(
+    'gws',
+    ['drive', 'files', 'list', '--params', params],
     { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 }
   );
   const parsed = JSON.parse(out);
@@ -68,11 +70,10 @@ function listB2bDateFolders(): Record<string, string> {
 }
 
 function uploadToB2B(folderId: string, localPath: string) {
-  execSync(
-    `gws drive files create --params '${JSON.stringify({})}' --json '${JSON.stringify({
-      name: 'thumb_b2b.png',
-      parents: [folderId],
-    })}' --upload '${localPath}'`,
+  const json = JSON.stringify({ name: 'thumb_b2b.png', parents: [folderId] });
+  execFileSync(
+    'gws',
+    ['drive', 'files', 'create', '--params', '{}', '--json', json, '--upload', localPath],
     { stdio: 'inherit' }
   );
 }
