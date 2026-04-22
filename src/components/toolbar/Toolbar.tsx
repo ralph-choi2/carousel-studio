@@ -1,4 +1,4 @@
-import { Download, Loader2, Check, AlertTriangle } from 'lucide-react';
+import { Download, Loader2, Check, AlertTriangle, ChevronLeft } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -93,6 +93,16 @@ export function Toolbar({
 
   return (
     <div className="flex items-center gap-3 px-3 py-2 border-b bg-background">
+      {/* Home 버튼 — 홈 캘린더로 돌아가기 */}
+      <button
+        type="button"
+        onClick={() => navigate('/')}
+        aria-label="홈 캘린더로"
+        className="shrink-0 flex items-center justify-center w-7 h-7 rounded hover:bg-accent/50 text-muted-foreground"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+
       {/* Brand */}
       <span className="font-bold text-sm shrink-0">Carousel Studio</span>
 
@@ -113,7 +123,7 @@ export function Toolbar({
           )}
         </SelectTrigger>
         <SelectContent>
-          {items.map((item) => (
+          {items.filter((item) => item.source !== 'calendar').map((item) => (
             <SelectItem
               key={item.row}
               value={String(item.row)}

@@ -44,6 +44,8 @@ export function HomePage() {
     row: it.row,
     title: it.title,
     status: statuses[it.row] ?? 'empty',
+    source: it.source,
+    driveUrl: it.drive_url,
   })), [items, statuses]);
 
   // 날짜별 그루핑 (다른 달 항목은 MonthlyCalendar 렌더링 단계에서 자동 필터링됨)

@@ -31,6 +31,8 @@ export interface CarouselItem {
   calendar_status?: string;
   /** 캘린더 탭 J열 Drive URL. 매칭 안 되면 "". */
   drive_url?: string;
+  /** 'script' = 스크립트 탭 원본 (편집 가능), 'calendar' = 캘린더 탭 발행 이력 (read-only, row 는 음수 합성). */
+  source?: 'script' | 'calendar';
 }
 
 export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; }

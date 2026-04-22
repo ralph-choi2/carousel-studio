@@ -55,7 +55,7 @@ export async function handlePipelineStatus(
     const requestedRows = rowsParam
       .split(',')
       .map(s => parseInt(s.trim(), 10))
-      .filter(n => Number.isFinite(n) && n > 0);
+      .filter(n => Number.isFinite(n) && n !== 0); // 음수 row = 캘린더 orphan (allow)
     if (requestedRows.length === 0) {
       res.status(400).json({ error: 'Missing rows param' });
       return;

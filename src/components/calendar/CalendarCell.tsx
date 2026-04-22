@@ -5,6 +5,9 @@ export interface CellItemData {
   row: number;
   title: string;
   status: PipelineStatus;
+  /** 'calendar' 이면 편집 불가 (발행 이력). 클릭 시 driveUrl 있으면 새 탭으로 오픈. */
+  source?: 'script' | 'calendar';
+  driveUrl?: string;
 }
 
 interface CalendarCellProps {
@@ -34,7 +37,14 @@ export function CalendarCell({ day, isOtherMonth, isToday, items }: CalendarCell
         {day}{isToday ? ' · 오늘' : ''}
       </div>
       {!isOtherMonth && visible.map(it => (
-        <CalendarItem key={it.row} row={it.row} title={it.title} status={it.status} />
+        <CalendarItem
+          key={it.row}
+          row={it.row}
+          title={it.title}
+          status={it.status}
+          source={it.source}
+          driveUrl={it.driveUrl}
+        />
       ))}
       {!isOtherMonth && overflow > 0 && (
         // cursor:pointer는 Phase 2 확장 팝오버 대비. 현재 클릭 핸들러 없음.
