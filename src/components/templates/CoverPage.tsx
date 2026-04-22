@@ -21,7 +21,7 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'rgba(151, 50, 252, 0.85)',
+        background: 'rgba(67, 173, 255, 0.85)',
         zIndex: 1,
       }} />
       <div style={{

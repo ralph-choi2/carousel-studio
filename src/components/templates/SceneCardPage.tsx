@@ -20,10 +20,9 @@ export function SceneCardPage({ data, styles, colors, editable = false, scale = 
           alt=""
           style={{
             position: 'absolute',
-            top: -120,
-            left: -40,
-            width: 'calc(100% + 80px)',
-            height: 'calc(100% + 200px)',
+            inset: 0,
+            width: '100%',
+            height: '100%',
             objectFit: 'cover',
             objectPosition: 'center 20%',
             zIndex: 0,
@@ -33,10 +32,7 @@ export function SceneCardPage({ data, styles, colors, editable = false, scale = 
         <div
           style={{
             position: 'absolute',
-            top: -120,
-            left: -40,
-            width: 'calc(100% + 80px)',
-            height: 'calc(100% + 200px)',
+            inset: 0,
             background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
             zIndex: 0,
           }}
@@ -47,10 +43,7 @@ export function SceneCardPage({ data, styles, colors, editable = false, scale = 
       <div
         style={{
           position: 'absolute',
-          top: -120,
-          left: -40,
-          width: 'calc(100% + 80px)',
-          height: 'calc(100% + 200px)',
+          inset: 0,
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.8) 100%)',
           zIndex: 1,
         }}

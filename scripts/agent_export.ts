@@ -31,10 +31,15 @@ async function main() {
   console.log(`▶ Navigate ${BASE}/editor`);
   await page.goto(`${BASE}/editor`, { waitUntil: 'networkidle0', timeout: 30000 });
 
-  // Wait for file list to load
+  // Wait for row selector to load (items populated, Loading... gone)
   await page.waitForFunction(
-    () => Array.from(document.querySelectorAll('button')).some((b) => b.textContent?.includes('Select a file') || b.textContent?.includes('.json')),
-    { timeout: 10000 }
+    () => {
+      const trigger = document.querySelector('[role="combobox"]');
+      if (!trigger) return false;
+      const txt = trigger.textContent ?? '';
+      return !txt.includes('Loading');
+    },
+    { timeout: 15000 }
   );
 
   console.log(`▶ Open file selector`);
