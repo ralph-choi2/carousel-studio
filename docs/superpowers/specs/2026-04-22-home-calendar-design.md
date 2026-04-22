@@ -74,7 +74,7 @@ GET /api/pipeline/status?rows=1,2,3,...
 1. 요청 받은 row 번호들에 대해 `loadCarouselRow(row)` 호출 (현재 `data-loader.ts` 와 동일 Apps Script 웹앱 사용) — **date, title 등 메타 확보**
 2. 각 row별로 상태 판정:
    - 캘린더 탭 H열(상태) = "라이브" → `live`
-   - 캘린더 탭 K열(Drive URL) 존재 → `uploaded`
+   - 캘린더 탭 J열(Drive 링크) 존재 → `uploaded`
    - `output/{date}/` 디렉토리 존재 + PNG 파일 있음 → `png_ready`
    - `public/images/{date}/` 디렉토리 존재 + 이미지 파일 있음 → `image_ready`
    - `pages` 배열 비어있지 않음 (`pages.length >= 1`) → `script_ready`
@@ -82,7 +82,8 @@ GET /api/pipeline/status?rows=1,2,3,...
 3. 캘린더 탭 조회는 **기존 `list_scripts` 응답을 확장**하는 방식을 우선 검토:
    - 옵션 A (권장): Apps Script `list_scripts` 가 내부에서 캘린더 탭을 조인해 `calendar_status`, `drive_url` 필드를 각 row에 포함하여 반환 → 클라이언트는 기존 호출 1회로 필요한 모든 정보 확보
    - 옵션 B: 별도 `action=list_calendar` 엔드포인트 신설 → 서버가 두 응답을 조합
-   - **매칭 키는 `date + title` 근사**. title 변경 시 연결 끊김. 장기적으론 unique id 컬럼 도입 필요 (아래 "알려진 한계" 참고)
+   - 캘린더 탭 컬럼 실제 매핑 (`sheet-setup.gs` 기준): A=발행일, F=소재명, H=상태, J=Drive 링크, K=캡션. `채널(C)="IG Carousel"` 필터 필요.
+   - **매칭 키는 `date + title(소재명)` 근사**. title 변경 시 연결 끊김. 장기적으론 unique id 컬럼 도입 필요 (아래 "알려진 한계" 참고)
 4. 옵션 A 로 구현 시 `/api/pipeline/status` 는 `list_scripts` 한 번만 호출 + 파일 시스템 체크만 수행 → 단순
 
 ---
@@ -127,7 +128,7 @@ HomePage mount
 | `script_ready` | `pages` 채워짐, 이미지 없음 |
 | `image_ready` | `public/images/{date}/` 이미지 존재 |
 | `png_ready` | `output/{date}/` PNG 존재 |
-| `uploaded` | 캘린더 탭 K열(Drive URL) 존재 |
+| `uploaded` | 캘린더 탭 J열(Drive 링크) 존재 |
 | `live` | 캘린더 탭 H열 = "라이브" |
 
 캘린더 뱃지 매핑 (display):
