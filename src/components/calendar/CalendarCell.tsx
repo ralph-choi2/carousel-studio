@@ -29,6 +29,8 @@ export function CalendarCell({ day, isOtherMonth, isToday, items }: CalendarCell
       minHeight: 118, padding: 8,
       display: 'flex', flexDirection: 'column', gap: 4,
       boxShadow: isToday ? 'inset 0 0 0 2px #111' : undefined,
+      // grid 1fr 컬럼 너비 준수 (자식이 넘쳐 컬럼을 밀어내지 않도록)
+      minWidth: 0, overflow: 'hidden',
     }}>
       <div style={{
         fontSize: 13, fontWeight: 600, marginBottom: 2,

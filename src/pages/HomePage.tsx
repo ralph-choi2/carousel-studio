@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
-import { listCarouselItems, fetchPipelineStatus } from '@/lib/data-loader';
+import { listCarouselItems } from '@/lib/data-loader';
 import { groupByDate } from '@/lib/calendar-utils';
 import type { CarouselItem } from '@/lib/types';
-import type { PipelineStatus } from '@/lib/status-mapping';
+import { deriveStatusFromItem } from '@/lib/status-mapping';
 import { MonthNav } from '@/components/calendar/MonthNav';
 import { Legend } from '@/components/calendar/Legend';
 import { MonthlyCalendar } from '@/components/calendar/MonthlyCalendar';
@@ -17,7 +17,6 @@ export function HomePage() {
   const [year, setYear] = useState(today.getUTCFullYear());
   const [month, setMonth] = useState(today.getUTCMonth() + 1); // 1-12
   const [items, setItems] = useState<CarouselItem[]>([]);
-  const [statuses, setStatuses] = useState<Record<number, PipelineStatus>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,29 +25,22 @@ export function HomePage() {
     setLoading(true);
     setError(null);
     listCarouselItems()
-      .then(async (all) => {
-        if (cancelled) return;
-        setItems(all);
-        const rows = all.map(i => i.row);
-        if (rows.length > 0) {
-          const st = await fetchPipelineStatus(rows);
-          if (!cancelled) setStatuses(st);
-        }
-      })
-      .catch(err => { if (!cancelled) setError(String(err)); })
+      .then((all) => { if (!cancelled) setItems(all); })
+      .catch((err) => { if (!cancelled) setError(String(err)); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, []);
 
+  // status 는 Apps Script 응답만으로 client-side 유도 → 네트워크 왕복 1회로 단축.
+  // image_ready / png_ready (파일 시스템 기반) 은 여기서 판정하지 않음.
   const cellItems: CellItemData[] = useMemo(() => items.map(it => ({
     row: it.row,
     title: it.title,
-    status: statuses[it.row] ?? 'empty',
+    status: deriveStatusFromItem(it),
     source: it.source,
     driveUrl: it.drive_url,
-  })), [items, statuses]);
+  })), [items]);
 
-  // 날짜별 그루핑 (다른 달 항목은 MonthlyCalendar 렌더링 단계에서 자동 필터링됨)
   const itemsByDate = useMemo(() => groupByDate(
     cellItems.map((it, idx) => ({
       ...it,

@@ -33,3 +33,19 @@ export function statusToBadge(status: PipelineStatus): BadgeDisplay {
 export const LEGEND_STATUSES: PipelineStatus[] = [
   'empty', 'script_ready', 'image_ready', 'uploaded', 'live',
 ];
+
+/**
+ * Apps Script `list_scripts` 응답만으로 status 를 유도.
+ * 파일 시스템 체크(image_ready, png_ready)는 생략 — 클라이언트에서 빠른 응답 우선.
+ * (세분화된 image_ready/png_ready 는 /api/pipeline/status 엔드포인트에서만 판정)
+ */
+export function deriveStatusFromItem(item: {
+  calendar_status?: string;
+  drive_url?: string;
+  pages_count?: number;
+}): PipelineStatus {
+  if (item.calendar_status === '라이브') return 'live';
+  if (item.drive_url && item.drive_url.length > 0) return 'uploaded';
+  if (item.pages_count && item.pages_count > 0) return 'script_ready';
+  return 'empty';
+}

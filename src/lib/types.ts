@@ -31,8 +31,10 @@ export interface CarouselItem {
   calendar_status?: string;
   /** 캘린더 탭 J열 Drive URL. 매칭 안 되면 "". */
   drive_url?: string;
-  /** 'script' = 스크립트 탭 원본 (편집 가능), 'calendar' = 캘린더 탭 발행 이력 (read-only, row 는 음수 합성). */
+  /** 'script' = 스크립트 탭 원본 (편집 가능), 'calendar' = 캘린더 탭 발행 이력 (row 는 음수 합성, 편집 불가). */
   source?: 'script' | 'calendar';
+  /** 스크립트 탭 페이지 셀(C~N) 중 비어있지 않은 개수. Apps Script 가 계산해 반환. */
+  pages_count?: number;
 }
 
 export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; }

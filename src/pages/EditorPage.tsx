@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Toolbar } from '@/components/toolbar/Toolbar';
 import { Canvas } from '@/components/canvas/Canvas';
 import { Filmstrip } from '@/components/filmstrip/Filmstrip';
@@ -25,6 +26,18 @@ export function EditorPage({
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
   const [selection, setSelection] = useState<InspectorSelection | null>(null);
   const [isB2bPreview, setIsB2bPreview] = useState(false);
+
+  // 홈 캘린더에서 /editor?row=N 으로 진입 시 해당 row 자동 로드.
+  // 음수(calendar-only orphan)는 Apps Script 가 에러를 반환하므로 시도하지 않음.
+  const [searchParams] = useSearchParams();
+  const wantedRow = searchParams.get('row');
+  useEffect(() => {
+    if (!wantedRow) return;
+    const n = parseInt(wantedRow, 10);
+    if (Number.isFinite(n) && n > 0 && n !== row) {
+      load(n).catch((err) => console.error('Failed to load row from URL:', err));
+    }
+  }, [wantedRow, row, load]);
 
   const coverPage = data?.pages.find(p => p.component === 'cover');
   const coverData = coverPage?.data as CoverData | undefined;

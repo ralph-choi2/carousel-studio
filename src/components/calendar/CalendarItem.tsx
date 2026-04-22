@@ -6,37 +6,30 @@ interface CalendarItemProps {
   row: number;
   title: string;
   status: PipelineStatus;
-  /** 'calendar' 이면 editor 로 이동하지 않음 (row 가 음수 합성이라 편집 불가). */
+  /** 'calendar' (발행 이력) 도 동일하게 /editor?row=<음수> 로 이동. 에디터가 graceful-empty 처리. */
   source?: 'script' | 'calendar';
-  /** calendar-only 아이템 클릭 시 열 Drive URL (새 탭). */
+  /** 현재 사용 안 함. 추후 'View published' 버튼 등으로 활용 예정. */
   driveUrl?: string;
 }
 
-export function CalendarItem({ row, title, status, source, driveUrl }: CalendarItemProps) {
+export function CalendarItem({ row, title, status }: CalendarItemProps) {
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
   const { dotColor } = statusToBadge(status);
-
-  const handleClick = () => {
-    if (source === 'calendar') {
-      if (driveUrl) window.open(driveUrl, '_blank', 'noopener,noreferrer');
-      return; // editor 이동 없음
-    }
-    navigate(`/editor?row=${row}`);
-  };
 
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={handleClick}
+      onClick={() => navigate(`/editor?row=${row}`)}
       style={{
         display: 'flex', alignItems: 'center', gap: 6,
         padding: '4px 8px', borderRadius: 5,
-        fontSize: 11.5,
-        cursor: source === 'calendar' && !driveUrl ? 'default' : 'pointer',
+        fontSize: 11.5, cursor: 'pointer',
         background: hover ? '#d1d5db' : '#f3f4f6',
-        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        // 부모 cell(minWidth:0) 안에서 자기도 min-width:0 유지
+        minWidth: 0, maxWidth: '100%',
         transition: 'background 0.12s',
       }}
     >
@@ -47,6 +40,7 @@ export function CalendarItem({ row, title, status, source, driveUrl }: CalendarI
       <span style={{
         overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         color: '#111', fontWeight: 500,
+        minWidth: 0,
       }}>{title}</span>
     </div>
   );
