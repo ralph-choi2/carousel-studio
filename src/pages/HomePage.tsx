@@ -9,6 +9,21 @@ import { MonthlyCalendar } from '@/components/calendar/MonthlyCalendar';
 import { UnplacedList } from '@/components/calendar/UnplacedList';
 import type { CellItemData } from '@/components/calendar/CalendarCell';
 
+const CACHE_KEY = 'carousel_studio_items_v1';
+
+function readCache(): CarouselItem[] | null {
+  try {
+    const raw = sessionStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as CarouselItem[];
+    return Array.isArray(parsed) ? parsed : null;
+  } catch { return null; }
+}
+
+function writeCache(items: CarouselItem[]): void {
+  try { sessionStorage.setItem(CACHE_KEY, JSON.stringify(items)); } catch { /* quota */ }
+}
+
 export function HomePage() {
   const today = useMemo(() => {
     const n = new Date();
@@ -16,23 +31,28 @@ export function HomePage() {
   }, []);
   const [year, setYear] = useState(today.getUTCFullYear());
   const [month, setMonth] = useState(today.getUTCMonth() + 1); // 1-12
-  const [items, setItems] = useState<CarouselItem[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  // SWR 패턴: 캐시 즉시 보여주고 백그라운드로 fresh fetch.
+  // sessionStorage 캐시가 있으면 initial state 로 사용해 grid 를 즉시 렌더.
+  const [items, setItems] = useState<CarouselItem[]>(() => readCache() ?? []);
+  const [refreshing, setRefreshing] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
+    setRefreshing(true);
     setError(null);
     listCarouselItems()
-      .then((all) => { if (!cancelled) setItems(all); })
+      .then((all) => {
+        if (cancelled) return;
+        setItems(all);
+        writeCache(all);
+      })
       .catch((err) => { if (!cancelled) setError(String(err)); })
-      .finally(() => { if (!cancelled) setLoading(false); });
+      .finally(() => { if (!cancelled) setRefreshing(false); });
     return () => { cancelled = true; };
   }, []);
 
-  // status 는 Apps Script 응답만으로 client-side 유도 → 네트워크 왕복 1회로 단축.
-  // image_ready / png_ready (파일 시스템 기반) 은 여기서 판정하지 않음.
   const cellItems: CellItemData[] = useMemo(() => items.map(it => ({
     row: it.row,
     title: it.title,
@@ -63,25 +83,37 @@ export function HomePage() {
     setMonth(today.getUTCMonth() + 1);
   };
 
+  const isFirstLoad = refreshing && items.length === 0;
+
   return (
     <div style={{
       maxWidth: 1200, margin: '0 auto', padding: 24,
       fontFamily: "'Pretendard', -apple-system, sans-serif",
     }}>
-      <MonthNav year={year} month={month} onPrev={goPrev} onNext={goNext} onToday={goToday} />
+      <div style={{ position: 'relative' }}>
+        <MonthNav year={year} month={month} onPrev={goPrev} onNext={goNext} onToday={goToday} />
+        {refreshing && items.length > 0 && (
+          <div style={{
+            position: 'absolute', top: 10, right: 80,
+            fontSize: 11, color: '#9ca3af',
+          }}>새로고침 중…</div>
+        )}
+      </div>
       <Legend />
       {error && (
         <div style={{ padding: 12, background: '#fef2f2', color: '#b91c1c', borderRadius: 8, marginBottom: 12 }}>
-          상태 조회 실패: {error}. 뱃지 없이 렌더합니다.
+          상태 조회 실패: {error}. 캐시된 데이터를 표시합니다.
         </div>
       )}
-      {loading ? (
-        <div style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>Loading...</div>
-      ) : (
-        <>
-          <MonthlyCalendar year={year} month={month} itemsByDate={itemsByDate} today={today} />
-          <UnplacedList items={unplaced} />
-        </>
+      <MonthlyCalendar year={year} month={month} itemsByDate={itemsByDate} today={today} />
+      <UnplacedList items={unplaced} />
+      {isFirstLoad && (
+        <div style={{
+          position: 'fixed', bottom: 24, right: 24,
+          padding: '8px 14px', background: '#111', color: '#fff',
+          borderRadius: 20, fontSize: 12,
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+        }}>데이터 불러오는 중…</div>
       )}
     </div>
   );
