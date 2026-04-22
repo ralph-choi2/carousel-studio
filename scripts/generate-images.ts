@@ -35,9 +35,9 @@ import { join } from 'node:path';
 
 const WEBAPP_URL =
   'https://script.google.com/macros/s/AKfycbyXsGfrsPPipRDhQqbFA2yvIafTytO6sVSu2fwNxnIE4TOUHaQXbjPiiYxjYwlM3ZJN/exec';
-const FAL_MODEL = 'fal-ai/nano-banana-2';
 const FAL_TIMEOUT_MS = 180_000;
 const DEFAULT_DRIVE_FOLDER_ID = '1W9RcqlEjik-O-Jr83l-mfFXco2E6Gaqa';
+const FAL_MODEL = 'openai/gpt-image-2';
 
 // ---------------------------------------------------------------------------
 // env 로드 (외부 의존 없이 .env 수동 파싱)
@@ -178,8 +178,8 @@ interface FalSubmit {
 }
 
 async function falGenerate(prompt: string): Promise<string> {
-  // aspect_ratio / resolution 파라미터로 3:4 1024x1365 PNG 를 직접 요청.
-  // (기존 Apps Script 가 프롬프트 뒤에 "Aspect ratio 3:4 ..." 문구를 덧붙이던 트릭 불필요)
+  // OpenAI GPT-Image 2.0 / medium quality / portrait_4_3 (1024×1536).
+  // aspect ratio / 해상도는 파라미터로 정확히 지정하므로 프롬프트 중복 금지.
   const submitRes = await fetch(`https://queue.fal.run/${FAL_MODEL}`, {
     method: 'POST',
     headers: {
@@ -188,8 +188,8 @@ async function falGenerate(prompt: string): Promise<string> {
     },
     body: JSON.stringify({
       prompt,
-      aspect_ratio: '3:4',
-      resolution: '1K',
+      image_size: 'portrait_4_3',
+      quality: 'medium',
       num_images: 1,
       output_format: 'png',
     }),
