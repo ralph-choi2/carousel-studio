@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Agentation } from 'agentation';
 import { EditorPage } from '@/pages/EditorPage';
+import { HomePage } from '@/pages/HomePage';
 import { ComponentPage } from '@/pages/ComponentPage';
 import { useCarouselData } from '@/hooks/useCarouselData';
 import { useExport } from '@/hooks/useExport';
@@ -48,7 +49,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/editor" replace />} />
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/editor"
           element={
