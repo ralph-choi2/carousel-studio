@@ -27,6 +27,10 @@ export interface CarouselItem {
   date: string;
   caption: string;
   status: string;
+  /** 캘린더 탭 H열 값 (예: "발행 준비", "라이브"). 매칭 안 되면 "". */
+  calendar_status?: string;
+  /** 캘린더 탭 J열 Drive URL. 매칭 안 되면 "". */
+  drive_url?: string;
 }
 
 export interface CoverData { title: string; subtitle?: string; bg_prompt?: string; bg_image?: string; }

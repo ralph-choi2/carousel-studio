@@ -1,4 +1,5 @@
 import type { CarouselFile, CarouselItem } from '@/lib/types';
+import type { PipelineStatus } from '@/lib/status-mapping';
 
 /**
  * Apps Script 웹앱 v1 URL.
@@ -82,4 +83,20 @@ export async function exportPng(
     body: JSON.stringify({ filename, htmlPages }),
   });
   if (!res.ok) throw new Error(`Failed to export "${filename}": ${res.statusText}`);
+}
+
+/**
+ * 여러 row 의 파이프라인 상태를 한 번에 조회.
+ * 서버 `/api/pipeline/status` 가 파일 시스템 + 캘린더 탭 정보를 조합해 결정.
+ */
+export async function fetchPipelineStatus(
+  rows: number[],
+): Promise<Record<number, PipelineStatus>> {
+  if (rows.length === 0) return {};
+  const qs = rows.join(',');
+  const res = await fetch(`/api/pipeline/status?rows=${qs}`);
+  if (!res.ok) throw new Error(`Failed to fetch pipeline status: ${res.statusText}`);
+  const body = (await res.json()) as { statuses: Record<number, PipelineStatus> } | ApiError;
+  assertOk(body);
+  return body.statuses;
 }
