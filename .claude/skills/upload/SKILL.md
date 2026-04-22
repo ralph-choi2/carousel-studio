@@ -55,6 +55,7 @@ gws drive permissions create \
 **파일 구성** — page_01~07은 온드미디어와 동일, **page_08(CTA)만 교체**:
 - 온드미디어: `public/assets/cta.png` (보라, Uphone.English)
 - B2B: `public/assets/cta_b2b.png` (Bite English + Uphone.English)
+- **추가**: `output/{dateStr}/thumb_b2b.png` (16:9 커버 썸네일, Export 결과물) 도 같은 날짜 폴더에 업로드
 
 ```bash
 # B2B 패키지 준비
@@ -62,6 +63,7 @@ B2B_TMP=/tmp/b2b_pkg_{slug}
 mkdir -p "$B2B_TMP"
 cp output/{dateStr}/0{1_cover,2,3,4,5,6,7}.png "$B2B_TMP"/
 cp public/assets/cta_b2b.png "$B2B_TMP/08_cta.png"
+cp output/{dateStr}/thumb_b2b.png "$B2B_TMP/"
 
 # 1) 날짜 폴더 생성 (supportsAllDrives 없음)
 gws drive files create --params '{}' \
