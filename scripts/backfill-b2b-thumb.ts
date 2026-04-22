@@ -123,10 +123,13 @@ async function main() {
     );
     const html = wrapThumbHtml(markup);
 
-    const outPath = path.join('/tmp', `backfill_thumb_${entry.publishDate}.png`);
+    const outDir = path.join(ROOT, 'output', '.backfill');
+    fs.mkdirSync(outDir, { recursive: true });
+    const outPath = path.join(outDir, `${entry.publishDate}_thumb.png`);
+    const uploadRel = path.relative(process.cwd(), outPath);
     if (!dryRun) {
       await exportThumbnail(html, outPath);
-      uploadToB2B(folderId, outPath);
+      uploadToB2B(folderId, uploadRel);
     }
 
     report.success.push(entry.publishDate);
