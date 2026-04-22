@@ -37,6 +37,7 @@ export function CalendarCell({ day, isOtherMonth, isToday, items }: CalendarCell
         <CalendarItem key={it.row} row={it.row} title={it.title} status={it.status} />
       ))}
       {!isOtherMonth && overflow > 0 && (
+        // cursor:pointer는 Phase 2 확장 팝오버 대비. 현재 클릭 핸들러 없음.
         <div style={{
           fontSize: 10.5, color: '#6b7280', padding: '2px 6px',
           cursor: 'pointer', fontWeight: 600,
