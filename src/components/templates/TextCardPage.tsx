@@ -63,21 +63,6 @@ export function TextCardPage({ data, styles, colors, editable = false, scale, se
           style={{ maxWidth: '860px', marginBottom: '100px' }}
         />
       </div>
-
-      {/* Bottom logo */}
-      <img
-        src="/assets/bi_gray.png"
-        alt="logo"
-        style={{
-          position: 'absolute',
-          bottom: '120px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '280px',
-          height: 'auto',
-          zIndex: 3,
-        }}
-      />
     </PageWrapper>
   );
 }

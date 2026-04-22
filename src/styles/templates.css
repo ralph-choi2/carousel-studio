@@ -15,8 +15,8 @@
 /* === Cover === */
 .tpl-cover-title {
   font-family: 'Pretendard', sans-serif;
-  font-weight: 700;
-  font-size: 100px;
+  font-weight: 800;
+  font-size: 105px;
   letter-spacing: 0;
   line-height: 1.28;
   color: #FFFFFF;
@@ -123,10 +123,10 @@
 
 .tpl-scene-regular {
   font-family: 'Pretendard', sans-serif;
-  font-weight: 500;
-  font-size: 40px;
+  font-weight: 400;
+  font-size: 37px;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 /* === Quote === */

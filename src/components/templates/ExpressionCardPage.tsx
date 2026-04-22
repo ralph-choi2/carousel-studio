@@ -75,7 +75,7 @@ export function ExpressionCardPage({ data, styles, colors, editable, scale = 1, 
                 editable={editable}
                 selected={selectedField === `items.${i}.title`}
                 onSelect={onSelect}
-                style={{ marginBottom: item.body ? 16 : 0 }}
+                style={{ marginBottom: item.body ? 16 : 0, textAlign: 'center' }}
               />
               {item.body && (
                 <EditableText
@@ -93,6 +93,7 @@ export function ExpressionCardPage({ data, styles, colors, editable, scale = 1, 
                   editable={editable}
                   selected={selectedField === `items.${i}.body`}
                   onSelect={onSelect}
+                  style={{ textAlign: 'center' }}
                 />
               )}
             </div>

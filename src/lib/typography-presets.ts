@@ -15,7 +15,7 @@ export interface TypographyPreset {
 
 export const TYPOGRAPHY_PRESETS: TypographyPreset[] = [
   // === Cover ===
-  { id: 'tpl-cover-title',     name: 'Cover / title',     group: 'Cover',   size: 90, weight: 700, family: 'Pretendard' },
+  { id: 'tpl-cover-title',     name: 'Cover / title',     group: 'Cover',   size: 105, weight: 800, family: 'Pretendard' },
   { id: 'tpl-cover-subtitle',  name: 'Cover / subtitle',  group: 'Cover',   size: 48, weight: 600, family: 'Pretendard' },
   { id: 'tpl-cover-badge',     name: 'Cover / badge',     group: 'Cover',   size: 50, weight: 600, family: 'Pretendard' },
   // === Section ===
@@ -31,7 +31,7 @@ export const TYPOGRAPHY_PRESETS: TypographyPreset[] = [
   { id: 'tpl-body-secondary',  name: 'Body / secondary',  group: 'Body',    size: 42, weight: 400, family: 'Pretendard' },
   // === Scene ===
   { id: 'tpl-scene-bold',      name: 'Scene / bold',      group: 'Scene',   size: 40, weight: 600, family: 'Pretendard' },
-  { id: 'tpl-scene-regular',   name: 'Scene / regular',   group: 'Scene',   size: 40, weight: 500, family: 'Pretendard' },
+  { id: 'tpl-scene-regular',   name: 'Scene / regular',   group: 'Scene',   size: 37, weight: 400, family: 'Pretendard' },
   // === Quote ===
   { id: 'tpl-quote-text',      name: 'Quote / text',      group: 'Quote',   size: 50, weight: 600, family: 'Pretendard' },
   // === Source ===

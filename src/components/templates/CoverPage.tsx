@@ -21,7 +21,7 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'rgba(67, 173, 255, 0.85)',
+        background: 'linear-gradient(to bottom, rgba(67, 173, 255, 0.98), rgba(67, 173, 255, 0.85))',
         zIndex: 1,
       }} />
       <div style={{
@@ -76,7 +76,7 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
         )}
       </div>
 
-      {/* BI 로고: 우하단 */}
+      {/* BI 로고: 하단 가운데 */}
       <div style={{
         position: 'absolute',
         bottom: 100,
@@ -84,7 +84,7 @@ export function CoverPage({ data, styles, colors, editable, scale, selectedField
         right: 100,
         zIndex: 3,
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
       }}>
         <img src="/assets/bi_uphone.png" alt="Uphone" style={{ display: 'block', width: 240, height: 54, objectFit: 'contain' }} />
       </div>
