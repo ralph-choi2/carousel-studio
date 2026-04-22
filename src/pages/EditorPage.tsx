@@ -5,7 +5,7 @@ import { Filmstrip } from '@/components/filmstrip/Filmstrip';
 import { Inspector, type InspectorSelection } from '@/components/inspector/Inspector';
 import { usePageNavigation } from '@/hooks/usePageNavigation';
 import type { useCarouselData } from '@/hooks/useCarouselData';
-import type { CarouselItem } from '@/lib/types';
+import type { CarouselItem, CoverData } from '@/lib/types';
 
 interface EditorPageProps {
   items: CarouselItem[];
@@ -24,13 +24,19 @@ export function EditorPage({
   const totalPages = data?.pages.length ?? 0;
   const { currentIndex, goTo, goNext, goPrev } = usePageNavigation(totalPages);
   const [selection, setSelection] = useState<InspectorSelection | null>(null);
+  const [isB2bPreview, setIsB2bPreview] = useState(false);
+
+  const coverPage = data?.pages.find(p => p.component === 'cover');
+  const coverData = coverPage?.data as CoverData | undefined;
 
   const handlePageChange = (next: number) => {
     setSelection(null);
+    setIsB2bPreview(false);
     goTo(next);
   };
-  const handleNext = () => { setSelection(null); goNext(); };
-  const handlePrev = () => { setSelection(null); goPrev(); };
+  const handleNext = () => { setSelection(null); setIsB2bPreview(false); goNext(); };
+  const handlePrev = () => { setSelection(null); setIsB2bPreview(false); goPrev(); };
+  const handleSelectB2b = () => { setSelection(null); setIsB2bPreview(true); };
 
   const currentPage = data?.pages[currentIndex];
   const currentPreset = selection && currentPage?.styles?.[selection.field];
@@ -96,6 +102,7 @@ export function EditorPage({
               onSelect={(field, defaultPreset, defaultColor) =>
                 setSelection({ field, defaultPreset, defaultColor })
               }
+              b2bPreview={isB2bPreview ? coverData : undefined}
             />
             <Inspector
               selection={selection}
@@ -110,6 +117,9 @@ export function EditorPage({
             pages={data.pages}
             currentIndex={currentIndex}
             onSelect={handlePageChange}
+            b2bCoverData={coverData}
+            isB2bActive={isB2bPreview}
+            onSelectB2b={handleSelectB2b}
           />
         </>
       ) : (
